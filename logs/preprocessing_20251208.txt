@@ -1,0 +1,1620 @@
+[2025-12-08 11:11:05] [INFO] 
+======================================================================
+[2025-12-08 11:11:05] [INFO]  PREPROCESSING & FEATURE ENGINEERING PIPELINE
+[2025-12-08 11:11:05] [INFO]  Toko Buku Pustaka Nusantara
+[2025-12-08 11:11:05] [INFO] ======================================================================
+[2025-12-08 11:11:05] [INFO] ======================================================================
+[2025-12-08 11:11:05] [INFO] STEP 1: LOADING ENRICHED DATASET
+[2025-12-08 11:11:05] [INFO] ======================================================================
+[2025-12-08 11:11:05] [INFO] ✓ Loaded: ML_Dataset_Enriched.csv
+[2025-12-08 11:11:05] [INFO]   Shape: 3480 rows x 25 columns
+[2025-12-08 11:11:05] [INFO]   Memory: 2.60 MB
+[2025-12-08 11:11:05] [INFO] 
+======================================================================
+[2025-12-08 11:11:05] [INFO] INITIAL DATA INSPECTION
+[2025-12-08 11:11:05] [INFO] ======================================================================
+[2025-12-08 11:11:05] [INFO] 
+1. COLUMNS (25):
+[2025-12-08 11:11:05] [INFO]    1. Purchase_Date (object)
+[2025-12-08 11:11:05] [INFO]    2. Customer_ID (object)
+[2025-12-08 11:11:05] [INFO]    3. Title (object)
+[2025-12-08 11:11:05] [INFO]    4. Quantity (int64)
+[2025-12-08 11:11:05] [INFO]    5. Item_Price (float64)
+[2025-12-08 11:11:05] [INFO]    6. Total_Amount (float64)
+[2025-12-08 11:11:05] [INFO]    7. Profit (float64)
+[2025-12-08 11:11:05] [INFO]    8. Category (object)
+[2025-12-08 11:11:05] [INFO]    9. Ship_City (object)
+[2025-12-08 11:11:05] [INFO]    10. Ship_State (object)
+[2025-12-08 11:11:05] [INFO]    11. api_found (object)
+[2025-12-08 11:11:05] [INFO]    12. api_title (object)
+[2025-12-08 11:11:05] [INFO]    13. api_author (object)
+[2025-12-08 11:11:05] [INFO]    14. api_authors_all (object)
+[2025-12-08 11:11:05] [INFO]    15. api_first_publish_year (float64)
+[2025-12-08 11:11:05] [INFO]    16. api_isbn (float64)
+[2025-12-08 11:11:05] [INFO]    17. api_isbn_all (float64)
+[2025-12-08 11:11:05] [INFO]    18. api_publisher (float64)
+[2025-12-08 11:11:05] [INFO]    19. api_publishers_all (float64)
+[2025-12-08 11:11:05] [INFO]    20. api_language (object)
+[2025-12-08 11:11:05] [INFO]    21. api_number_of_pages (float64)
+[2025-12-08 11:11:05] [INFO]    22. api_subject (float64)
+[2025-12-08 11:11:05] [INFO]    23. api_edition_count (float64)
+[2025-12-08 11:11:05] [INFO]    24. api_has_fulltext (object)
+[2025-12-08 11:11:05] [INFO]    25. api_search_url (object)
+[2025-12-08 11:11:05] [INFO] 
+2. MISSING VALUES:
+[2025-12-08 11:11:05] [INFO] 
+                Column  Missing  Percentage
+              api_isbn     3480  100.000000
+          api_isbn_all     3480  100.000000
+         api_publisher     3480  100.000000
+    api_publishers_all     3480  100.000000
+   api_number_of_pages     3480  100.000000
+           api_subject     3480  100.000000
+          api_language     3455   99.281609
+api_first_publish_year     3371   96.867816
+            api_author     3368   96.781609
+       api_authors_all     3368   96.781609
+             api_title     3358   96.494253
+     api_edition_count     3358   96.494253
+      api_has_fulltext     3358   96.494253
+        api_search_url     3358   96.494253
+             api_found     3063   88.017241
+[2025-12-08 11:11:05] [INFO] 
+3. DATA TYPES:
+[2025-12-08 11:11:05] [INFO]    - object: 13 columns
+[2025-12-08 11:11:05] [INFO]    - float64: 11 columns
+[2025-12-08 11:11:05] [INFO]    - int64: 1 columns
+[2025-12-08 11:11:05] [INFO] 
+4. NUMERICAL STATISTICS:
+[2025-12-08 11:11:05] [INFO]    Found 12 numerical columns:
+[2025-12-08 11:11:05] [INFO]    - Quantity:
+[2025-12-08 11:11:05] [INFO]      Min: 1.00, Max: 10.00
+[2025-12-08 11:11:05] [INFO]      Mean: 1.05, Median: 1.00
+[2025-12-08 11:11:05] [INFO]      Std: 0.35
+[2025-12-08 11:11:05] [INFO]    - Item_Price:
+[2025-12-08 11:11:05] [INFO]      Min: 40.00, Max: 6450.00
+[2025-12-08 11:11:05] [INFO]      Mean: 377.75, Median: 285.00
+[2025-12-08 11:11:05] [INFO]      Std: 327.26
+[2025-12-08 11:11:05] [INFO]    - Total_Amount:
+[2025-12-08 11:11:05] [INFO]      Min: 80.00, Max: 7300.00
+[2025-12-08 11:11:05] [INFO]      Mean: 456.78, Median: 340.00
+[2025-12-08 11:11:05] [INFO]      Std: 338.98
+[2025-12-08 11:11:05] [INFO]    - Profit:
+[2025-12-08 11:11:05] [INFO]      Min: 5.20, Max: 838.50
+[2025-12-08 11:11:05] [INFO]      Mean: 59.81, Median: 45.00
+[2025-12-08 11:11:05] [INFO]      Std: 47.71
+[2025-12-08 11:11:05] [INFO]    - api_first_publish_year:
+[2025-12-08 11:11:05] [INFO]      Min: 1966.00, Max: 2017.00
+[2025-12-08 11:11:05] [INFO]      Mean: 2006.99, Median: 2014.00
+[2025-12-08 11:11:05] [INFO]      Std: 13.36
+[2025-12-08 11:11:05] [INFO]    - api_isbn:
+[2025-12-08 11:11:05] [INFO]      Min: nan, Max: nan
+[2025-12-08 11:11:05] [INFO]      Mean: nan, Median: nan
+[2025-12-08 11:11:05] [INFO]      Std: nan
+[2025-12-08 11:11:05] [INFO]    - api_isbn_all:
+[2025-12-08 11:11:05] [INFO]      Min: nan, Max: nan
+[2025-12-08 11:11:05] [INFO]      Mean: nan, Median: nan
+[2025-12-08 11:11:05] [INFO]      Std: nan
+[2025-12-08 11:11:05] [INFO]    - api_publisher:
+[2025-12-08 11:11:05] [INFO]      Min: nan, Max: nan
+[2025-12-08 11:11:05] [INFO]      Mean: nan, Median: nan
+[2025-12-08 11:11:05] [INFO]      Std: nan
+[2025-12-08 11:11:05] [INFO]    - api_publishers_all:
+[2025-12-08 11:11:05] [INFO]      Min: nan, Max: nan
+[2025-12-08 11:11:05] [INFO]      Mean: nan, Median: nan
+[2025-12-08 11:11:05] [INFO]      Std: nan
+[2025-12-08 11:11:05] [INFO]    - api_number_of_pages:
+[2025-12-08 11:11:05] [INFO]      Min: nan, Max: nan
+[2025-12-08 11:11:05] [INFO]      Mean: nan, Median: nan
+[2025-12-08 11:11:05] [INFO]      Std: nan
+[2025-12-08 11:11:05] [INFO]    - api_subject:
+[2025-12-08 11:11:05] [INFO]      Min: nan, Max: nan
+[2025-12-08 11:11:05] [INFO]      Mean: nan, Median: nan
+[2025-12-08 11:11:05] [INFO]      Std: nan
+[2025-12-08 11:11:05] [INFO]    - api_edition_count:
+[2025-12-08 11:11:05] [INFO]      Min: 1.00, Max: 64.00
+[2025-12-08 11:11:05] [INFO]      Mean: 3.75, Median: 1.00
+[2025-12-08 11:11:05] [INFO]      Std: 7.74
+[2025-12-08 11:11:05] [INFO] 
+======================================================================
+[2025-12-08 11:11:05] [INFO] STEP 2: HANDLING MISSING VALUES
+[2025-12-08 11:11:05] [INFO] ======================================================================
+[2025-12-08 11:11:05] [INFO] Total missing values: 50937
+[2025-12-08 11:11:05] [INFO] ✓ Filled api_first_publish_year with median: 2014.00
+[2025-12-08 11:11:05] [INFO] ✓ Filled api_isbn with median: nan
+[2025-12-08 11:11:05] [INFO] ✓ Filled api_isbn_all with median: nan
+[2025-12-08 11:11:05] [INFO] ✓ Filled api_publisher with median: nan
+[2025-12-08 11:11:05] [INFO] ✓ Filled api_publishers_all with median: nan
+[2025-12-08 11:11:05] [INFO] ✓ Filled api_number_of_pages with median: nan
+[2025-12-08 11:11:05] [INFO] ✓ Filled api_subject with median: nan
+[2025-12-08 11:11:05] [INFO] ✓ Filled api_edition_count with median: 1.00
+[2025-12-08 11:11:05] [INFO] ✓ Filled api_found with mode: False
+[2025-12-08 11:11:05] [INFO] ✓ Filled api_title with mode: Contemporary India Part - 2 Textbook in Geography for Class - 10 - 1068
+[2025-12-08 11:11:05] [INFO] ✓ Filled api_author with mode: by NCERT (Author)
+[2025-12-08 11:11:05] [INFO] ✓ Filled api_authors_all with mode: by NCERT (Author)
+[2025-12-08 11:11:05] [INFO] ✓ Filled api_language with mode: eng
+[2025-12-08 11:11:05] [INFO] ✓ Filled api_has_fulltext with mode: False
+[2025-12-08 11:11:05] [INFO] ✓ Filled api_search_url with mode: https://openlibrary.org/works/OL21639423W
+[2025-12-08 11:11:05] [INFO] 
+✓ Missing values handled!
+[2025-12-08 11:11:05] [INFO]   Remaining missing: 20880
+[2025-12-08 11:11:05] [INFO] 
+======================================================================
+[2025-12-08 11:11:05] [INFO] STEP 3: HANDLING OUTLIERS
+[2025-12-08 11:11:05] [INFO] ======================================================================
+[2025-12-08 11:11:05] [INFO] 
+Quantity:
+[2025-12-08 11:11:05] [INFO]   Outliers found: 117 (3.36%)
+[2025-12-08 11:11:05] [INFO]   Lower bound: 1.00, Upper bound: 1.00
+[2025-12-08 11:11:05] [INFO]   ✓ Outliers capped to bounds
+[2025-12-08 11:11:05] [INFO] 
+Item_Price:
+[2025-12-08 11:11:05] [INFO]   Outliers found: 78 (2.24%)
+[2025-12-08 11:11:05] [INFO]   Lower bound: -437.50, Upper bound: 1142.50
+[2025-12-08 11:11:05] [INFO]   ✓ Outliers capped to bounds
+[2025-12-08 11:11:05] [INFO] 
+Total_Amount:
+[2025-12-08 11:11:05] [INFO]   Outliers found: 78 (2.24%)
+[2025-12-08 11:11:05] [INFO]   Lower bound: -379.88, Upper bound: 1250.33
+[2025-12-08 11:11:05] [INFO]   ✓ Outliers capped to bounds
+[2025-12-08 11:11:05] [INFO] 
+Profit:
+[2025-12-08 11:11:05] [INFO]   Outliers found: 192 (5.52%)
+[2025-12-08 11:11:05] [INFO]   Lower bound: -46.27, Upper bound: 151.52
+[2025-12-08 11:11:05] [INFO]   ✓ Outliers capped to bounds
+[2025-12-08 11:11:05] [INFO] 
+✓ Outlier handling completed!
+[2025-12-08 11:11:05] [INFO] 
+======================================================================
+[2025-12-08 11:11:05] [INFO] STEP 4: FEATURE ENGINEERING
+[2025-12-08 11:11:05] [INFO] ======================================================================
+[2025-12-08 11:11:05] [INFO] ✓ Created date features: Year, Month, Day, DayOfWeek, Quarter, IsWeekend
+[2025-12-08 11:11:05] [INFO] ✓ Created: Price_Per_Unit
+[2025-12-08 11:11:05] [INFO] ✓ Created: Profit_Margin, Profit_Category
+[2025-12-08 11:11:05] [INFO] ✓ Created: Book_Age
+[2025-12-08 11:11:05] [INFO] ✓ Created: Has_API_Data
+[2025-12-08 11:11:05] [INFO] ✓ Created: Price_Category
+[2025-12-08 11:11:05] [INFO] 
+✓ Feature engineering completed!
+[2025-12-08 11:11:05] [INFO]   New shape: (3480, 37)
+[2025-12-08 11:11:05] [INFO] 
+======================================================================
+[2025-12-08 11:11:05] [INFO] STEP 5: ENCODING CATEGORICAL VARIABLES
+[2025-12-08 11:11:05] [INFO] ======================================================================
+[2025-12-08 11:11:05] [INFO] Categorical columns to encode: 8
+[2025-12-08 11:11:05] [INFO] 
+Category:
+[2025-12-08 11:11:05] [INFO]   Unique values: 4
+[2025-12-08 11:11:05] [INFO]   ✓ Label Encoded → Category_Encoded
+[2025-12-08 11:11:05] [INFO] 
+Ship_City:
+[2025-12-08 11:11:05] [INFO]   Unique values: 931
+[2025-12-08 11:11:05] [INFO]   ⚠ Too many categories, keeping original
+[2025-12-08 11:11:05] [INFO] 
+Ship_State:
+[2025-12-08 11:11:05] [INFO]   Unique values: 75
+[2025-12-08 11:11:05] [INFO]   ⚠ Too many categories, keeping original
+[2025-12-08 11:11:05] [INFO] 
+api_title:
+[2025-12-08 11:11:05] [INFO]   Unique values: 17
+[2025-12-08 11:11:05] [INFO]   ✓ Label Encoded → api_title_Encoded
+[2025-12-08 11:11:05] [INFO] 
+api_author:
+[2025-12-08 11:11:05] [INFO]   Unique values: 14
+[2025-12-08 11:11:05] [INFO]   ✓ Label Encoded → api_author_Encoded
+[2025-12-08 11:11:05] [INFO] 
+api_authors_all:
+[2025-12-08 11:11:05] [INFO]   Unique values: 14
+[2025-12-08 11:11:05] [INFO]   ✓ Label Encoded → api_authors_all_Encoded
+[2025-12-08 11:11:05] [INFO] 
+api_language:
+[2025-12-08 11:11:05] [INFO]   Unique values: 2
+[2025-12-08 11:11:05] [INFO]   ✓ Label Encoded → api_language_Encoded
+[2025-12-08 11:11:05] [INFO] 
+api_search_url:
+[2025-12-08 11:11:05] [INFO]   Unique values: 17
+[2025-12-08 11:11:05] [INFO]   ✓ Label Encoded → api_search_url_Encoded
+[2025-12-08 11:11:05] [INFO] 
+✓ Encoding completed!
+[2025-12-08 11:11:05] [INFO]   New columns added: 6
+[2025-12-08 11:11:05] [INFO] 
+======================================================================
+[2025-12-08 11:11:05] [INFO] STEP 6: FEATURE SCALING
+[2025-12-08 11:11:05] [INFO] ======================================================================
+[2025-12-08 11:11:05] [INFO] Scaling method: standard
+[2025-12-08 11:11:05] [INFO] Columns to scale: 9
+[2025-12-08 11:11:05] [INFO]   ✓ Scaled: Quantity → Quantity_Scaled
+[2025-12-08 11:11:05] [INFO]   ✓ Scaled: Item_Price → Item_Price_Scaled
+[2025-12-08 11:11:05] [INFO]   ✓ Scaled: Total_Amount → Total_Amount_Scaled
+[2025-12-08 11:11:05] [INFO]   ✓ Scaled: Profit → Profit_Scaled
+[2025-12-08 11:11:05] [INFO]   ✓ Scaled: Profit_Margin → Profit_Margin_Scaled
+[2025-12-08 11:11:05] [INFO]   ✓ Scaled: api_first_publish_year → api_first_publish_year_Scaled
+[2025-12-08 11:11:05] [INFO]   ✓ Scaled: api_number_of_pages → api_number_of_pages_Scaled
+[2025-12-08 11:11:05] [INFO]   ✓ Scaled: api_edition_count → api_edition_count_Scaled
+[2025-12-08 11:11:05] [INFO]   ✓ Scaled: Book_Age → Book_Age_Scaled
+[2025-12-08 11:11:05] [INFO] 
+✓ Scaling completed!
+[2025-12-08 11:11:05] [INFO] 
+======================================================================
+[2025-12-08 11:11:05] [INFO] STEP 7: TRAIN-TEST SPLIT
+[2025-12-08 11:11:05] [INFO] ======================================================================
+[2025-12-08 11:11:05] [INFO] Train set: 2784 rows (80%)
+[2025-12-08 11:11:05] [INFO] Test set: 696 rows (20%)
+[2025-12-08 11:11:05] [INFO] 
+======================================================================
+[2025-12-08 11:11:05] [INFO] DATA QUALITY REPORT
+[2025-12-08 11:11:05] [INFO] ======================================================================
+[2025-12-08 11:11:05] [INFO] 
+1. DATASET COMPARISON:
+[2025-12-08 11:11:05] [INFO]    Original: 3480 rows x 25 cols
+[2025-12-08 11:11:05] [INFO]    Processed: 3480 rows x 52 cols
+[2025-12-08 11:11:05] [INFO]    New features added: 27
+[2025-12-08 11:11:05] [INFO] 
+2. MISSING VALUES:
+[2025-12-08 11:11:05] [INFO]    Original: 50937
+[2025-12-08 11:11:05] [INFO]    Processed: 24378
+[2025-12-08 11:11:05] [INFO] 
+3. DATA QUALITY SCORE:
+[2025-12-08 11:11:05] [INFO]    Completeness: 86.53%
+[2025-12-08 11:11:05] [INFO] 
+✓ Quality report generated!
+[2025-12-08 11:11:05] [INFO] 
+======================================================================
+[2025-12-08 11:11:05] [INFO] STEP 8: SAVING PROCESSED DATA
+[2025-12-08 11:11:05] [INFO] ======================================================================
+[2025-12-08 11:11:05] [INFO] ✓ Full dataset: .\output\ML_Dataset_Processed_Full.csv
+[2025-12-08 11:11:05] [INFO]   Size: 3480 rows x 52 cols
+[2025-12-08 11:11:06] [INFO] ✓ Train set: .\output\ML_Dataset_Train.csv
+[2025-12-08 11:11:06] [INFO] ✓ Test set: .\output\ML_Dataset_Test.csv
+[2025-12-08 11:11:06] [INFO] ✓ Column info: .\output\Processed_Columns_Info.csv
+[2025-12-08 11:11:06] [INFO] 
+======================================================================
+[2025-12-08 11:11:06] [INFO] ✓ PREPROCESSING COMPLETED!
+[2025-12-08 11:11:06] [INFO] ======================================================================
+[2025-12-08 11:11:06] [INFO] 
+Next Steps:
+[2025-12-08 11:11:06] [INFO] 1. Build ML Models (Regression, Classification, Clustering)
+[2025-12-08 11:11:06] [INFO] 2. Model evaluation and metrics
+[2025-12-08 11:11:06] [INFO] 3. Visualization and BI dashboard
+[2025-12-08 11:44:57] [INFO] 
+======================================================================
+[2025-12-08 11:44:57] [INFO]  PREPROCESSING & FEATURE ENGINEERING PIPELINE
+[2025-12-08 11:44:57] [INFO]  Toko Buku Pustaka Nusantara
+[2025-12-08 11:44:57] [INFO] ======================================================================
+[2025-12-08 11:44:57] [INFO] ======================================================================
+[2025-12-08 11:44:57] [INFO] STEP 1: LOADING ENRICHED DATASET
+[2025-12-08 11:44:57] [INFO] ======================================================================
+[2025-12-08 11:44:57] [INFO] ✓ Loaded: ML_Dataset_Enriched.csv
+[2025-12-08 11:44:57] [INFO]   Shape: 3480 rows x 25 columns
+[2025-12-08 11:44:57] [INFO]   Memory: 2.66 MB
+[2025-12-08 11:44:57] [INFO] 
+======================================================================
+[2025-12-08 11:44:57] [INFO] INITIAL DATA INSPECTION
+[2025-12-08 11:44:57] [INFO] ======================================================================
+[2025-12-08 11:44:57] [INFO] 
+1. COLUMNS (25):
+[2025-12-08 11:44:57] [INFO]    1. Purchase_Date (object)
+[2025-12-08 11:44:57] [INFO]    2. Customer_ID (object)
+[2025-12-08 11:44:57] [INFO]    3. Title (object)
+[2025-12-08 11:44:57] [INFO]    4. Quantity (int64)
+[2025-12-08 11:44:57] [INFO]    5. Item_Price (float64)
+[2025-12-08 11:44:57] [INFO]    6. Total_Amount (float64)
+[2025-12-08 11:44:57] [INFO]    7. Profit (float64)
+[2025-12-08 11:44:57] [INFO]    8. Category (object)
+[2025-12-08 11:44:57] [INFO]    9. Ship_City (object)
+[2025-12-08 11:44:57] [INFO]    10. Ship_State (object)
+[2025-12-08 11:44:57] [INFO]    11. api_found (object)
+[2025-12-08 11:44:57] [INFO]    12. api_title (object)
+[2025-12-08 11:44:57] [INFO]    13. api_author (object)
+[2025-12-08 11:44:57] [INFO]    14. api_authors_all (object)
+[2025-12-08 11:44:57] [INFO]    15. api_first_publish_year (float64)
+[2025-12-08 11:44:57] [INFO]    16. api_isbn (float64)
+[2025-12-08 11:44:57] [INFO]    17. api_isbn_all (float64)
+[2025-12-08 11:44:57] [INFO]    18. api_publisher (float64)
+[2025-12-08 11:44:57] [INFO]    19. api_publishers_all (float64)
+[2025-12-08 11:44:57] [INFO]    20. api_language (object)
+[2025-12-08 11:44:57] [INFO]    21. api_number_of_pages (float64)
+[2025-12-08 11:44:57] [INFO]    22. api_subject (float64)
+[2025-12-08 11:44:57] [INFO]    23. api_edition_count (float64)
+[2025-12-08 11:44:57] [INFO]    24. api_has_fulltext (object)
+[2025-12-08 11:44:57] [INFO]    25. api_search_url (object)
+[2025-12-08 11:44:57] [INFO] 
+2. MISSING VALUES:
+[2025-12-08 11:44:57] [INFO] 
+                Column  Missing  Percentage
+              api_isbn     3480  100.000000
+          api_isbn_all     3480  100.000000
+         api_publisher     3480  100.000000
+    api_publishers_all     3480  100.000000
+   api_number_of_pages     3480  100.000000
+           api_subject     3480  100.000000
+          api_language     3406   97.873563
+api_first_publish_year     3071   88.247126
+            api_author     3069   88.189655
+       api_authors_all     3069   88.189655
+             api_title     3066   88.103448
+     api_edition_count     3066   88.103448
+      api_has_fulltext     3066   88.103448
+        api_search_url     3066   88.103448
+             api_found     2543   73.074713
+[2025-12-08 11:44:57] [INFO] 
+3. DATA TYPES:
+[2025-12-08 11:44:57] [INFO]    - object: 13 columns
+[2025-12-08 11:44:57] [INFO]    - float64: 11 columns
+[2025-12-08 11:44:57] [INFO]    - int64: 1 columns
+[2025-12-08 11:44:57] [INFO] 
+4. NUMERICAL STATISTICS:
+[2025-12-08 11:44:57] [INFO]    Found 12 numerical columns:
+[2025-12-08 11:44:57] [INFO]    - Quantity:
+[2025-12-08 11:44:57] [INFO]      Min: 1.00, Max: 10.00
+[2025-12-08 11:44:57] [INFO]      Mean: 1.05, Median: 1.00
+[2025-12-08 11:44:57] [INFO]      Std: 0.35
+[2025-12-08 11:44:57] [INFO]    - Item_Price:
+[2025-12-08 11:44:57] [INFO]      Min: 40.00, Max: 6450.00
+[2025-12-08 11:44:57] [INFO]      Mean: 377.75, Median: 285.00
+[2025-12-08 11:44:57] [INFO]      Std: 327.26
+[2025-12-08 11:44:57] [INFO]    - Total_Amount:
+[2025-12-08 11:44:57] [INFO]      Min: 80.00, Max: 7300.00
+[2025-12-08 11:44:57] [INFO]      Mean: 456.78, Median: 340.00
+[2025-12-08 11:44:57] [INFO]      Std: 338.98
+[2025-12-08 11:44:57] [INFO]    - Profit:
+[2025-12-08 11:44:57] [INFO]      Min: 5.20, Max: 838.50
+[2025-12-08 11:44:57] [INFO]      Mean: 59.81, Median: 45.00
+[2025-12-08 11:44:57] [INFO]      Std: 47.71
+[2025-12-08 11:44:57] [INFO]    - api_first_publish_year:
+[2025-12-08 11:44:57] [INFO]      Min: 1830.00, Max: 2017.00
+[2025-12-08 11:44:57] [INFO]      Mean: 1984.13, Median: 2014.00
+[2025-12-08 11:44:57] [INFO]      Std: 66.62
+[2025-12-08 11:44:57] [INFO]    - api_isbn:
+[2025-12-08 11:44:57] [INFO]      Min: nan, Max: nan
+[2025-12-08 11:44:57] [INFO]      Mean: nan, Median: nan
+[2025-12-08 11:44:57] [INFO]      Std: nan
+[2025-12-08 11:44:57] [INFO]    - api_isbn_all:
+[2025-12-08 11:44:57] [INFO]      Min: nan, Max: nan
+[2025-12-08 11:44:57] [INFO]      Mean: nan, Median: nan
+[2025-12-08 11:44:57] [INFO]      Std: nan
+[2025-12-08 11:44:57] [INFO]    - api_publisher:
+[2025-12-08 11:44:57] [INFO]      Min: nan, Max: nan
+[2025-12-08 11:44:57] [INFO]      Mean: nan, Median: nan
+[2025-12-08 11:44:57] [INFO]      Std: nan
+[2025-12-08 11:44:57] [INFO]    - api_publishers_all:
+[2025-12-08 11:44:57] [INFO]      Min: nan, Max: nan
+[2025-12-08 11:44:57] [INFO]      Mean: nan, Median: nan
+[2025-12-08 11:44:57] [INFO]      Std: nan
+[2025-12-08 11:44:57] [INFO]    - api_number_of_pages:
+[2025-12-08 11:44:57] [INFO]      Min: nan, Max: nan
+[2025-12-08 11:44:57] [INFO]      Mean: nan, Median: nan
+[2025-12-08 11:44:57] [INFO]      Std: nan
+[2025-12-08 11:44:57] [INFO]    - api_subject:
+[2025-12-08 11:44:57] [INFO]      Min: nan, Max: nan
+[2025-12-08 11:44:57] [INFO]      Mean: nan, Median: nan
+[2025-12-08 11:44:57] [INFO]      Std: nan
+[2025-12-08 11:44:57] [INFO]    - api_edition_count:
+[2025-12-08 11:44:57] [INFO]      Min: 1.00, Max: 89.00
+[2025-12-08 11:44:57] [INFO]      Mean: 10.80, Median: 1.00
+[2025-12-08 11:44:57] [INFO]      Std: 22.16
+[2025-12-08 11:44:57] [INFO] 
+======================================================================
+[2025-12-08 11:44:57] [INFO] STEP 2: HANDLING MISSING VALUES
+[2025-12-08 11:44:57] [INFO] ======================================================================
+[2025-12-08 11:44:57] [INFO] Total missing values: 48302
+[2025-12-08 11:44:57] [INFO] ✓ Filled api_first_publish_year with median: 2014.00
+[2025-12-08 11:44:57] [INFO] ✓ Filled api_isbn with median: nan
+[2025-12-08 11:44:57] [INFO] ✓ Filled api_isbn_all with median: nan
+[2025-12-08 11:44:57] [INFO] ✓ Filled api_publisher with median: nan
+[2025-12-08 11:44:57] [INFO] ✓ Filled api_publishers_all with median: nan
+[2025-12-08 11:44:57] [INFO] ✓ Filled api_number_of_pages with median: nan
+[2025-12-08 11:44:57] [INFO] ✓ Filled api_subject with median: nan
+[2025-12-08 11:44:57] [INFO] ✓ Filled api_edition_count with median: 1.00
+[2025-12-08 11:44:57] [INFO] ✓ Filled api_found with mode: False
+[2025-12-08 11:44:57] [INFO] ✓ Filled api_title with mode: Science Textbook for Class - 6 - 652
+[2025-12-08 11:44:57] [INFO] ✓ Filled api_author with mode: NCERT (Author)
+[2025-12-08 11:44:57] [INFO] ✓ Filled api_authors_all with mode: NCERT (Author)
+[2025-12-08 11:44:57] [INFO] ✓ Filled api_language with mode: eng
+[2025-12-08 11:44:57] [INFO] ✓ Filled api_has_fulltext with mode: False
+[2025-12-08 11:44:57] [INFO] ✓ Filled api_search_url with mode: https://openlibrary.org/works/OL24320039W
+[2025-12-08 11:44:57] [INFO] 
+✓ Missing values handled!
+[2025-12-08 11:44:57] [INFO]   Remaining missing: 20880
+[2025-12-08 11:44:57] [INFO] 
+======================================================================
+[2025-12-08 11:44:57] [INFO] STEP 3: HANDLING OUTLIERS
+[2025-12-08 11:44:57] [INFO] ======================================================================
+[2025-12-08 11:44:57] [INFO] 
+Quantity:
+[2025-12-08 11:44:57] [INFO]   Outliers found: 117 (3.36%)
+[2025-12-08 11:44:57] [INFO]   Lower bound: 1.00, Upper bound: 1.00
+[2025-12-08 11:44:57] [INFO]   ✓ Outliers capped to bounds
+[2025-12-08 11:44:57] [INFO] 
+Item_Price:
+[2025-12-08 11:44:57] [INFO]   Outliers found: 78 (2.24%)
+[2025-12-08 11:44:57] [INFO]   Lower bound: -437.50, Upper bound: 1142.50
+[2025-12-08 11:44:57] [INFO]   ✓ Outliers capped to bounds
+[2025-12-08 11:44:57] [INFO] 
+Total_Amount:
+[2025-12-08 11:44:57] [INFO]   Outliers found: 78 (2.24%)
+[2025-12-08 11:44:57] [INFO]   Lower bound: -379.88, Upper bound: 1250.33
+[2025-12-08 11:44:57] [INFO]   ✓ Outliers capped to bounds
+[2025-12-08 11:44:57] [INFO] 
+Profit:
+[2025-12-08 11:44:57] [INFO]   Outliers found: 192 (5.52%)
+[2025-12-08 11:44:57] [INFO]   Lower bound: -46.27, Upper bound: 151.52
+[2025-12-08 11:44:57] [INFO]   ✓ Outliers capped to bounds
+[2025-12-08 11:44:57] [INFO] 
+✓ Outlier handling completed!
+[2025-12-08 11:44:57] [INFO] 
+======================================================================
+[2025-12-08 11:44:57] [INFO] STEP 4: FEATURE ENGINEERING
+[2025-12-08 11:44:57] [INFO] ======================================================================
+[2025-12-08 11:44:58] [INFO] ✓ Created date features: Year, Month, Day, DayOfWeek, Quarter, IsWeekend
+[2025-12-08 11:44:58] [INFO] ✓ Created: Price_Per_Unit
+[2025-12-08 11:44:58] [INFO] ✓ Created: Profit_Margin, Profit_Category
+[2025-12-08 11:44:58] [INFO] ✓ Created: Book_Age
+[2025-12-08 11:44:58] [INFO] ✓ Created: Has_API_Data
+[2025-12-08 11:44:58] [INFO] ✓ Created: Price_Category
+[2025-12-08 11:44:58] [INFO] 
+✓ Feature engineering completed!
+[2025-12-08 11:44:58] [INFO]   New shape: (3480, 37)
+[2025-12-08 11:44:58] [INFO] 
+======================================================================
+[2025-12-08 11:44:58] [INFO] STEP 5: ENCODING CATEGORICAL VARIABLES
+[2025-12-08 11:44:58] [INFO] ======================================================================
+[2025-12-08 11:44:58] [INFO] Categorical columns to encode: 8
+[2025-12-08 11:44:58] [INFO] 
+Category:
+[2025-12-08 11:44:58] [INFO]   Unique values: 4
+[2025-12-08 11:44:58] [INFO]   ✓ Label Encoded → Category_Encoded
+[2025-12-08 11:44:58] [INFO] 
+Ship_City:
+[2025-12-08 11:44:58] [INFO]   Unique values: 931
+[2025-12-08 11:44:58] [INFO]   ⚠ Too many categories, keeping original
+[2025-12-08 11:44:58] [INFO] 
+Ship_State:
+[2025-12-08 11:44:58] [INFO]   Unique values: 75
+[2025-12-08 11:44:58] [INFO]   ⚠ Too many categories, keeping original
+[2025-12-08 11:44:58] [INFO] 
+api_title:
+[2025-12-08 11:44:58] [INFO]   Unique values: 16
+[2025-12-08 11:44:58] [INFO]   ✓ Label Encoded → api_title_Encoded
+[2025-12-08 11:44:58] [INFO] 
+api_author:
+[2025-12-08 11:44:58] [INFO]   Unique values: 14
+[2025-12-08 11:44:58] [INFO]   ✓ Label Encoded → api_author_Encoded
+[2025-12-08 11:44:58] [INFO] 
+api_authors_all:
+[2025-12-08 11:44:58] [INFO]   Unique values: 15
+[2025-12-08 11:44:58] [INFO]   ✓ Label Encoded → api_authors_all_Encoded
+[2025-12-08 11:44:58] [INFO] 
+api_language:
+[2025-12-08 11:44:58] [INFO]   Unique values: 1
+[2025-12-08 11:44:58] [INFO]   ✓ Label Encoded → api_language_Encoded
+[2025-12-08 11:44:58] [INFO] 
+api_search_url:
+[2025-12-08 11:44:58] [INFO]   Unique values: 16
+[2025-12-08 11:44:58] [INFO]   ✓ Label Encoded → api_search_url_Encoded
+[2025-12-08 11:44:58] [INFO] Encoders saved to: .\output\label_encoders.pkl
+[2025-12-08 11:44:58] [INFO] Encoding completed!
+[2025-12-08 11:44:58] [INFO]   New columns added: 6
+[2025-12-08 11:44:58] [ERROR] 
+❌ FATAL ERROR: name 'scale_features' is not defined
+[2025-12-08 11:44:58] [ERROR] Traceback (most recent call last):
+  File "C:\Pustaka_ML_Project\preprocessing.py", line 522, in <module>
+    df_processed, train_df, test_df = main()
+                                      ^^^^^^
+  File "C:\Pustaka_ML_Project\preprocessing.py", line 499, in main
+    df, scaler = scale_features(df, method='standard')
+                 ^^^^^^^^^^^^^^
+NameError: name 'scale_features' is not defined
+
+[2025-12-08 11:46:09] [INFO] 
+======================================================================
+[2025-12-08 11:46:09] [INFO]  PREPROCESSING & FEATURE ENGINEERING PIPELINE
+[2025-12-08 11:46:09] [INFO]  Toko Buku Pustaka Nusantara
+[2025-12-08 11:46:09] [INFO] ======================================================================
+[2025-12-08 11:46:09] [INFO] ======================================================================
+[2025-12-08 11:46:09] [INFO] STEP 1: LOADING ENRICHED DATASET
+[2025-12-08 11:46:09] [INFO] ======================================================================
+[2025-12-08 11:46:09] [INFO] ✓ Loaded: ML_Dataset_Enriched.csv
+[2025-12-08 11:46:09] [INFO]   Shape: 3480 rows x 25 columns
+[2025-12-08 11:46:09] [INFO]   Memory: 2.66 MB
+[2025-12-08 11:46:09] [INFO] 
+======================================================================
+[2025-12-08 11:46:09] [INFO] INITIAL DATA INSPECTION
+[2025-12-08 11:46:09] [INFO] ======================================================================
+[2025-12-08 11:46:09] [INFO] 
+1. COLUMNS (25):
+[2025-12-08 11:46:09] [INFO]    1. Purchase_Date (object)
+[2025-12-08 11:46:09] [INFO]    2. Customer_ID (object)
+[2025-12-08 11:46:09] [INFO]    3. Title (object)
+[2025-12-08 11:46:09] [INFO]    4. Quantity (int64)
+[2025-12-08 11:46:09] [INFO]    5. Item_Price (float64)
+[2025-12-08 11:46:09] [INFO]    6. Total_Amount (float64)
+[2025-12-08 11:46:09] [INFO]    7. Profit (float64)
+[2025-12-08 11:46:09] [INFO]    8. Category (object)
+[2025-12-08 11:46:09] [INFO]    9. Ship_City (object)
+[2025-12-08 11:46:09] [INFO]    10. Ship_State (object)
+[2025-12-08 11:46:09] [INFO]    11. api_found (object)
+[2025-12-08 11:46:09] [INFO]    12. api_title (object)
+[2025-12-08 11:46:09] [INFO]    13. api_author (object)
+[2025-12-08 11:46:09] [INFO]    14. api_authors_all (object)
+[2025-12-08 11:46:09] [INFO]    15. api_first_publish_year (float64)
+[2025-12-08 11:46:09] [INFO]    16. api_isbn (float64)
+[2025-12-08 11:46:09] [INFO]    17. api_isbn_all (float64)
+[2025-12-08 11:46:09] [INFO]    18. api_publisher (float64)
+[2025-12-08 11:46:09] [INFO]    19. api_publishers_all (float64)
+[2025-12-08 11:46:09] [INFO]    20. api_language (object)
+[2025-12-08 11:46:09] [INFO]    21. api_number_of_pages (float64)
+[2025-12-08 11:46:09] [INFO]    22. api_subject (float64)
+[2025-12-08 11:46:09] [INFO]    23. api_edition_count (float64)
+[2025-12-08 11:46:09] [INFO]    24. api_has_fulltext (object)
+[2025-12-08 11:46:09] [INFO]    25. api_search_url (object)
+[2025-12-08 11:46:09] [INFO] 
+2. MISSING VALUES:
+[2025-12-08 11:46:09] [INFO] 
+                Column  Missing  Percentage
+              api_isbn     3480  100.000000
+          api_isbn_all     3480  100.000000
+         api_publisher     3480  100.000000
+    api_publishers_all     3480  100.000000
+   api_number_of_pages     3480  100.000000
+           api_subject     3480  100.000000
+          api_language     3406   97.873563
+api_first_publish_year     3071   88.247126
+            api_author     3069   88.189655
+       api_authors_all     3069   88.189655
+             api_title     3066   88.103448
+     api_edition_count     3066   88.103448
+      api_has_fulltext     3066   88.103448
+        api_search_url     3066   88.103448
+             api_found     2543   73.074713
+[2025-12-08 11:46:09] [INFO] 
+3. DATA TYPES:
+[2025-12-08 11:46:09] [INFO]    - object: 13 columns
+[2025-12-08 11:46:09] [INFO]    - float64: 11 columns
+[2025-12-08 11:46:09] [INFO]    - int64: 1 columns
+[2025-12-08 11:46:09] [INFO] 
+4. NUMERICAL STATISTICS:
+[2025-12-08 11:46:09] [INFO]    Found 12 numerical columns:
+[2025-12-08 11:46:09] [INFO]    - Quantity:
+[2025-12-08 11:46:09] [INFO]      Min: 1.00, Max: 10.00
+[2025-12-08 11:46:09] [INFO]      Mean: 1.05, Median: 1.00
+[2025-12-08 11:46:09] [INFO]      Std: 0.35
+[2025-12-08 11:46:09] [INFO]    - Item_Price:
+[2025-12-08 11:46:09] [INFO]      Min: 40.00, Max: 6450.00
+[2025-12-08 11:46:09] [INFO]      Mean: 377.75, Median: 285.00
+[2025-12-08 11:46:09] [INFO]      Std: 327.26
+[2025-12-08 11:46:09] [INFO]    - Total_Amount:
+[2025-12-08 11:46:09] [INFO]      Min: 80.00, Max: 7300.00
+[2025-12-08 11:46:09] [INFO]      Mean: 456.78, Median: 340.00
+[2025-12-08 11:46:09] [INFO]      Std: 338.98
+[2025-12-08 11:46:09] [INFO]    - Profit:
+[2025-12-08 11:46:09] [INFO]      Min: 5.20, Max: 838.50
+[2025-12-08 11:46:09] [INFO]      Mean: 59.81, Median: 45.00
+[2025-12-08 11:46:09] [INFO]      Std: 47.71
+[2025-12-08 11:46:09] [INFO]    - api_first_publish_year:
+[2025-12-08 11:46:09] [INFO]      Min: 1830.00, Max: 2017.00
+[2025-12-08 11:46:09] [INFO]      Mean: 1984.13, Median: 2014.00
+[2025-12-08 11:46:09] [INFO]      Std: 66.62
+[2025-12-08 11:46:09] [INFO]    - api_isbn:
+[2025-12-08 11:46:09] [INFO]      Min: nan, Max: nan
+[2025-12-08 11:46:09] [INFO]      Mean: nan, Median: nan
+[2025-12-08 11:46:09] [INFO]      Std: nan
+[2025-12-08 11:46:09] [INFO]    - api_isbn_all:
+[2025-12-08 11:46:09] [INFO]      Min: nan, Max: nan
+[2025-12-08 11:46:09] [INFO]      Mean: nan, Median: nan
+[2025-12-08 11:46:09] [INFO]      Std: nan
+[2025-12-08 11:46:09] [INFO]    - api_publisher:
+[2025-12-08 11:46:09] [INFO]      Min: nan, Max: nan
+[2025-12-08 11:46:09] [INFO]      Mean: nan, Median: nan
+[2025-12-08 11:46:09] [INFO]      Std: nan
+[2025-12-08 11:46:09] [INFO]    - api_publishers_all:
+[2025-12-08 11:46:09] [INFO]      Min: nan, Max: nan
+[2025-12-08 11:46:09] [INFO]      Mean: nan, Median: nan
+[2025-12-08 11:46:09] [INFO]      Std: nan
+[2025-12-08 11:46:09] [INFO]    - api_number_of_pages:
+[2025-12-08 11:46:09] [INFO]      Min: nan, Max: nan
+[2025-12-08 11:46:09] [INFO]      Mean: nan, Median: nan
+[2025-12-08 11:46:09] [INFO]      Std: nan
+[2025-12-08 11:46:09] [INFO]    - api_subject:
+[2025-12-08 11:46:09] [INFO]      Min: nan, Max: nan
+[2025-12-08 11:46:09] [INFO]      Mean: nan, Median: nan
+[2025-12-08 11:46:09] [INFO]      Std: nan
+[2025-12-08 11:46:09] [INFO]    - api_edition_count:
+[2025-12-08 11:46:09] [INFO]      Min: 1.00, Max: 89.00
+[2025-12-08 11:46:09] [INFO]      Mean: 10.80, Median: 1.00
+[2025-12-08 11:46:09] [INFO]      Std: 22.16
+[2025-12-08 11:46:09] [INFO] 
+======================================================================
+[2025-12-08 11:46:09] [INFO] STEP 2: HANDLING MISSING VALUES
+[2025-12-08 11:46:09] [INFO] ======================================================================
+[2025-12-08 11:46:09] [INFO] Total missing values: 48302
+[2025-12-08 11:46:09] [INFO] ✓ Filled api_first_publish_year with median: 2014.00
+[2025-12-08 11:46:09] [INFO] ✓ Filled api_isbn with median: nan
+[2025-12-08 11:46:09] [INFO] ✓ Filled api_isbn_all with median: nan
+[2025-12-08 11:46:09] [INFO] ✓ Filled api_publisher with median: nan
+[2025-12-08 11:46:09] [INFO] ✓ Filled api_publishers_all with median: nan
+[2025-12-08 11:46:09] [INFO] ✓ Filled api_number_of_pages with median: nan
+[2025-12-08 11:46:09] [INFO] ✓ Filled api_subject with median: nan
+[2025-12-08 11:46:09] [INFO] ✓ Filled api_edition_count with median: 1.00
+[2025-12-08 11:46:09] [INFO] ✓ Filled api_found with mode: False
+[2025-12-08 11:46:09] [INFO] ✓ Filled api_title with mode: Science Textbook for Class - 6 - 652
+[2025-12-08 11:46:09] [INFO] ✓ Filled api_author with mode: NCERT (Author)
+[2025-12-08 11:46:09] [INFO] ✓ Filled api_authors_all with mode: NCERT (Author)
+[2025-12-08 11:46:09] [INFO] ✓ Filled api_language with mode: eng
+[2025-12-08 11:46:09] [INFO] ✓ Filled api_has_fulltext with mode: False
+[2025-12-08 11:46:09] [INFO] ✓ Filled api_search_url with mode: https://openlibrary.org/works/OL24320039W
+[2025-12-08 11:46:09] [INFO] 
+✓ Missing values handled!
+[2025-12-08 11:46:09] [INFO]   Remaining missing: 20880
+[2025-12-08 11:46:09] [INFO] 
+======================================================================
+[2025-12-08 11:46:09] [INFO] STEP 3: HANDLING OUTLIERS
+[2025-12-08 11:46:09] [INFO] ======================================================================
+[2025-12-08 11:46:09] [INFO] 
+Quantity:
+[2025-12-08 11:46:09] [INFO]   Outliers found: 117 (3.36%)
+[2025-12-08 11:46:09] [INFO]   Lower bound: 1.00, Upper bound: 1.00
+[2025-12-08 11:46:09] [INFO]   ✓ Outliers capped to bounds
+[2025-12-08 11:46:09] [INFO] 
+Item_Price:
+[2025-12-08 11:46:09] [INFO]   Outliers found: 78 (2.24%)
+[2025-12-08 11:46:09] [INFO]   Lower bound: -437.50, Upper bound: 1142.50
+[2025-12-08 11:46:09] [INFO]   ✓ Outliers capped to bounds
+[2025-12-08 11:46:09] [INFO] 
+Total_Amount:
+[2025-12-08 11:46:09] [INFO]   Outliers found: 78 (2.24%)
+[2025-12-08 11:46:09] [INFO]   Lower bound: -379.88, Upper bound: 1250.33
+[2025-12-08 11:46:09] [INFO]   ✓ Outliers capped to bounds
+[2025-12-08 11:46:09] [INFO] 
+Profit:
+[2025-12-08 11:46:09] [INFO]   Outliers found: 192 (5.52%)
+[2025-12-08 11:46:09] [INFO]   Lower bound: -46.27, Upper bound: 151.52
+[2025-12-08 11:46:09] [INFO]   ✓ Outliers capped to bounds
+[2025-12-08 11:46:09] [INFO] 
+✓ Outlier handling completed!
+[2025-12-08 11:46:09] [INFO] 
+======================================================================
+[2025-12-08 11:46:09] [INFO] STEP 4: FEATURE ENGINEERING
+[2025-12-08 11:46:09] [INFO] ======================================================================
+[2025-12-08 11:46:09] [INFO] ✓ Created date features: Year, Month, Day, DayOfWeek, Quarter, IsWeekend
+[2025-12-08 11:46:09] [INFO] ✓ Created: Price_Per_Unit
+[2025-12-08 11:46:09] [INFO] ✓ Created: Profit_Margin, Profit_Category
+[2025-12-08 11:46:09] [INFO] ✓ Created: Book_Age
+[2025-12-08 11:46:09] [INFO] ✓ Created: Has_API_Data
+[2025-12-08 11:46:09] [INFO] ✓ Created: Price_Category
+[2025-12-08 11:46:09] [INFO] 
+✓ Feature engineering completed!
+[2025-12-08 11:46:09] [INFO]   New shape: (3480, 37)
+[2025-12-08 11:46:09] [INFO] 
+======================================================================
+[2025-12-08 11:46:09] [INFO] STEP 5: ENCODING CATEGORICAL VARIABLES
+[2025-12-08 11:46:09] [INFO] ======================================================================
+[2025-12-08 11:46:09] [INFO] Categorical columns to encode: 8
+[2025-12-08 11:46:09] [INFO] 
+Category:
+[2025-12-08 11:46:09] [INFO]   Unique values: 4
+[2025-12-08 11:46:09] [INFO]   ✓ Label Encoded → Category_Encoded
+[2025-12-08 11:46:09] [INFO] 
+Ship_City:
+[2025-12-08 11:46:09] [INFO]   Unique values: 931
+[2025-12-08 11:46:09] [INFO]   ⚠ Too many categories, keeping original
+[2025-12-08 11:46:09] [INFO] 
+Ship_State:
+[2025-12-08 11:46:09] [INFO]   Unique values: 75
+[2025-12-08 11:46:09] [INFO]   ⚠ Too many categories, keeping original
+[2025-12-08 11:46:09] [INFO] 
+api_title:
+[2025-12-08 11:46:09] [INFO]   Unique values: 16
+[2025-12-08 11:46:09] [INFO]   ✓ Label Encoded → api_title_Encoded
+[2025-12-08 11:46:09] [INFO] 
+api_author:
+[2025-12-08 11:46:09] [INFO]   Unique values: 14
+[2025-12-08 11:46:09] [INFO]   ✓ Label Encoded → api_author_Encoded
+[2025-12-08 11:46:09] [INFO] 
+api_authors_all:
+[2025-12-08 11:46:09] [INFO]   Unique values: 15
+[2025-12-08 11:46:09] [INFO]   ✓ Label Encoded → api_authors_all_Encoded
+[2025-12-08 11:46:09] [INFO] 
+api_language:
+[2025-12-08 11:46:09] [INFO]   Unique values: 1
+[2025-12-08 11:46:09] [INFO]   ✓ Label Encoded → api_language_Encoded
+[2025-12-08 11:46:09] [INFO] 
+api_search_url:
+[2025-12-08 11:46:09] [INFO]   Unique values: 16
+[2025-12-08 11:46:09] [INFO]   ✓ Label Encoded → api_search_url_Encoded
+[2025-12-08 11:46:09] [INFO] Encoders saved to: .\output\label_encoders.pkl
+[2025-12-08 11:46:09] [INFO] Encoding completed!
+[2025-12-08 11:46:09] [INFO]   New columns added: 6
+[2025-12-08 11:46:09] [INFO] 
+======================================================================
+[2025-12-08 11:46:09] [INFO] STEP 6: FEATURE SCALING
+[2025-12-08 11:46:09] [INFO] ======================================================================
+[2025-12-08 11:46:09] [INFO] Scaling method: standard
+[2025-12-08 11:46:09] [INFO] Columns to scale: 9
+[2025-12-08 11:46:09] [INFO]   ✓ Scaled: Quantity → Quantity_Scaled
+[2025-12-08 11:46:09] [INFO]   ✓ Scaled: Item_Price → Item_Price_Scaled
+[2025-12-08 11:46:09] [INFO]   ✓ Scaled: Total_Amount → Total_Amount_Scaled
+[2025-12-08 11:46:09] [INFO]   ✓ Scaled: Profit → Profit_Scaled
+[2025-12-08 11:46:09] [INFO]   ✓ Scaled: Profit_Margin → Profit_Margin_Scaled
+[2025-12-08 11:46:09] [INFO]   ✓ Scaled: api_first_publish_year → api_first_publish_year_Scaled
+[2025-12-08 11:46:09] [INFO]   ✓ Scaled: api_number_of_pages → api_number_of_pages_Scaled
+[2025-12-08 11:46:09] [INFO]   ✓ Scaled: api_edition_count → api_edition_count_Scaled
+[2025-12-08 11:46:09] [INFO]   ✓ Scaled: Book_Age → Book_Age_Scaled
+[2025-12-08 11:46:09] [INFO] Scaler saved to: .\output\standard_scaler.pkl
+[2025-12-08 11:46:09] [INFO] Scaling completed!
+[2025-12-08 11:46:09] [INFO] 
+======================================================================
+[2025-12-08 11:46:09] [INFO] STEP 7: TRAIN-TEST SPLIT
+[2025-12-08 11:46:09] [INFO] ======================================================================
+[2025-12-08 11:46:09] [INFO] Train set: 2784 rows (80%)
+[2025-12-08 11:46:09] [INFO] Test set: 696 rows (20%)
+[2025-12-08 11:46:09] [INFO] 
+======================================================================
+[2025-12-08 11:46:09] [INFO] DATA QUALITY REPORT
+[2025-12-08 11:46:09] [INFO] ======================================================================
+[2025-12-08 11:46:09] [INFO] 
+1. DATASET COMPARISON:
+[2025-12-08 11:46:09] [INFO]    Original: 3480 rows x 25 cols
+[2025-12-08 11:46:09] [INFO]    Processed: 3480 rows x 52 cols
+[2025-12-08 11:46:09] [INFO]    New features added: 27
+[2025-12-08 11:46:09] [INFO] 
+2. MISSING VALUES:
+[2025-12-08 11:46:09] [INFO]    Original: 48302
+[2025-12-08 11:46:09] [INFO]    Processed: 24378
+[2025-12-08 11:46:09] [INFO] 
+3. DATA QUALITY SCORE:
+[2025-12-08 11:46:09] [INFO]    Completeness: 86.53%
+[2025-12-08 11:46:09] [INFO] 
+✓ Quality report generated!
+[2025-12-08 11:46:09] [INFO] 
+======================================================================
+[2025-12-08 11:46:09] [INFO] STEP 8: SAVING PROCESSED DATA
+[2025-12-08 11:46:09] [INFO] ======================================================================
+[2025-12-08 11:46:10] [INFO] ✓ Full dataset: .\output\ML_Dataset_Processed_Full.csv
+[2025-12-08 11:46:10] [INFO]   Size: 3480 rows x 52 cols
+[2025-12-08 11:46:10] [INFO] ✓ Train set: .\output\ML_Dataset_Train.csv
+[2025-12-08 11:46:10] [INFO] ✓ Test set: .\output\ML_Dataset_Test.csv
+[2025-12-08 11:46:10] [INFO] ✓ Column info: .\output\Processed_Columns_Info.csv
+[2025-12-08 11:46:10] [INFO] 
+======================================================================
+[2025-12-08 11:46:10] [INFO] ✓ PREPROCESSING COMPLETED!
+[2025-12-08 11:46:10] [INFO] ======================================================================
+[2025-12-08 11:46:10] [INFO] 
+Next Steps:
+[2025-12-08 11:46:10] [INFO] 1. Build ML Models (Regression, Classification, Clustering)
+[2025-12-08 11:46:10] [INFO] 2. Model evaluation and metrics
+[2025-12-08 11:46:10] [INFO] 3. Visualization and BI dashboard
+[2025-12-08 11:48:51] [INFO] 
+======================================================================
+[2025-12-08 11:48:51] [INFO]  PREPROCESSING & FEATURE ENGINEERING PIPELINE
+[2025-12-08 11:48:51] [INFO]  Toko Buku Pustaka Nusantara
+[2025-12-08 11:48:51] [INFO] ======================================================================
+[2025-12-08 11:48:51] [INFO] ======================================================================
+[2025-12-08 11:48:51] [INFO] STEP 1: LOADING ENRICHED DATASET
+[2025-12-08 11:48:51] [INFO] ======================================================================
+[2025-12-08 11:48:51] [INFO] ✓ Loaded: ML_Dataset_Enriched.csv
+[2025-12-08 11:48:51] [INFO]   Shape: 3480 rows x 25 columns
+[2025-12-08 11:48:51] [INFO]   Memory: 2.66 MB
+[2025-12-08 11:48:51] [INFO] 
+======================================================================
+[2025-12-08 11:48:51] [INFO] INITIAL DATA INSPECTION
+[2025-12-08 11:48:51] [INFO] ======================================================================
+[2025-12-08 11:48:51] [INFO] 
+1. COLUMNS (25):
+[2025-12-08 11:48:51] [INFO]    1. Purchase_Date (object)
+[2025-12-08 11:48:51] [INFO]    2. Customer_ID (object)
+[2025-12-08 11:48:51] [INFO]    3. Title (object)
+[2025-12-08 11:48:51] [INFO]    4. Quantity (int64)
+[2025-12-08 11:48:51] [INFO]    5. Item_Price (float64)
+[2025-12-08 11:48:51] [INFO]    6. Total_Amount (float64)
+[2025-12-08 11:48:51] [INFO]    7. Profit (float64)
+[2025-12-08 11:48:51] [INFO]    8. Category (object)
+[2025-12-08 11:48:51] [INFO]    9. Ship_City (object)
+[2025-12-08 11:48:51] [INFO]    10. Ship_State (object)
+[2025-12-08 11:48:51] [INFO]    11. api_found (object)
+[2025-12-08 11:48:51] [INFO]    12. api_title (object)
+[2025-12-08 11:48:51] [INFO]    13. api_author (object)
+[2025-12-08 11:48:51] [INFO]    14. api_authors_all (object)
+[2025-12-08 11:48:51] [INFO]    15. api_first_publish_year (float64)
+[2025-12-08 11:48:51] [INFO]    16. api_isbn (float64)
+[2025-12-08 11:48:51] [INFO]    17. api_isbn_all (float64)
+[2025-12-08 11:48:51] [INFO]    18. api_publisher (float64)
+[2025-12-08 11:48:51] [INFO]    19. api_publishers_all (float64)
+[2025-12-08 11:48:51] [INFO]    20. api_language (object)
+[2025-12-08 11:48:51] [INFO]    21. api_number_of_pages (float64)
+[2025-12-08 11:48:51] [INFO]    22. api_subject (float64)
+[2025-12-08 11:48:51] [INFO]    23. api_edition_count (float64)
+[2025-12-08 11:48:51] [INFO]    24. api_has_fulltext (object)
+[2025-12-08 11:48:51] [INFO]    25. api_search_url (object)
+[2025-12-08 11:48:51] [INFO] 
+2. MISSING VALUES:
+[2025-12-08 11:48:51] [INFO] 
+                Column  Missing  Percentage
+              api_isbn     3480  100.000000
+          api_isbn_all     3480  100.000000
+         api_publisher     3480  100.000000
+    api_publishers_all     3480  100.000000
+   api_number_of_pages     3480  100.000000
+           api_subject     3480  100.000000
+          api_language     3406   97.873563
+api_first_publish_year     3071   88.247126
+            api_author     3069   88.189655
+       api_authors_all     3069   88.189655
+             api_title     3066   88.103448
+     api_edition_count     3066   88.103448
+      api_has_fulltext     3066   88.103448
+        api_search_url     3066   88.103448
+             api_found     2543   73.074713
+[2025-12-08 11:48:51] [INFO] 
+3. DATA TYPES:
+[2025-12-08 11:48:51] [INFO]    - object: 13 columns
+[2025-12-08 11:48:51] [INFO]    - float64: 11 columns
+[2025-12-08 11:48:51] [INFO]    - int64: 1 columns
+[2025-12-08 11:48:51] [INFO] 
+4. NUMERICAL STATISTICS:
+[2025-12-08 11:48:51] [INFO]    Found 12 numerical columns:
+[2025-12-08 11:48:51] [INFO]    - Quantity:
+[2025-12-08 11:48:51] [INFO]      Min: 1.00, Max: 10.00
+[2025-12-08 11:48:51] [INFO]      Mean: 1.05, Median: 1.00
+[2025-12-08 11:48:51] [INFO]      Std: 0.35
+[2025-12-08 11:48:51] [INFO]    - Item_Price:
+[2025-12-08 11:48:51] [INFO]      Min: 40.00, Max: 6450.00
+[2025-12-08 11:48:51] [INFO]      Mean: 377.75, Median: 285.00
+[2025-12-08 11:48:51] [INFO]      Std: 327.26
+[2025-12-08 11:48:51] [INFO]    - Total_Amount:
+[2025-12-08 11:48:51] [INFO]      Min: 80.00, Max: 7300.00
+[2025-12-08 11:48:51] [INFO]      Mean: 456.78, Median: 340.00
+[2025-12-08 11:48:51] [INFO]      Std: 338.98
+[2025-12-08 11:48:51] [INFO]    - Profit:
+[2025-12-08 11:48:51] [INFO]      Min: 5.20, Max: 838.50
+[2025-12-08 11:48:51] [INFO]      Mean: 59.81, Median: 45.00
+[2025-12-08 11:48:51] [INFO]      Std: 47.71
+[2025-12-08 11:48:51] [INFO]    - api_first_publish_year:
+[2025-12-08 11:48:51] [INFO]      Min: 1830.00, Max: 2017.00
+[2025-12-08 11:48:51] [INFO]      Mean: 1984.13, Median: 2014.00
+[2025-12-08 11:48:51] [INFO]      Std: 66.62
+[2025-12-08 11:48:51] [INFO]    - api_isbn:
+[2025-12-08 11:48:51] [INFO]      Min: nan, Max: nan
+[2025-12-08 11:48:51] [INFO]      Mean: nan, Median: nan
+[2025-12-08 11:48:51] [INFO]      Std: nan
+[2025-12-08 11:48:51] [INFO]    - api_isbn_all:
+[2025-12-08 11:48:51] [INFO]      Min: nan, Max: nan
+[2025-12-08 11:48:51] [INFO]      Mean: nan, Median: nan
+[2025-12-08 11:48:51] [INFO]      Std: nan
+[2025-12-08 11:48:51] [INFO]    - api_publisher:
+[2025-12-08 11:48:51] [INFO]      Min: nan, Max: nan
+[2025-12-08 11:48:51] [INFO]      Mean: nan, Median: nan
+[2025-12-08 11:48:51] [INFO]      Std: nan
+[2025-12-08 11:48:51] [INFO]    - api_publishers_all:
+[2025-12-08 11:48:51] [INFO]      Min: nan, Max: nan
+[2025-12-08 11:48:51] [INFO]      Mean: nan, Median: nan
+[2025-12-08 11:48:51] [INFO]      Std: nan
+[2025-12-08 11:48:51] [INFO]    - api_number_of_pages:
+[2025-12-08 11:48:51] [INFO]      Min: nan, Max: nan
+[2025-12-08 11:48:51] [INFO]      Mean: nan, Median: nan
+[2025-12-08 11:48:51] [INFO]      Std: nan
+[2025-12-08 11:48:51] [INFO]    - api_subject:
+[2025-12-08 11:48:51] [INFO]      Min: nan, Max: nan
+[2025-12-08 11:48:51] [INFO]      Mean: nan, Median: nan
+[2025-12-08 11:48:51] [INFO]      Std: nan
+[2025-12-08 11:48:51] [INFO]    - api_edition_count:
+[2025-12-08 11:48:51] [INFO]      Min: 1.00, Max: 89.00
+[2025-12-08 11:48:51] [INFO]      Mean: 10.80, Median: 1.00
+[2025-12-08 11:48:51] [INFO]      Std: 22.16
+[2025-12-08 11:48:51] [INFO] 
+======================================================================
+[2025-12-08 11:48:51] [INFO] STEP 2: HANDLING MISSING VALUES
+[2025-12-08 11:48:51] [INFO] ======================================================================
+[2025-12-08 11:48:51] [INFO] Total missing values: 48302
+[2025-12-08 11:48:51] [INFO] ✓ Filled api_first_publish_year with median: 2014.00
+[2025-12-08 11:48:51] [INFO] ✓ Filled api_isbn with median: nan
+[2025-12-08 11:48:51] [INFO] ✓ Filled api_isbn_all with median: nan
+[2025-12-08 11:48:51] [INFO] ✓ Filled api_publisher with median: nan
+[2025-12-08 11:48:51] [INFO] ✓ Filled api_publishers_all with median: nan
+[2025-12-08 11:48:51] [INFO] ✓ Filled api_number_of_pages with median: nan
+[2025-12-08 11:48:51] [INFO] ✓ Filled api_subject with median: nan
+[2025-12-08 11:48:51] [INFO] ✓ Filled api_edition_count with median: 1.00
+[2025-12-08 11:48:51] [INFO] ✓ Filled api_found with mode: False
+[2025-12-08 11:48:51] [INFO] ✓ Filled api_title with mode: Science Textbook for Class - 6 - 652
+[2025-12-08 11:48:51] [INFO] ✓ Filled api_author with mode: NCERT (Author)
+[2025-12-08 11:48:51] [INFO] ✓ Filled api_authors_all with mode: NCERT (Author)
+[2025-12-08 11:48:51] [INFO] ✓ Filled api_language with mode: eng
+[2025-12-08 11:48:51] [INFO] ✓ Filled api_has_fulltext with mode: False
+[2025-12-08 11:48:51] [INFO] ✓ Filled api_search_url with mode: https://openlibrary.org/works/OL24320039W
+[2025-12-08 11:48:51] [INFO] 
+✓ Missing values handled!
+[2025-12-08 11:48:51] [INFO]   Remaining missing: 20880
+[2025-12-08 11:48:51] [INFO] 
+======================================================================
+[2025-12-08 11:48:51] [INFO] STEP 3: HANDLING OUTLIERS
+[2025-12-08 11:48:51] [INFO] ======================================================================
+[2025-12-08 11:48:51] [INFO] 
+Quantity:
+[2025-12-08 11:48:51] [INFO]   Outliers found: 117 (3.36%)
+[2025-12-08 11:48:51] [INFO]   Lower bound: 1.00, Upper bound: 1.00
+[2025-12-08 11:48:51] [INFO]   ✓ Outliers capped to bounds
+[2025-12-08 11:48:51] [INFO] 
+Item_Price:
+[2025-12-08 11:48:51] [INFO]   Outliers found: 78 (2.24%)
+[2025-12-08 11:48:51] [INFO]   Lower bound: -437.50, Upper bound: 1142.50
+[2025-12-08 11:48:51] [INFO]   ✓ Outliers capped to bounds
+[2025-12-08 11:48:51] [INFO] 
+Total_Amount:
+[2025-12-08 11:48:51] [INFO]   Outliers found: 78 (2.24%)
+[2025-12-08 11:48:51] [INFO]   Lower bound: -379.88, Upper bound: 1250.33
+[2025-12-08 11:48:51] [INFO]   ✓ Outliers capped to bounds
+[2025-12-08 11:48:51] [INFO] 
+Profit:
+[2025-12-08 11:48:51] [INFO]   Outliers found: 192 (5.52%)
+[2025-12-08 11:48:51] [INFO]   Lower bound: -46.27, Upper bound: 151.52
+[2025-12-08 11:48:51] [INFO]   ✓ Outliers capped to bounds
+[2025-12-08 11:48:51] [INFO] 
+✓ Outlier handling completed!
+[2025-12-08 11:48:51] [INFO] 
+======================================================================
+[2025-12-08 11:48:51] [INFO] STEP 4: FEATURE ENGINEERING
+[2025-12-08 11:48:51] [INFO] ======================================================================
+[2025-12-08 11:48:51] [INFO] ✓ Created date features: Year, Month, Day, DayOfWeek, Quarter, IsWeekend
+[2025-12-08 11:48:51] [INFO] ✓ Created: Price_Per_Unit
+[2025-12-08 11:48:51] [INFO] ✓ Created: Profit_Margin, Profit_Category
+[2025-12-08 11:48:51] [INFO] ✓ Created: Book_Age
+[2025-12-08 11:48:51] [INFO] ✓ Created: Has_API_Data
+[2025-12-08 11:48:51] [INFO] ✓ Created: Price_Category
+[2025-12-08 11:48:51] [INFO] 
+✓ Feature engineering completed!
+[2025-12-08 11:48:51] [INFO]   New shape: (3480, 37)
+[2025-12-08 11:48:51] [INFO] 
+======================================================================
+[2025-12-08 11:48:51] [INFO] STEP 5: ENCODING CATEGORICAL VARIABLES
+[2025-12-08 11:48:51] [INFO] ======================================================================
+[2025-12-08 11:48:51] [INFO] Categorical columns to encode: 8
+[2025-12-08 11:48:51] [INFO] 
+Category:
+[2025-12-08 11:48:51] [INFO]   Unique values: 4
+[2025-12-08 11:48:51] [INFO]   ✓ Label Encoded → Category_Encoded
+[2025-12-08 11:48:51] [INFO] 
+Ship_City:
+[2025-12-08 11:48:51] [INFO]   Unique values: 931
+[2025-12-08 11:48:51] [INFO]   ⚠ Too many categories, keeping original
+[2025-12-08 11:48:51] [INFO] 
+Ship_State:
+[2025-12-08 11:48:51] [INFO]   Unique values: 75
+[2025-12-08 11:48:51] [INFO]   ⚠ Too many categories, keeping original
+[2025-12-08 11:48:51] [INFO] 
+api_title:
+[2025-12-08 11:48:51] [INFO]   Unique values: 16
+[2025-12-08 11:48:51] [INFO]   ✓ Label Encoded → api_title_Encoded
+[2025-12-08 11:48:51] [INFO] 
+api_author:
+[2025-12-08 11:48:51] [INFO]   Unique values: 14
+[2025-12-08 11:48:51] [INFO]   ✓ Label Encoded → api_author_Encoded
+[2025-12-08 11:48:51] [INFO] 
+api_authors_all:
+[2025-12-08 11:48:51] [INFO]   Unique values: 15
+[2025-12-08 11:48:51] [INFO]   ✓ Label Encoded → api_authors_all_Encoded
+[2025-12-08 11:48:51] [INFO] 
+api_language:
+[2025-12-08 11:48:51] [INFO]   Unique values: 1
+[2025-12-08 11:48:51] [INFO]   ✓ Label Encoded → api_language_Encoded
+[2025-12-08 11:48:51] [INFO] 
+api_search_url:
+[2025-12-08 11:48:51] [INFO]   Unique values: 16
+[2025-12-08 11:48:51] [INFO]   ✓ Label Encoded → api_search_url_Encoded
+[2025-12-08 11:48:51] [INFO] Encoders saved to: .\output\label_encoders.pkl
+[2025-12-08 11:48:51] [INFO] Encoding completed!
+[2025-12-08 11:48:51] [INFO]   New columns added: 6
+[2025-12-08 11:48:51] [INFO] 
+======================================================================
+[2025-12-08 11:48:51] [INFO] STEP 6: FEATURE SCALING
+[2025-12-08 11:48:51] [INFO] ======================================================================
+[2025-12-08 11:48:51] [INFO] Scaling method: standard
+[2025-12-08 11:48:51] [INFO] Columns to scale: 9
+[2025-12-08 11:48:51] [INFO]   ✓ Scaled: Quantity → Quantity_Scaled
+[2025-12-08 11:48:51] [INFO]   ✓ Scaled: Item_Price → Item_Price_Scaled
+[2025-12-08 11:48:51] [INFO]   ✓ Scaled: Total_Amount → Total_Amount_Scaled
+[2025-12-08 11:48:51] [INFO]   ✓ Scaled: Profit → Profit_Scaled
+[2025-12-08 11:48:51] [INFO]   ✓ Scaled: Profit_Margin → Profit_Margin_Scaled
+[2025-12-08 11:48:51] [INFO]   ✓ Scaled: api_first_publish_year → api_first_publish_year_Scaled
+[2025-12-08 11:48:51] [INFO]   ✓ Scaled: api_number_of_pages → api_number_of_pages_Scaled
+[2025-12-08 11:48:51] [INFO]   ✓ Scaled: api_edition_count → api_edition_count_Scaled
+[2025-12-08 11:48:51] [INFO]   ✓ Scaled: Book_Age → Book_Age_Scaled
+[2025-12-08 11:48:51] [INFO] Scaler saved to: .\output\standard_scaler.pkl
+[2025-12-08 11:48:51] [INFO] Scaling completed!
+[2025-12-08 11:48:51] [INFO] 
+======================================================================
+[2025-12-08 11:48:51] [INFO] STEP 7: TRAIN-TEST SPLIT
+[2025-12-08 11:48:51] [INFO] ======================================================================
+[2025-12-08 11:48:51] [INFO] Train set: 2784 rows (80%)
+[2025-12-08 11:48:51] [INFO] Test set: 696 rows (20%)
+[2025-12-08 11:48:51] [INFO] 
+======================================================================
+[2025-12-08 11:48:51] [INFO] DATA QUALITY REPORT
+[2025-12-08 11:48:51] [INFO] ======================================================================
+[2025-12-08 11:48:51] [INFO] 
+1. DATASET COMPARISON:
+[2025-12-08 11:48:51] [INFO]    Original: 3480 rows x 25 cols
+[2025-12-08 11:48:51] [INFO]    Processed: 3480 rows x 52 cols
+[2025-12-08 11:48:51] [INFO]    New features added: 27
+[2025-12-08 11:48:51] [INFO] 
+2. MISSING VALUES:
+[2025-12-08 11:48:51] [INFO]    Original: 48302
+[2025-12-08 11:48:51] [INFO]    Processed: 24378
+[2025-12-08 11:48:51] [INFO] 
+3. DATA QUALITY SCORE:
+[2025-12-08 11:48:51] [INFO]    Completeness: 86.53%
+[2025-12-08 11:48:51] [INFO] 
+✓ Quality report generated!
+[2025-12-08 11:48:51] [INFO] 
+======================================================================
+[2025-12-08 11:48:51] [INFO] STEP 8: SAVING PROCESSED DATA
+[2025-12-08 11:48:51] [INFO] ======================================================================
+[2025-12-08 11:48:51] [INFO] ✓ Full dataset: .\output\ML_Dataset_Processed_Full.csv
+[2025-12-08 11:48:51] [INFO]   Size: 3480 rows x 52 cols
+[2025-12-08 11:48:51] [INFO] ✓ Train set: .\output\ML_Dataset_Train.csv
+[2025-12-08 11:48:51] [INFO] ✓ Test set: .\output\ML_Dataset_Test.csv
+[2025-12-08 11:48:51] [INFO] ✓ Column info: .\output\Processed_Columns_Info.csv
+[2025-12-08 11:48:51] [INFO] 
+======================================================================
+[2025-12-08 11:48:51] [INFO] ✓ PREPROCESSING COMPLETED!
+[2025-12-08 11:48:51] [INFO] ======================================================================
+[2025-12-08 11:48:51] [INFO] 
+Next Steps:
+[2025-12-08 11:48:51] [INFO] 1. Build ML Models (Regression, Classification, Clustering)
+[2025-12-08 11:48:51] [INFO] 2. Model evaluation and metrics
+[2025-12-08 11:48:51] [INFO] 3. Visualization and BI dashboard
+[2025-12-08 12:19:10] [INFO] 
+======================================================================
+[2025-12-08 12:19:10] [INFO]  PREPROCESSING & FEATURE ENGINEERING PIPELINE
+[2025-12-08 12:19:10] [INFO]  Toko Buku Pustaka Nusantara
+[2025-12-08 12:19:10] [INFO] ======================================================================
+[2025-12-08 12:19:10] [INFO] ======================================================================
+[2025-12-08 12:19:10] [INFO] STEP 1: LOADING ENRICHED DATASET
+[2025-12-08 12:19:10] [INFO] ======================================================================
+[2025-12-08 12:19:10] [INFO] ✓ Loaded: ML_Dataset_Enriched.csv
+[2025-12-08 12:19:10] [INFO]   Shape: 3480 rows x 25 columns
+[2025-12-08 12:19:10] [INFO]   Memory: 2.66 MB
+[2025-12-08 12:19:10] [INFO] 
+======================================================================
+[2025-12-08 12:19:10] [INFO] INITIAL DATA INSPECTION
+[2025-12-08 12:19:10] [INFO] ======================================================================
+[2025-12-08 12:19:10] [INFO] 
+1. COLUMNS (25):
+[2025-12-08 12:19:10] [INFO]    1. Purchase_Date (object)
+[2025-12-08 12:19:10] [INFO]    2. Customer_ID (object)
+[2025-12-08 12:19:10] [INFO]    3. Title (object)
+[2025-12-08 12:19:10] [INFO]    4. Quantity (int64)
+[2025-12-08 12:19:10] [INFO]    5. Item_Price (float64)
+[2025-12-08 12:19:10] [INFO]    6. Total_Amount (float64)
+[2025-12-08 12:19:10] [INFO]    7. Profit (float64)
+[2025-12-08 12:19:10] [INFO]    8. Category (object)
+[2025-12-08 12:19:10] [INFO]    9. Ship_City (object)
+[2025-12-08 12:19:10] [INFO]    10. Ship_State (object)
+[2025-12-08 12:19:10] [INFO]    11. api_found (object)
+[2025-12-08 12:19:10] [INFO]    12. api_title (object)
+[2025-12-08 12:19:10] [INFO]    13. api_author (object)
+[2025-12-08 12:19:10] [INFO]    14. api_authors_all (object)
+[2025-12-08 12:19:10] [INFO]    15. api_first_publish_year (float64)
+[2025-12-08 12:19:10] [INFO]    16. api_isbn (float64)
+[2025-12-08 12:19:10] [INFO]    17. api_isbn_all (float64)
+[2025-12-08 12:19:10] [INFO]    18. api_publisher (float64)
+[2025-12-08 12:19:10] [INFO]    19. api_publishers_all (float64)
+[2025-12-08 12:19:10] [INFO]    20. api_language (object)
+[2025-12-08 12:19:10] [INFO]    21. api_number_of_pages (float64)
+[2025-12-08 12:19:10] [INFO]    22. api_subject (float64)
+[2025-12-08 12:19:10] [INFO]    23. api_edition_count (float64)
+[2025-12-08 12:19:10] [INFO]    24. api_has_fulltext (object)
+[2025-12-08 12:19:10] [INFO]    25. api_search_url (object)
+[2025-12-08 12:19:10] [INFO] 
+2. MISSING VALUES:
+[2025-12-08 12:19:10] [INFO] 
+                Column  Missing  Percentage
+              api_isbn     3480  100.000000
+          api_isbn_all     3480  100.000000
+         api_publisher     3480  100.000000
+    api_publishers_all     3480  100.000000
+   api_number_of_pages     3480  100.000000
+           api_subject     3480  100.000000
+          api_language     3406   97.873563
+api_first_publish_year     3071   88.247126
+            api_author     3069   88.189655
+       api_authors_all     3069   88.189655
+             api_title     3066   88.103448
+     api_edition_count     3066   88.103448
+      api_has_fulltext     3066   88.103448
+        api_search_url     3066   88.103448
+             api_found     2543   73.074713
+[2025-12-08 12:19:10] [INFO] 
+3. DATA TYPES:
+[2025-12-08 12:19:10] [INFO]    - object: 13 columns
+[2025-12-08 12:19:10] [INFO]    - float64: 11 columns
+[2025-12-08 12:19:10] [INFO]    - int64: 1 columns
+[2025-12-08 12:19:10] [INFO] 
+4. NUMERICAL STATISTICS:
+[2025-12-08 12:19:10] [INFO]    Found 12 numerical columns:
+[2025-12-08 12:19:10] [INFO]    - Quantity:
+[2025-12-08 12:19:10] [INFO]      Min: 1.00, Max: 10.00
+[2025-12-08 12:19:10] [INFO]      Mean: 1.05, Median: 1.00
+[2025-12-08 12:19:10] [INFO]      Std: 0.35
+[2025-12-08 12:19:10] [INFO]    - Item_Price:
+[2025-12-08 12:19:10] [INFO]      Min: 40.00, Max: 6450.00
+[2025-12-08 12:19:10] [INFO]      Mean: 377.75, Median: 285.00
+[2025-12-08 12:19:10] [INFO]      Std: 327.26
+[2025-12-08 12:19:10] [INFO]    - Total_Amount:
+[2025-12-08 12:19:10] [INFO]      Min: 80.00, Max: 7300.00
+[2025-12-08 12:19:10] [INFO]      Mean: 456.78, Median: 340.00
+[2025-12-08 12:19:10] [INFO]      Std: 338.98
+[2025-12-08 12:19:10] [INFO]    - Profit:
+[2025-12-08 12:19:10] [INFO]      Min: 5.20, Max: 838.50
+[2025-12-08 12:19:10] [INFO]      Mean: 59.81, Median: 45.00
+[2025-12-08 12:19:10] [INFO]      Std: 47.71
+[2025-12-08 12:19:10] [INFO]    - api_first_publish_year:
+[2025-12-08 12:19:10] [INFO]      Min: 1830.00, Max: 2017.00
+[2025-12-08 12:19:10] [INFO]      Mean: 1984.13, Median: 2014.00
+[2025-12-08 12:19:10] [INFO]      Std: 66.62
+[2025-12-08 12:19:10] [INFO]    - api_isbn:
+[2025-12-08 12:19:10] [INFO]      Min: nan, Max: nan
+[2025-12-08 12:19:10] [INFO]      Mean: nan, Median: nan
+[2025-12-08 12:19:10] [INFO]      Std: nan
+[2025-12-08 12:19:10] [INFO]    - api_isbn_all:
+[2025-12-08 12:19:10] [INFO]      Min: nan, Max: nan
+[2025-12-08 12:19:10] [INFO]      Mean: nan, Median: nan
+[2025-12-08 12:19:10] [INFO]      Std: nan
+[2025-12-08 12:19:10] [INFO]    - api_publisher:
+[2025-12-08 12:19:10] [INFO]      Min: nan, Max: nan
+[2025-12-08 12:19:10] [INFO]      Mean: nan, Median: nan
+[2025-12-08 12:19:10] [INFO]      Std: nan
+[2025-12-08 12:19:10] [INFO]    - api_publishers_all:
+[2025-12-08 12:19:10] [INFO]      Min: nan, Max: nan
+[2025-12-08 12:19:10] [INFO]      Mean: nan, Median: nan
+[2025-12-08 12:19:10] [INFO]      Std: nan
+[2025-12-08 12:19:10] [INFO]    - api_number_of_pages:
+[2025-12-08 12:19:10] [INFO]      Min: nan, Max: nan
+[2025-12-08 12:19:10] [INFO]      Mean: nan, Median: nan
+[2025-12-08 12:19:10] [INFO]      Std: nan
+[2025-12-08 12:19:10] [INFO]    - api_subject:
+[2025-12-08 12:19:10] [INFO]      Min: nan, Max: nan
+[2025-12-08 12:19:10] [INFO]      Mean: nan, Median: nan
+[2025-12-08 12:19:10] [INFO]      Std: nan
+[2025-12-08 12:19:10] [INFO]    - api_edition_count:
+[2025-12-08 12:19:10] [INFO]      Min: 1.00, Max: 89.00
+[2025-12-08 12:19:10] [INFO]      Mean: 10.80, Median: 1.00
+[2025-12-08 12:19:10] [INFO]      Std: 22.16
+[2025-12-08 12:19:10] [INFO] 
+======================================================================
+[2025-12-08 12:19:10] [INFO] STEP 2: HANDLING MISSING VALUES
+[2025-12-08 12:19:10] [INFO] ======================================================================
+[2025-12-08 12:19:10] [INFO] Total missing values: 48302
+[2025-12-08 12:19:10] [INFO] ✓ Filled api_first_publish_year with median: 2014.00
+[2025-12-08 12:19:10] [INFO] ✓ Filled api_isbn with median: nan
+[2025-12-08 12:19:10] [INFO] ✓ Filled api_isbn_all with median: nan
+[2025-12-08 12:19:10] [INFO] ✓ Filled api_publisher with median: nan
+[2025-12-08 12:19:10] [INFO] ✓ Filled api_publishers_all with median: nan
+[2025-12-08 12:19:10] [INFO] ✓ Filled api_number_of_pages with median: nan
+[2025-12-08 12:19:10] [INFO] ✓ Filled api_subject with median: nan
+[2025-12-08 12:19:10] [INFO] ✓ Filled api_edition_count with median: 1.00
+[2025-12-08 12:19:10] [INFO] ✓ Filled api_found with mode: False
+[2025-12-08 12:19:10] [INFO] ✓ Filled api_title with mode: Science Textbook for Class - 6 - 652
+[2025-12-08 12:19:10] [INFO] ✓ Filled api_author with mode: NCERT (Author)
+[2025-12-08 12:19:11] [INFO] ✓ Filled api_authors_all with mode: NCERT (Author)
+[2025-12-08 12:19:11] [INFO] ✓ Filled api_language with mode: eng
+[2025-12-08 12:19:11] [INFO] ✓ Filled api_has_fulltext with mode: False
+[2025-12-08 12:19:11] [INFO] ✓ Filled api_search_url with mode: https://openlibrary.org/works/OL24320039W
+[2025-12-08 12:19:11] [INFO] 
+✓ Missing values handled!
+[2025-12-08 12:19:11] [INFO]   Remaining missing: 20880
+[2025-12-08 12:19:11] [INFO] 
+======================================================================
+[2025-12-08 12:19:11] [INFO] STEP 3: HANDLING OUTLIERS
+[2025-12-08 12:19:11] [INFO] ======================================================================
+[2025-12-08 12:19:11] [INFO] 
+Quantity:
+[2025-12-08 12:19:11] [INFO]   Outliers found: 117 (3.36%)
+[2025-12-08 12:19:11] [INFO]   Lower bound: 1.00, Upper bound: 1.00
+[2025-12-08 12:19:11] [INFO]   ✓ Outliers capped to bounds
+[2025-12-08 12:19:11] [INFO] 
+Item_Price:
+[2025-12-08 12:19:11] [INFO]   Outliers found: 78 (2.24%)
+[2025-12-08 12:19:11] [INFO]   Lower bound: -437.50, Upper bound: 1142.50
+[2025-12-08 12:19:11] [INFO]   ✓ Outliers capped to bounds
+[2025-12-08 12:19:11] [INFO] 
+Total_Amount:
+[2025-12-08 12:19:11] [INFO]   Outliers found: 78 (2.24%)
+[2025-12-08 12:19:11] [INFO]   Lower bound: -379.88, Upper bound: 1250.33
+[2025-12-08 12:19:11] [INFO]   ✓ Outliers capped to bounds
+[2025-12-08 12:19:11] [INFO] 
+Profit:
+[2025-12-08 12:19:11] [INFO]   Outliers found: 192 (5.52%)
+[2025-12-08 12:19:11] [INFO]   Lower bound: -46.27, Upper bound: 151.52
+[2025-12-08 12:19:11] [INFO]   ✓ Outliers capped to bounds
+[2025-12-08 12:19:11] [INFO] 
+✓ Outlier handling completed!
+[2025-12-08 12:19:11] [INFO] 
+======================================================================
+[2025-12-08 12:19:11] [INFO] STEP 4: FEATURE ENGINEERING
+[2025-12-08 12:19:11] [INFO] ======================================================================
+[2025-12-08 12:19:11] [INFO] ✓ Created date features: Year, Month, Day, DayOfWeek, Quarter, IsWeekend
+[2025-12-08 12:19:11] [INFO] ✓ Created: Price_Per_Unit
+[2025-12-08 12:19:11] [INFO] ✓ Created: Profit_Margin, Profit_Category
+[2025-12-08 12:19:11] [INFO] ✓ Created: Book_Age
+[2025-12-08 12:19:11] [INFO] ✓ Created: Has_API_Data
+[2025-12-08 12:19:11] [INFO] ✓ Created: Price_Category
+[2025-12-08 12:19:11] [INFO] 
+✓ Feature engineering completed!
+[2025-12-08 12:19:11] [INFO]   New shape: (3480, 37)
+[2025-12-08 12:19:11] [INFO] 
+======================================================================
+[2025-12-08 12:19:11] [INFO] STEP 5: ENCODING CATEGORICAL VARIABLES
+[2025-12-08 12:19:11] [INFO] ======================================================================
+[2025-12-08 12:19:11] [INFO] Categorical columns to encode: 8
+[2025-12-08 12:19:11] [INFO] 
+Category:
+[2025-12-08 12:19:11] [INFO]   Unique values: 4
+[2025-12-08 12:19:11] [INFO]   ✓ Label Encoded → Category_Encoded
+[2025-12-08 12:19:11] [INFO] 
+Ship_City:
+[2025-12-08 12:19:11] [INFO]   Unique values: 931
+[2025-12-08 12:19:11] [INFO]   ⚠ Too many categories, keeping original
+[2025-12-08 12:19:11] [INFO] 
+Ship_State:
+[2025-12-08 12:19:11] [INFO]   Unique values: 75
+[2025-12-08 12:19:11] [INFO]   ⚠ Too many categories, keeping original
+[2025-12-08 12:19:11] [INFO] 
+api_title:
+[2025-12-08 12:19:11] [INFO]   Unique values: 16
+[2025-12-08 12:19:11] [INFO]   ✓ Label Encoded → api_title_Encoded
+[2025-12-08 12:19:11] [INFO] 
+api_author:
+[2025-12-08 12:19:11] [INFO]   Unique values: 14
+[2025-12-08 12:19:11] [INFO]   ✓ Label Encoded → api_author_Encoded
+[2025-12-08 12:19:11] [INFO] 
+api_authors_all:
+[2025-12-08 12:19:11] [INFO]   Unique values: 15
+[2025-12-08 12:19:11] [INFO]   ✓ Label Encoded → api_authors_all_Encoded
+[2025-12-08 12:19:11] [INFO] 
+api_language:
+[2025-12-08 12:19:11] [INFO]   Unique values: 1
+[2025-12-08 12:19:11] [INFO]   ✓ Label Encoded → api_language_Encoded
+[2025-12-08 12:19:11] [INFO] 
+api_search_url:
+[2025-12-08 12:19:11] [INFO]   Unique values: 16
+[2025-12-08 12:19:11] [INFO]   ✓ Label Encoded → api_search_url_Encoded
+[2025-12-08 12:19:11] [INFO] Encoders saved to: .\output\label_encoders.pkl
+[2025-12-08 12:19:11] [INFO] Encoding completed!
+[2025-12-08 12:19:11] [INFO]   New columns added: 6
+[2025-12-08 12:19:11] [INFO] 
+======================================================================
+[2025-12-08 12:19:11] [INFO] STEP 6: FEATURE SCALING
+[2025-12-08 12:19:11] [INFO] ======================================================================
+[2025-12-08 12:19:11] [INFO] Scaling method: standard
+[2025-12-08 12:19:11] [INFO] Columns to scale: 9
+[2025-12-08 12:19:11] [INFO]   ✓ Scaled: Quantity → Quantity_Scaled
+[2025-12-08 12:19:11] [INFO]   ✓ Scaled: Item_Price → Item_Price_Scaled
+[2025-12-08 12:19:11] [INFO]   ✓ Scaled: Total_Amount → Total_Amount_Scaled
+[2025-12-08 12:19:11] [INFO]   ✓ Scaled: Profit → Profit_Scaled
+[2025-12-08 12:19:11] [INFO]   ✓ Scaled: Profit_Margin → Profit_Margin_Scaled
+[2025-12-08 12:19:11] [INFO]   ✓ Scaled: api_first_publish_year → api_first_publish_year_Scaled
+[2025-12-08 12:19:11] [INFO]   ✓ Scaled: api_number_of_pages → api_number_of_pages_Scaled
+[2025-12-08 12:19:11] [INFO]   ✓ Scaled: api_edition_count → api_edition_count_Scaled
+[2025-12-08 12:19:11] [INFO]   ✓ Scaled: Book_Age → Book_Age_Scaled
+[2025-12-08 12:19:11] [INFO] Scaler saved to: .\output\standard_scaler.pkl
+[2025-12-08 12:19:11] [INFO] Scaling completed!
+[2025-12-08 12:19:11] [INFO] 
+======================================================================
+[2025-12-08 12:19:11] [INFO] STEP 7: TRAIN-TEST SPLIT
+[2025-12-08 12:19:11] [INFO] ======================================================================
+[2025-12-08 12:19:11] [INFO] Train set: 2784 rows (80%)
+[2025-12-08 12:19:11] [INFO] Test set: 696 rows (20%)
+[2025-12-08 12:19:11] [INFO] 
+======================================================================
+[2025-12-08 12:19:11] [INFO] DATA QUALITY REPORT
+[2025-12-08 12:19:11] [INFO] ======================================================================
+[2025-12-08 12:19:11] [INFO] 
+1. DATASET COMPARISON:
+[2025-12-08 12:19:11] [INFO]    Original: 3480 rows x 25 cols
+[2025-12-08 12:19:11] [INFO]    Processed: 3480 rows x 52 cols
+[2025-12-08 12:19:11] [INFO]    New features added: 27
+[2025-12-08 12:19:11] [INFO] 
+2. MISSING VALUES:
+[2025-12-08 12:19:11] [INFO]    Original: 48302
+[2025-12-08 12:19:11] [INFO]    Processed: 24378
+[2025-12-08 12:19:11] [INFO] 
+3. DATA QUALITY SCORE:
+[2025-12-08 12:19:11] [INFO]    Completeness: 86.53%
+[2025-12-08 12:19:11] [INFO] 
+✓ Quality report generated!
+[2025-12-08 12:19:11] [INFO] 
+======================================================================
+[2025-12-08 12:19:11] [INFO] STEP 8: SAVING PROCESSED DATA
+[2025-12-08 12:19:11] [INFO] ======================================================================
+[2025-12-08 12:19:11] [INFO] ✓ Full dataset: .\output\ML_Dataset_Processed_Full.csv
+[2025-12-08 12:19:11] [INFO]   Size: 3480 rows x 52 cols
+[2025-12-08 12:19:11] [INFO] ✓ Train set: .\output\ML_Dataset_Train.csv
+[2025-12-08 12:19:11] [INFO] ✓ Test set: .\output\ML_Dataset_Test.csv
+[2025-12-08 12:19:11] [INFO] ✓ Column info: .\output\Processed_Columns_Info.csv
+[2025-12-08 12:19:11] [INFO] 
+======================================================================
+[2025-12-08 12:19:11] [INFO] ✓ PREPROCESSING COMPLETED!
+[2025-12-08 12:19:11] [INFO] ======================================================================
+[2025-12-08 12:19:11] [INFO] 
+Next Steps:
+[2025-12-08 12:19:11] [INFO] 1. Build ML Models (Regression, Classification, Clustering)
+[2025-12-08 12:19:11] [INFO] 2. Model evaluation and metrics
+[2025-12-08 12:19:11] [INFO] 3. Visualization and BI dashboard
+[2025-12-08 12:59:11] [INFO] 
+======================================================================
+[2025-12-08 12:59:11] [INFO]  PREPROCESSING & FEATURE ENGINEERING PIPELINE
+[2025-12-08 12:59:11] [INFO]  Toko Buku Pustaka Nusantara
+[2025-12-08 12:59:11] [INFO] ======================================================================
+[2025-12-08 12:59:11] [INFO] ======================================================================
+[2025-12-08 12:59:11] [INFO] STEP 1: LOADING ENRICHED DATASET
+[2025-12-08 12:59:11] [INFO] ======================================================================
+[2025-12-08 12:59:11] [INFO] ✓ Loaded: ML_Dataset_Enriched.csv
+[2025-12-08 12:59:11] [INFO]   Shape: 3480 rows x 25 columns
+[2025-12-08 12:59:11] [INFO]   Memory: 2.66 MB
+[2025-12-08 12:59:11] [INFO] 
+======================================================================
+[2025-12-08 12:59:11] [INFO] INITIAL DATA INSPECTION
+[2025-12-08 12:59:11] [INFO] ======================================================================
+[2025-12-08 12:59:11] [INFO] 
+1. COLUMNS (25):
+[2025-12-08 12:59:11] [INFO]    1. Purchase_Date (object)
+[2025-12-08 12:59:11] [INFO]    2. Customer_ID (object)
+[2025-12-08 12:59:11] [INFO]    3. Title (object)
+[2025-12-08 12:59:11] [INFO]    4. Quantity (int64)
+[2025-12-08 12:59:11] [INFO]    5. Item_Price (float64)
+[2025-12-08 12:59:11] [INFO]    6. Total_Amount (float64)
+[2025-12-08 12:59:11] [INFO]    7. Profit (float64)
+[2025-12-08 12:59:11] [INFO]    8. Category (object)
+[2025-12-08 12:59:11] [INFO]    9. Ship_City (object)
+[2025-12-08 12:59:11] [INFO]    10. Ship_State (object)
+[2025-12-08 12:59:11] [INFO]    11. api_found (object)
+[2025-12-08 12:59:11] [INFO]    12. api_title (object)
+[2025-12-08 12:59:11] [INFO]    13. api_author (object)
+[2025-12-08 12:59:11] [INFO]    14. api_authors_all (object)
+[2025-12-08 12:59:11] [INFO]    15. api_first_publish_year (float64)
+[2025-12-08 12:59:11] [INFO]    16. api_isbn (float64)
+[2025-12-08 12:59:11] [INFO]    17. api_isbn_all (float64)
+[2025-12-08 12:59:11] [INFO]    18. api_publisher (float64)
+[2025-12-08 12:59:11] [INFO]    19. api_publishers_all (float64)
+[2025-12-08 12:59:11] [INFO]    20. api_language (object)
+[2025-12-08 12:59:11] [INFO]    21. api_number_of_pages (float64)
+[2025-12-08 12:59:11] [INFO]    22. api_subject (float64)
+[2025-12-08 12:59:11] [INFO]    23. api_edition_count (float64)
+[2025-12-08 12:59:11] [INFO]    24. api_has_fulltext (object)
+[2025-12-08 12:59:11] [INFO]    25. api_search_url (object)
+[2025-12-08 12:59:11] [INFO] 
+2. MISSING VALUES:
+[2025-12-08 12:59:11] [INFO] 
+                Column  Missing  Percentage
+              api_isbn     3480  100.000000
+          api_isbn_all     3480  100.000000
+         api_publisher     3480  100.000000
+    api_publishers_all     3480  100.000000
+   api_number_of_pages     3480  100.000000
+           api_subject     3480  100.000000
+          api_language     3406   97.873563
+api_first_publish_year     3071   88.247126
+            api_author     3069   88.189655
+       api_authors_all     3069   88.189655
+             api_title     3066   88.103448
+     api_edition_count     3066   88.103448
+      api_has_fulltext     3066   88.103448
+        api_search_url     3066   88.103448
+             api_found     2543   73.074713
+[2025-12-08 12:59:11] [INFO] 
+3. DATA TYPES:
+[2025-12-08 12:59:11] [INFO]    - object: 13 columns
+[2025-12-08 12:59:11] [INFO]    - float64: 11 columns
+[2025-12-08 12:59:11] [INFO]    - int64: 1 columns
+[2025-12-08 12:59:11] [INFO] 
+4. NUMERICAL STATISTICS:
+[2025-12-08 12:59:11] [INFO]    Found 12 numerical columns:
+[2025-12-08 12:59:11] [INFO]    - Quantity:
+[2025-12-08 12:59:11] [INFO]      Min: 1.00, Max: 10.00
+[2025-12-08 12:59:11] [INFO]      Mean: 1.05, Median: 1.00
+[2025-12-08 12:59:11] [INFO]      Std: 0.35
+[2025-12-08 12:59:11] [INFO]    - Item_Price:
+[2025-12-08 12:59:11] [INFO]      Min: 40.00, Max: 6450.00
+[2025-12-08 12:59:11] [INFO]      Mean: 377.75, Median: 285.00
+[2025-12-08 12:59:11] [INFO]      Std: 327.26
+[2025-12-08 12:59:11] [INFO]    - Total_Amount:
+[2025-12-08 12:59:11] [INFO]      Min: 80.00, Max: 7300.00
+[2025-12-08 12:59:11] [INFO]      Mean: 456.78, Median: 340.00
+[2025-12-08 12:59:11] [INFO]      Std: 338.98
+[2025-12-08 12:59:11] [INFO]    - Profit:
+[2025-12-08 12:59:11] [INFO]      Min: 5.20, Max: 838.50
+[2025-12-08 12:59:11] [INFO]      Mean: 59.81, Median: 45.00
+[2025-12-08 12:59:11] [INFO]      Std: 47.71
+[2025-12-08 12:59:11] [INFO]    - api_first_publish_year:
+[2025-12-08 12:59:11] [INFO]      Min: 1830.00, Max: 2017.00
+[2025-12-08 12:59:11] [INFO]      Mean: 1984.13, Median: 2014.00
+[2025-12-08 12:59:11] [INFO]      Std: 66.62
+[2025-12-08 12:59:11] [INFO]    - api_isbn:
+[2025-12-08 12:59:11] [INFO]      Min: nan, Max: nan
+[2025-12-08 12:59:11] [INFO]      Mean: nan, Median: nan
+[2025-12-08 12:59:11] [INFO]      Std: nan
+[2025-12-08 12:59:11] [INFO]    - api_isbn_all:
+[2025-12-08 12:59:11] [INFO]      Min: nan, Max: nan
+[2025-12-08 12:59:11] [INFO]      Mean: nan, Median: nan
+[2025-12-08 12:59:11] [INFO]      Std: nan
+[2025-12-08 12:59:11] [INFO]    - api_publisher:
+[2025-12-08 12:59:11] [INFO]      Min: nan, Max: nan
+[2025-12-08 12:59:11] [INFO]      Mean: nan, Median: nan
+[2025-12-08 12:59:11] [INFO]      Std: nan
+[2025-12-08 12:59:11] [INFO]    - api_publishers_all:
+[2025-12-08 12:59:11] [INFO]      Min: nan, Max: nan
+[2025-12-08 12:59:11] [INFO]      Mean: nan, Median: nan
+[2025-12-08 12:59:11] [INFO]      Std: nan
+[2025-12-08 12:59:12] [INFO]    - api_number_of_pages:
+[2025-12-08 12:59:12] [INFO]      Min: nan, Max: nan
+[2025-12-08 12:59:12] [INFO]      Mean: nan, Median: nan
+[2025-12-08 12:59:12] [INFO]      Std: nan
+[2025-12-08 12:59:12] [INFO]    - api_subject:
+[2025-12-08 12:59:12] [INFO]      Min: nan, Max: nan
+[2025-12-08 12:59:12] [INFO]      Mean: nan, Median: nan
+[2025-12-08 12:59:12] [INFO]      Std: nan
+[2025-12-08 12:59:12] [INFO]    - api_edition_count:
+[2025-12-08 12:59:12] [INFO]      Min: 1.00, Max: 89.00
+[2025-12-08 12:59:12] [INFO]      Mean: 10.80, Median: 1.00
+[2025-12-08 12:59:12] [INFO]      Std: 22.16
+[2025-12-08 12:59:12] [INFO] 
+======================================================================
+[2025-12-08 12:59:12] [INFO] STEP 2: HANDLING MISSING VALUES
+[2025-12-08 12:59:12] [INFO] ======================================================================
+[2025-12-08 12:59:12] [INFO] Total missing values: 48302
+[2025-12-08 12:59:12] [INFO] ✓ Filled api_first_publish_year with median: 2014.00
+[2025-12-08 12:59:12] [INFO] ✓ Filled api_isbn with median: nan
+[2025-12-08 12:59:12] [INFO] ✓ Filled api_isbn_all with median: nan
+[2025-12-08 12:59:12] [INFO] ✓ Filled api_publisher with median: nan
+[2025-12-08 12:59:12] [INFO] ✓ Filled api_publishers_all with median: nan
+[2025-12-08 12:59:12] [INFO] ✓ Filled api_number_of_pages with median: nan
+[2025-12-08 12:59:12] [INFO] ✓ Filled api_subject with median: nan
+[2025-12-08 12:59:12] [INFO] ✓ Filled api_edition_count with median: 1.00
+[2025-12-08 12:59:12] [INFO] ✓ Filled api_found with mode: False
+[2025-12-08 12:59:12] [INFO] ✓ Filled api_title with mode: Science Textbook for Class - 6 - 652
+[2025-12-08 12:59:12] [INFO] ✓ Filled api_author with mode: NCERT (Author)
+[2025-12-08 12:59:12] [INFO] ✓ Filled api_authors_all with mode: NCERT (Author)
+[2025-12-08 12:59:12] [INFO] ✓ Filled api_language with mode: eng
+[2025-12-08 12:59:12] [INFO] ✓ Filled api_has_fulltext with mode: False
+[2025-12-08 12:59:12] [INFO] ✓ Filled api_search_url with mode: https://openlibrary.org/works/OL24320039W
+[2025-12-08 12:59:12] [INFO] 
+✓ Missing values handled!
+[2025-12-08 12:59:12] [INFO]   Remaining missing: 20880
+[2025-12-08 12:59:12] [INFO] 
+======================================================================
+[2025-12-08 12:59:12] [INFO] STEP 3: HANDLING OUTLIERS
+[2025-12-08 12:59:12] [INFO] ======================================================================
+[2025-12-08 12:59:12] [INFO] 
+Quantity:
+[2025-12-08 12:59:12] [INFO]   Outliers found: 117 (3.36%)
+[2025-12-08 12:59:12] [INFO]   Lower bound: 1.00, Upper bound: 1.00
+[2025-12-08 12:59:12] [INFO]   ✓ Outliers capped to bounds
+[2025-12-08 12:59:12] [INFO] 
+Item_Price:
+[2025-12-08 12:59:12] [INFO]   Outliers found: 78 (2.24%)
+[2025-12-08 12:59:12] [INFO]   Lower bound: -437.50, Upper bound: 1142.50
+[2025-12-08 12:59:12] [INFO]   ✓ Outliers capped to bounds
+[2025-12-08 12:59:12] [INFO] 
+Total_Amount:
+[2025-12-08 12:59:12] [INFO]   Outliers found: 78 (2.24%)
+[2025-12-08 12:59:12] [INFO]   Lower bound: -379.88, Upper bound: 1250.33
+[2025-12-08 12:59:12] [INFO]   ✓ Outliers capped to bounds
+[2025-12-08 12:59:12] [INFO] 
+Profit:
+[2025-12-08 12:59:12] [INFO]   Outliers found: 192 (5.52%)
+[2025-12-08 12:59:12] [INFO]   Lower bound: -46.27, Upper bound: 151.52
+[2025-12-08 12:59:12] [INFO]   ✓ Outliers capped to bounds
+[2025-12-08 12:59:12] [INFO] 
+✓ Outlier handling completed!
+[2025-12-08 12:59:12] [INFO] 
+======================================================================
+[2025-12-08 12:59:12] [INFO] STEP 4: FEATURE ENGINEERING
+[2025-12-08 12:59:12] [INFO] ======================================================================
+[2025-12-08 12:59:12] [INFO] ✓ Created date features: Year, Month, Day, DayOfWeek, Quarter, IsWeekend
+[2025-12-08 12:59:12] [INFO] ✓ Created: Price_Per_Unit
+[2025-12-08 12:59:12] [INFO] ✓ Created: Profit_Margin, Profit_Category
+[2025-12-08 12:59:12] [INFO] ✓ Created: Book_Age
+[2025-12-08 12:59:12] [INFO] ✓ Created: Has_API_Data
+[2025-12-08 12:59:12] [INFO] ✓ Created: Price_Category
+[2025-12-08 12:59:12] [INFO] 
+✓ Feature engineering completed!
+[2025-12-08 12:59:12] [INFO]   New shape: (3480, 37)
+[2025-12-08 12:59:12] [INFO] 
+======================================================================
+[2025-12-08 12:59:12] [INFO] STEP 5: ENCODING CATEGORICAL VARIABLES
+[2025-12-08 12:59:12] [INFO] ======================================================================
+[2025-12-08 12:59:12] [INFO] Categorical columns to encode: 8
+[2025-12-08 12:59:12] [INFO] 
+Category:
+[2025-12-08 12:59:12] [INFO]   Unique values: 4
+[2025-12-08 12:59:12] [INFO]   ✓ Label Encoded → Category_Encoded
+[2025-12-08 12:59:12] [INFO] 
+Ship_City:
+[2025-12-08 12:59:12] [INFO]   Unique values: 931
+[2025-12-08 12:59:12] [INFO]   ⚠ Too many categories, keeping original
+[2025-12-08 12:59:12] [INFO] 
+Ship_State:
+[2025-12-08 12:59:12] [INFO]   Unique values: 75
+[2025-12-08 12:59:12] [INFO]   ⚠ Too many categories, keeping original
+[2025-12-08 12:59:12] [INFO] 
+api_title:
+[2025-12-08 12:59:12] [INFO]   Unique values: 16
+[2025-12-08 12:59:12] [INFO]   ✓ Label Encoded → api_title_Encoded
+[2025-12-08 12:59:12] [INFO] 
+api_author:
+[2025-12-08 12:59:12] [INFO]   Unique values: 14
+[2025-12-08 12:59:12] [INFO]   ✓ Label Encoded → api_author_Encoded
+[2025-12-08 12:59:12] [INFO] 
+api_authors_all:
+[2025-12-08 12:59:12] [INFO]   Unique values: 15
+[2025-12-08 12:59:12] [INFO]   ✓ Label Encoded → api_authors_all_Encoded
+[2025-12-08 12:59:12] [INFO] 
+api_language:
+[2025-12-08 12:59:12] [INFO]   Unique values: 1
+[2025-12-08 12:59:12] [INFO]   ✓ Label Encoded → api_language_Encoded
+[2025-12-08 12:59:12] [INFO] 
+api_search_url:
+[2025-12-08 12:59:12] [INFO]   Unique values: 16
+[2025-12-08 12:59:12] [INFO]   ✓ Label Encoded → api_search_url_Encoded
+[2025-12-08 12:59:12] [INFO] Encoders saved to: .\output\label_encoders.pkl
+[2025-12-08 12:59:12] [INFO] Encoding completed!
+[2025-12-08 12:59:12] [INFO]   New columns added: 6
+[2025-12-08 12:59:12] [INFO] 
+======================================================================
+[2025-12-08 12:59:12] [INFO] STEP 6: FEATURE SCALING
+[2025-12-08 12:59:12] [INFO] ======================================================================
+[2025-12-08 12:59:12] [INFO] Scaling method: standard
+[2025-12-08 12:59:12] [INFO] Columns to scale: 9
+[2025-12-08 12:59:12] [INFO]   ✓ Scaled: Quantity → Quantity_Scaled
+[2025-12-08 12:59:12] [INFO]   ✓ Scaled: Item_Price → Item_Price_Scaled
+[2025-12-08 12:59:12] [INFO]   ✓ Scaled: Total_Amount → Total_Amount_Scaled
+[2025-12-08 12:59:12] [INFO]   ✓ Scaled: Profit → Profit_Scaled
+[2025-12-08 12:59:12] [INFO]   ✓ Scaled: Profit_Margin → Profit_Margin_Scaled
+[2025-12-08 12:59:12] [INFO]   ✓ Scaled: api_first_publish_year → api_first_publish_year_Scaled
+[2025-12-08 12:59:12] [INFO]   ✓ Scaled: api_number_of_pages → api_number_of_pages_Scaled
+[2025-12-08 12:59:12] [INFO]   ✓ Scaled: api_edition_count → api_edition_count_Scaled
+[2025-12-08 12:59:12] [INFO]   ✓ Scaled: Book_Age → Book_Age_Scaled
+[2025-12-08 12:59:12] [INFO] Scaler saved to: .\output\standard_scaler.pkl
+[2025-12-08 12:59:12] [INFO] Scaling completed!
+[2025-12-08 12:59:12] [INFO] 
+======================================================================
+[2025-12-08 12:59:12] [INFO] STEP 7: TRAIN-TEST SPLIT
+[2025-12-08 12:59:12] [INFO] ======================================================================
+[2025-12-08 12:59:12] [INFO] Train set: 2784 rows (80%)
+[2025-12-08 12:59:12] [INFO] Test set: 696 rows (20%)
+[2025-12-08 12:59:12] [INFO] 
+======================================================================
+[2025-12-08 12:59:12] [INFO] DATA QUALITY REPORT
+[2025-12-08 12:59:12] [INFO] ======================================================================
+[2025-12-08 12:59:12] [INFO] 
+1. DATASET COMPARISON:
+[2025-12-08 12:59:12] [INFO]    Original: 3480 rows x 25 cols
+[2025-12-08 12:59:12] [INFO]    Processed: 3480 rows x 52 cols
+[2025-12-08 12:59:12] [INFO]    New features added: 27
+[2025-12-08 12:59:12] [INFO] 
+2. MISSING VALUES:
+[2025-12-08 12:59:12] [INFO]    Original: 48302
+[2025-12-08 12:59:12] [INFO]    Processed: 24378
+[2025-12-08 12:59:12] [INFO] 
+3. DATA QUALITY SCORE:
+[2025-12-08 12:59:12] [INFO]    Completeness: 86.53%
+[2025-12-08 12:59:12] [INFO] 
+✓ Quality report generated!
+[2025-12-08 12:59:12] [INFO] 
+======================================================================
+[2025-12-08 12:59:12] [INFO] STEP 8: SAVING PROCESSED DATA
+[2025-12-08 12:59:12] [INFO] ======================================================================
+[2025-12-08 12:59:12] [INFO] ✓ Full dataset: .\output\ML_Dataset_Processed_Full.csv
+[2025-12-08 12:59:12] [INFO]   Size: 3480 rows x 52 cols
+[2025-12-08 12:59:12] [INFO] ✓ Train set: .\output\ML_Dataset_Train.csv
+[2025-12-08 12:59:12] [INFO] ✓ Test set: .\output\ML_Dataset_Test.csv
+[2025-12-08 12:59:12] [INFO] ✓ Column info: .\output\Processed_Columns_Info.csv
+[2025-12-08 12:59:12] [INFO] 
+======================================================================
+[2025-12-08 12:59:12] [INFO] ✓ PREPROCESSING COMPLETED!
+[2025-12-08 12:59:12] [INFO] ======================================================================
+[2025-12-08 12:59:12] [INFO] 
+Next Steps:
+[2025-12-08 12:59:12] [INFO] 1. Build ML Models (Regression, Classification, Clustering)
+[2025-12-08 12:59:12] [INFO] 2. Model evaluation and metrics
+[2025-12-08 12:59:12] [INFO] 3. Visualization and BI dashboard

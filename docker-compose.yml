@@ -1,0 +1,269 @@
+# ============================================================================
+# DOCKER COMPOSE - COMPLETE SETUP
+# Pustaka Nusantara Data Warehouse & ML Pipeline
+# 
+# Services:
+# - PostgreSQL (Data Warehouse)
+# - Apache Airflow (ETL Orchestration)
+# - Python ML Pipeline
+# - Jupyter Lab
+# - PgAdmin (Database UI)
+# - Streamlit (Dashboard)
+# ============================================================================
+
+version: '3.8'
+
+x-airflow-common:
+  &airflow-common
+  image: apache/airflow:2.7.3-python3.11
+  environment:
+    &airflow-common-env
+    AIRFLOW__CORE__EXECUTOR: LocalExecutor
+    AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres-airflow:5432/airflow
+    AIRFLOW__CORE__FERNET_KEY: ''
+    AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: 'true'
+    AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
+    AIRFLOW__API__AUTH_BACKENDS: 'airflow.api.auth.backend.basic_auth'
+    _PIP_ADDITIONAL_REQUIREMENTS: pandas numpy requests sqlalchemy psycopg2-binary
+  volumes:
+    - ./dags:/opt/airflow/dags
+    - ./logs:/opt/airflow/logs
+    - ./output:/app/output
+    - ./data:/app/data
+    - ./scripts:/app/scripts
+  user: "${AIRFLOW_UID:-50000}:0"
+  depends_on:
+    &airflow-common-depends-on
+    postgres-airflow:
+      condition: service_healthy
+
+services:
+  # ==========================================================================
+  # POSTGRESQL - DATA WAREHOUSE
+  # ==========================================================================
+  postgres-dwh:
+    image: postgres:15-alpine
+    container_name: pustaka_postgres_dwh
+    environment:
+      POSTGRES_USER: pustaka_admin
+      POSTGRES_PASSWORD: pustaka2025
+      POSTGRES_DB: pustaka_dwh
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_dwh_data:/var/lib/postgresql/data
+      - ./init_db:/docker-entrypoint-initdb.d
+      - ./data:/data
+    networks:
+      - pustaka_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U pustaka_admin"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  # ==========================================================================
+  # POSTGRESQL - AIRFLOW METADATA
+  # ==========================================================================
+  postgres-airflow:
+    image: postgres:15-alpine
+    container_name: pustaka_postgres_airflow
+    environment:
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: airflow
+      POSTGRES_DB: airflow
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_airflow_data:/var/lib/postgresql/data
+    networks:
+      - pustaka_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U airflow"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  # ==========================================================================
+  # AIRFLOW - WEBSERVER
+  # ==========================================================================
+  airflow-webserver:
+    <<: *airflow-common
+    container_name: pustaka_airflow_webserver
+    command: webserver
+    ports:
+      - "8080:8080"
+    networks:
+      - pustaka_network
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    restart: unless-stopped
+    depends_on:
+      <<: *airflow-common-depends-on
+      airflow-init:
+        condition: service_completed_successfully
+
+  # ==========================================================================
+  # AIRFLOW - SCHEDULER
+  # ==========================================================================
+  airflow-scheduler:
+    <<: *airflow-common
+    container_name: pustaka_airflow_scheduler
+    command: scheduler
+    networks:
+      - pustaka_network
+    healthcheck:
+      test: ["CMD-SHELL", 'airflow jobs check --job-type SchedulerJob --hostname "$${HOSTNAME}"']
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    restart: unless-stopped
+    depends_on:
+      <<: *airflow-common-depends-on
+      airflow-init:
+        condition: service_completed_successfully
+
+  # ==========================================================================
+  # AIRFLOW - INIT (Database initialization)
+  # ==========================================================================
+  airflow-init:
+    <<: *airflow-common
+    container_name: pustaka_airflow_init
+    entrypoint: /bin/bash
+    command:
+      - -c
+      - |
+        mkdir -p /sources/logs /sources/dags /sources/plugins
+        chown -R "${AIRFLOW_UID:-50000}:0" /sources/{logs,dags,plugins}
+        exec /entrypoint airflow version
+    environment:
+      <<: *airflow-common-env
+      _AIRFLOW_DB_UPGRADE: 'true'
+      _AIRFLOW_WWW_USER_CREATE: 'true'
+      _AIRFLOW_WWW_USER_USERNAME: ${_AIRFLOW_WWW_USER_USERNAME:-airflow}
+      _AIRFLOW_WWW_USER_PASSWORD: ${_AIRFLOW_WWW_USER_PASSWORD:-airflow}
+    networks:
+      - pustaka_network
+    user: "0:0"
+    volumes:
+      - .:/sources
+
+  # ==========================================================================
+  # PYTHON ML PIPELINE
+  # ==========================================================================
+  ml-pipeline:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pustaka_ml_pipeline
+    depends_on:
+      postgres-dwh:
+        condition: service_healthy
+    volumes:
+      - ./data:/app/data
+      - ./output:/app/output
+      - ./logs:/app/logs
+      - ./scripts:/app/scripts
+    environment:
+      - DATABASE_HOST=postgres-dwh
+      - DATABASE_PORT=5432
+      - DATABASE_NAME=pustaka_dwh
+      - DATABASE_USER=pustaka_admin
+      - DATABASE_PASSWORD=pustaka2025
+      - PYTHONUNBUFFERED=1
+    networks:
+      - pustaka_network
+    command: tail -f /dev/null
+    restart: unless-stopped
+
+  # ==========================================================================
+  # JUPYTER LAB
+  # ==========================================================================
+  jupyter:
+    build:
+      context: .
+      dockerfile: Dockerfile.jupyter
+    container_name: pustaka_jupyter
+    depends_on:
+      - postgres-dwh
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./notebooks:/app/notebooks
+      - ./data:/app/data
+      - ./output:/app/output
+    environment:
+      - DATABASE_HOST=postgres-dwh
+      - JUPYTER_ENABLE_LAB=yes
+    networks:
+      - pustaka_network
+    command: jupyter lab --ip=0.0.0.0 --port=8888 --no-browser --allow-root --NotebookApp.token='' --NotebookApp.password=''
+    restart: unless-stopped
+
+  # ==========================================================================
+  # PGADMIN - DATABASE UI
+  # ==========================================================================
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: pustaka_pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@pustaka.com
+      PGADMIN_DEFAULT_PASSWORD: admin123
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    ports:
+      - "5050:80"
+    depends_on:
+      - postgres-dwh
+    networks:
+      - pustaka_network
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    restart: unless-stopped
+
+  # ==========================================================================
+  # STREAMLIT DASHBOARD
+  # ==========================================================================
+  streamlit:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pustaka_streamlit
+    depends_on:
+      - postgres-dwh
+      - ml-pipeline
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./output:/app/output
+      - ./data:/app/data
+      - ./streamlit_dashboard.py:/app/streamlit_dashboard.py
+    environment:
+      - DATABASE_HOST=postgres-dwh
+    networks:
+      - pustaka_network
+    command: streamlit run streamlit_dashboard.py --server.port=8501 --server.address=0.0.0.0
+    restart: unless-stopped
+
+# ============================================================================
+# VOLUMES
+# ============================================================================
+volumes:
+  postgres_dwh_data:
+    name: pustaka_postgres_dwh_data
+  postgres_airflow_data:
+    name: pustaka_postgres_airflow_data
+  pgadmin_data:
+    name: pustaka_pgadmin_data
+
+# ============================================================================
+# NETWORKS
+# ============================================================================
+networks:
+  pustaka_network:
+    driver: bridge
+    name: pustaka_network

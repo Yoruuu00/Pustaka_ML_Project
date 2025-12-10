@@ -1,0 +1,10 @@
+{
+    "Random Forest (Optimized)": {
+        "RMSE": 11.355505649452992,
+        "R2": 0.9982361368550204
+    },
+    "Gradient Boosting (Optimized)": {
+        "RMSE": 11.624065146330002,
+        "R2": 0.9981517189912332
+    }
+}

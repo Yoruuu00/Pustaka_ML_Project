@@ -1,0 +1,975 @@
+[2025-12-08 11:12:31] [INFO] 
+======================================================================
+[2025-12-08 11:12:31] [INFO]  MACHINE LEARNING MODELS TRAINING
+[2025-12-08 11:12:31] [INFO]  Toko Buku Pustaka Nusantara
+[2025-12-08 11:12:31] [INFO]  3 Models: Regression, Classification, Clustering
+[2025-12-08 11:12:31] [INFO] ======================================================================
+[2025-12-08 11:12:31] [INFO] ======================================================================
+[2025-12-08 11:12:31] [INFO] LOADING TRAIN & TEST DATA
+[2025-12-08 11:12:31] [INFO] ======================================================================
+[2025-12-08 11:12:31] [INFO] ✓ Train set loaded: (2784, 52)
+[2025-12-08 11:12:31] [INFO] ✓ Test set loaded: (696, 52)
+[2025-12-08 11:12:31] [INFO] 
+======================================================================
+[2025-12-08 11:12:31] [INFO] MODEL 1: REGRESSION - PREDICTING TOTAL_AMOUNT
+[2025-12-08 11:12:31] [INFO] ======================================================================
+[2025-12-08 11:12:31] [INFO] 
+Features used: 10
+[2025-12-08 11:12:31] [INFO] Target: Total_Amount
+[2025-12-08 11:12:31] [INFO] 
+Training samples: 2784
+[2025-12-08 11:12:31] [INFO] Testing samples: 696
+[2025-12-08 11:12:31] [INFO] 
+--- Training Linear Regression ---
+[2025-12-08 11:12:32] [INFO] ✓ Training completed!
+[2025-12-08 11:12:32] [INFO]   Train RMSE: 20.85
+[2025-12-08 11:12:32] [INFO]   Test RMSE: 22.00
+[2025-12-08 11:12:32] [INFO]   Test MAE: 14.56
+[2025-12-08 11:12:32] [INFO]   Train R²: 0.9944
+[2025-12-08 11:12:32] [INFO]   Test R²: 0.9942
+[2025-12-08 11:12:32] [INFO]   Test MAPE: 4.65%
+[2025-12-08 11:12:32] [INFO]   Model saved: .\output\models\regression_linear_regression.pkl
+[2025-12-08 11:12:32] [INFO] 
+--- Training Random Forest ---
+[2025-12-08 11:12:32] [INFO] ✓ Training completed!
+[2025-12-08 11:12:32] [INFO]   Train RMSE: 10.50
+[2025-12-08 11:12:32] [INFO]   Test RMSE: 15.57
+[2025-12-08 11:12:32] [INFO]   Test MAE: 7.23
+[2025-12-08 11:12:32] [INFO]   Train R²: 0.9986
+[2025-12-08 11:12:32] [INFO]   Test R²: 0.9971
+[2025-12-08 11:12:32] [INFO]   Test MAPE: 2.37%
+[2025-12-08 11:12:32] [INFO]   Model saved: .\output\models\regression_random_forest.pkl
+[2025-12-08 11:12:32] [INFO] 
+--- Training Gradient Boosting ---
+[2025-12-08 11:12:32] [INFO] ✓ Training completed!
+[2025-12-08 11:12:32] [INFO]   Train RMSE: 11.64
+[2025-12-08 11:12:32] [INFO]   Test RMSE: 15.69
+[2025-12-08 11:12:32] [INFO]   Test MAE: 7.99
+[2025-12-08 11:12:32] [INFO]   Train R²: 0.9983
+[2025-12-08 11:12:32] [INFO]   Test R²: 0.9971
+[2025-12-08 11:12:32] [INFO]   Test MAPE: 2.57%
+[2025-12-08 11:12:32] [INFO]   Model saved: .\output\models\regression_gradient_boosting.pkl
+[2025-12-08 11:12:32] [INFO] 
+🏆 Best Regression Model: Random Forest
+[2025-12-08 11:12:32] [INFO]    Test RMSE: 15.57
+[2025-12-08 11:12:32] [INFO]    Test R²: 0.9971
+[2025-12-08 11:12:32] [INFO] 
+======================================================================
+[2025-12-08 11:12:32] [INFO] MODEL 2: CLASSIFICATION - PREDICTING PROFIT CATEGORY
+[2025-12-08 11:12:32] [INFO] ======================================================================
+[2025-12-08 11:12:32] [INFO] 
+Features used: 8
+[2025-12-08 11:12:32] [INFO] Target: Profit_Category
+[2025-12-08 11:12:32] [INFO] 
+Class distribution (Train):
+[2025-12-08 11:12:32] [INFO]   Low: 1419 (51.0%)
+[2025-12-08 11:12:32] [INFO]   Medium: 943 (33.9%)
+[2025-12-08 11:12:32] [INFO]   High: 422 (15.2%)
+[2025-12-08 11:12:32] [INFO] 
+--- Training Logistic Regression ---
+[2025-12-08 11:12:32] [INFO] ✓ Training completed!
+[2025-12-08 11:12:32] [INFO]   Train Accuracy: 0.9626
+[2025-12-08 11:12:32] [INFO]   Test Accuracy: 0.9555
+[2025-12-08 11:12:32] [INFO]   Precision: 0.9561
+[2025-12-08 11:12:32] [INFO]   Recall: 0.9555
+[2025-12-08 11:12:32] [INFO]   F1-Score: 0.9557
+[2025-12-08 11:12:32] [INFO] 
+  Confusion Matrix:
+[2025-12-08 11:12:32] [INFO]   [[110   0  11]
+ [  0 336   3]
+ [ 16   1 219]]
+[2025-12-08 11:12:32] [INFO]   Model saved: .\output\models\classification_logistic_regression.pkl
+[2025-12-08 11:12:32] [INFO] 
+--- Training Decision Tree ---
+[2025-12-08 11:12:32] [INFO] ✓ Training completed!
+[2025-12-08 11:12:32] [INFO]   Train Accuracy: 1.0000
+[2025-12-08 11:12:32] [INFO]   Test Accuracy: 1.0000
+[2025-12-08 11:12:32] [INFO]   Precision: 1.0000
+[2025-12-08 11:12:32] [INFO]   Recall: 1.0000
+[2025-12-08 11:12:32] [INFO]   F1-Score: 1.0000
+[2025-12-08 11:12:32] [INFO] 
+  Confusion Matrix:
+[2025-12-08 11:12:32] [INFO]   [[121   0   0]
+ [  0 339   0]
+ [  0   0 236]]
+[2025-12-08 11:12:32] [INFO]   Model saved: .\output\models\classification_decision_tree.pkl
+[2025-12-08 11:12:32] [INFO] 
+--- Training Random Forest ---
+[2025-12-08 11:12:32] [INFO] ✓ Training completed!
+[2025-12-08 11:12:32] [INFO]   Train Accuracy: 1.0000
+[2025-12-08 11:12:32] [INFO]   Test Accuracy: 0.9986
+[2025-12-08 11:12:32] [INFO]   Precision: 0.9986
+[2025-12-08 11:12:32] [INFO]   Recall: 0.9986
+[2025-12-08 11:12:32] [INFO]   F1-Score: 0.9986
+[2025-12-08 11:12:32] [INFO] 
+  Confusion Matrix:
+[2025-12-08 11:12:32] [INFO]   [[121   0   0]
+ [  0 338   1]
+ [  0   0 236]]
+[2025-12-08 11:12:32] [INFO]   Model saved: .\output\models\classification_random_forest.pkl
+[2025-12-08 11:12:32] [INFO] 
+🏆 Best Classification Model: Decision Tree
+[2025-12-08 11:12:32] [INFO]    Test Accuracy: 1.0000
+[2025-12-08 11:12:32] [INFO]    F1-Score: 1.0000
+[2025-12-08 11:12:32] [INFO] 
+======================================================================
+[2025-12-08 11:12:32] [INFO] MODEL 3: CLUSTERING - BOOK SEGMENTATION
+[2025-12-08 11:12:32] [INFO] ======================================================================
+[2025-12-08 11:12:32] [INFO] 
+Features used: 5
+[2025-12-08 11:12:32] [INFO] Samples for clustering: 2784
+[2025-12-08 11:12:32] [INFO] 
+--- Finding optimal K (Elbow Method) ---
+[2025-12-08 11:12:35] [INFO] ✓ Optimal K found: 2
+[2025-12-08 11:12:35] [INFO]   Silhouette Score: 0.8957
+[2025-12-08 11:12:35] [INFO] 
+--- Training K-Means with K=2 ---
+[2025-12-08 11:12:35] [INFO] ✓ Clustering completed!
+[2025-12-08 11:12:35] [INFO]   Number of clusters: 2
+[2025-12-08 11:12:35] [INFO]   Silhouette Score: 0.8957
+[2025-12-08 11:12:35] [INFO]   Davies-Bouldin Index: 0.2863
+[2025-12-08 11:12:35] [INFO] 
+  Cluster distribution:
+[2025-12-08 11:12:35] [INFO]     Cluster 0: 2762 samples (99.2%)
+[2025-12-08 11:12:35] [INFO]     Cluster 1: 22 samples (0.8%)
+[2025-12-08 11:12:35] [INFO] 
+  Cluster characteristics:
+[2025-12-08 11:12:35] [INFO]     Cluster 0:
+[2025-12-08 11:12:35] [INFO]       Avg Price: 359.00
+[2025-12-08 11:12:35] [INFO]       Avg Profit: 56.28
+[2025-12-08 11:12:35] [INFO]     Cluster 1:
+[2025-12-08 11:12:35] [INFO]       Avg Price: 842.00
+[2025-12-08 11:12:35] [INFO]       Avg Profit: 112.90
+[2025-12-08 11:12:35] [INFO] 
+  Model saved: .\output\models\clustering_kmeans.pkl
+[2025-12-08 11:12:35] [INFO] 
+======================================================================
+[2025-12-08 11:12:35] [INFO] SAVING RESULTS SUMMARY
+[2025-12-08 11:12:35] [INFO] ======================================================================
+[2025-12-08 11:12:35] [INFO] ✓ Results summary saved: .\output\ml_models_summary.json
+[2025-12-08 11:12:35] [INFO] 
+======================================================================
+[2025-12-08 11:12:35] [INFO] ✓ ALL MODELS TRAINING COMPLETED!
+[2025-12-08 11:12:35] [INFO] ======================================================================
+[2025-12-08 11:12:35] [INFO] 
+Results Summary:
+[2025-12-08 11:12:35] [INFO] 1. REGRESSION - Best RMSE: 15.57
+[2025-12-08 11:12:35] [INFO] 2. CLASSIFICATION - Best Accuracy: 1.0000
+[2025-12-08 11:12:35] [INFO] 3. CLUSTERING - Silhouette Score: 0.8957
+[2025-12-08 11:12:35] [INFO] 
+Next Steps:
+[2025-12-08 11:12:35] [INFO] 1. Review ml_models_summary.json
+[2025-12-08 11:12:35] [INFO] 2. Create visualizations
+[2025-12-08 11:12:35] [INFO] 3. Build BI dashboard
+[2025-12-08 11:49:23] [INFO] 
+======================================================================
+[2025-12-08 11:49:23] [INFO]  MACHINE LEARNING MODELS TRAINING
+[2025-12-08 11:49:23] [INFO]  Toko Buku Pustaka Nusantara
+[2025-12-08 11:49:23] [INFO]  3 Models: Regression, Classification, Clustering
+[2025-12-08 11:49:23] [INFO] ======================================================================
+[2025-12-08 11:49:23] [INFO] ======================================================================
+[2025-12-08 11:49:23] [INFO] LOADING TRAIN & TEST DATA
+[2025-12-08 11:49:23] [INFO] ======================================================================
+[2025-12-08 11:49:23] [INFO] ✓ Train set loaded: (2784, 52)
+[2025-12-08 11:49:23] [INFO] ✓ Test set loaded: (696, 52)
+[2025-12-08 11:49:23] [INFO] 
+======================================================================
+[2025-12-08 11:49:23] [INFO] MODEL 1: REGRESSION - PREDICTING TOTAL_AMOUNT
+[2025-12-08 11:49:23] [INFO] ======================================================================
+[2025-12-08 11:49:23] [INFO] 
+Features used: 10
+[2025-12-08 11:49:23] [INFO] Target: Total_Amount
+[2025-12-08 11:49:23] [INFO] 
+Training samples: 2784
+[2025-12-08 11:49:23] [INFO] Testing samples: 696
+[2025-12-08 11:49:23] [INFO] 
+--- Training Linear Regression ---
+[2025-12-08 11:49:23] [INFO] ✓ Training completed!
+[2025-12-08 11:49:23] [INFO]   Train RMSE: 20.70
+[2025-12-08 11:49:23] [INFO]   Test RMSE: 21.81
+[2025-12-08 11:49:23] [INFO]   Test MAE: 14.40
+[2025-12-08 11:49:23] [INFO]   Train R²: 0.9945
+[2025-12-08 11:49:23] [INFO]   Test R²: 0.9943
+[2025-12-08 11:49:23] [INFO]   Test MAPE: 4.62%
+[2025-12-08 11:49:23] [INFO]   Model saved: .\output\models\regression_linear_regression.pkl
+[2025-12-08 11:49:23] [INFO] 
+--- Training Random Forest ---
+[2025-12-08 11:49:24] [INFO] ✓ Training completed!
+[2025-12-08 11:49:24] [INFO]   Train RMSE: 10.50
+[2025-12-08 11:49:24] [INFO]   Test RMSE: 15.47
+[2025-12-08 11:49:24] [INFO]   Test MAE: 7.18
+[2025-12-08 11:49:24] [INFO]   Train R²: 0.9986
+[2025-12-08 11:49:24] [INFO]   Test R²: 0.9971
+[2025-12-08 11:49:24] [INFO]   Test MAPE: 2.36%
+[2025-12-08 11:49:24] [INFO]   Model saved: .\output\models\regression_random_forest.pkl
+[2025-12-08 11:49:24] [INFO] 
+--- Training Gradient Boosting ---
+[2025-12-08 11:49:24] [INFO] ✓ Training completed!
+[2025-12-08 11:49:24] [INFO]   Train RMSE: 11.42
+[2025-12-08 11:49:24] [INFO]   Test RMSE: 15.30
+[2025-12-08 11:49:24] [INFO]   Test MAE: 7.73
+[2025-12-08 11:49:24] [INFO]   Train R²: 0.9983
+[2025-12-08 11:49:24] [INFO]   Test R²: 0.9972
+[2025-12-08 11:49:24] [INFO]   Test MAPE: 2.50%
+[2025-12-08 11:49:24] [INFO]   Model saved: .\output\models\regression_gradient_boosting.pkl
+[2025-12-08 11:49:24] [INFO] 
+🏆 Best Regression Model: Gradient Boosting
+[2025-12-08 11:49:24] [INFO]    Test RMSE: 15.30
+[2025-12-08 11:49:24] [INFO]    Test R²: 0.9972
+[2025-12-08 11:49:24] [INFO] 
+======================================================================
+[2025-12-08 11:49:24] [INFO] MODEL 2: CLASSIFICATION - PREDICTING PROFIT CATEGORY
+[2025-12-08 11:49:24] [INFO] ======================================================================
+[2025-12-08 11:49:24] [INFO] 
+Features used: 8
+[2025-12-08 11:49:24] [INFO] Target: Profit_Category
+[2025-12-08 11:49:24] [INFO] 
+Class distribution (Train):
+[2025-12-08 11:49:24] [INFO]   Low: 1419 (51.0%)
+[2025-12-08 11:49:24] [INFO]   Medium: 943 (33.9%)
+[2025-12-08 11:49:24] [INFO]   High: 422 (15.2%)
+[2025-12-08 11:49:24] [INFO] 
+--- Training Logistic Regression ---
+[2025-12-08 11:49:24] [INFO] ✓ Training completed!
+[2025-12-08 11:49:24] [INFO]   Train Accuracy: 0.9598
+[2025-12-08 11:49:24] [INFO]   Test Accuracy: 0.9497
+[2025-12-08 11:49:24] [INFO]   Precision: 0.9505
+[2025-12-08 11:49:24] [INFO]   Recall: 0.9497
+[2025-12-08 11:49:24] [INFO]   F1-Score: 0.9500
+[2025-12-08 11:49:24] [INFO] 
+  Confusion Matrix:
+[2025-12-08 11:49:24] [INFO]   [[110   0  11]
+ [  0 334   5]
+ [ 17   2 217]]
+[2025-12-08 11:49:24] [INFO]   Model saved: .\output\models\classification_logistic_regression.pkl
+[2025-12-08 11:49:24] [INFO] 
+--- Training Decision Tree ---
+[2025-12-08 11:49:24] [INFO] ✓ Training completed!
+[2025-12-08 11:49:24] [INFO]   Train Accuracy: 1.0000
+[2025-12-08 11:49:24] [INFO]   Test Accuracy: 1.0000
+[2025-12-08 11:49:24] [INFO]   Precision: 1.0000
+[2025-12-08 11:49:24] [INFO]   Recall: 1.0000
+[2025-12-08 11:49:24] [INFO]   F1-Score: 1.0000
+[2025-12-08 11:49:24] [INFO] 
+  Confusion Matrix:
+[2025-12-08 11:49:24] [INFO]   [[121   0   0]
+ [  0 339   0]
+ [  0   0 236]]
+[2025-12-08 11:49:24] [INFO]   Model saved: .\output\models\classification_decision_tree.pkl
+[2025-12-08 11:49:24] [INFO] 
+--- Training Random Forest ---
+[2025-12-08 11:49:24] [INFO] ✓ Training completed!
+[2025-12-08 11:49:24] [INFO]   Train Accuracy: 0.9996
+[2025-12-08 11:49:24] [INFO]   Test Accuracy: 0.9971
+[2025-12-08 11:49:24] [INFO]   Precision: 0.9972
+[2025-12-08 11:49:24] [INFO]   Recall: 0.9971
+[2025-12-08 11:49:24] [INFO]   F1-Score: 0.9971
+[2025-12-08 11:49:24] [INFO] 
+  Confusion Matrix:
+[2025-12-08 11:49:24] [INFO]   [[121   0   0]
+ [  0 337   2]
+ [  0   0 236]]
+[2025-12-08 11:49:24] [INFO]   Model saved: .\output\models\classification_random_forest.pkl
+[2025-12-08 11:49:24] [INFO] 
+🏆 Best Classification Model: Decision Tree
+[2025-12-08 11:49:24] [INFO]    Test Accuracy: 1.0000
+[2025-12-08 11:49:24] [INFO]    F1-Score: 1.0000
+[2025-12-08 11:49:24] [INFO] 
+======================================================================
+[2025-12-08 11:49:24] [INFO] MODEL 3: CLUSTERING - BOOK SEGMENTATION
+[2025-12-08 11:49:24] [INFO] ======================================================================
+[2025-12-08 11:49:24] [INFO] 
+Features used: 5
+[2025-12-08 11:49:24] [INFO] Samples for clustering: 2784
+[2025-12-08 11:49:24] [INFO] 
+--- Finding optimal K (Elbow Method) ---
+[2025-12-08 11:49:27] [INFO] ✓ Optimal K found: 2
+[2025-12-08 11:49:27] [INFO]   Silhouette Score: 0.9825
+[2025-12-08 11:49:27] [INFO] 
+--- Training K-Means with K=2 ---
+[2025-12-08 11:49:27] [INFO] ✓ Clustering completed!
+[2025-12-08 11:49:27] [INFO]   Number of clusters: 2
+[2025-12-08 11:49:27] [INFO]   Silhouette Score: 0.9825
+[2025-12-08 11:49:27] [INFO]   Davies-Bouldin Index: 0.0135
+[2025-12-08 11:49:27] [INFO] 
+  Cluster distribution:
+[2025-12-08 11:49:27] [INFO]     Cluster 0: 2731 samples (98.1%)
+[2025-12-08 11:49:27] [INFO]     Cluster 1: 53 samples (1.9%)
+[2025-12-08 11:49:27] [INFO] 
+  Cluster characteristics:
+[2025-12-08 11:49:27] [INFO]     Cluster 0:
+[2025-12-08 11:49:27] [INFO]       Avg Price: 357.28
+[2025-12-08 11:49:27] [INFO]       Avg Profit: 56.20
+[2025-12-08 11:49:27] [INFO]     Cluster 1:
+[2025-12-08 11:49:27] [INFO]       Avg Price: 648.01
+[2025-12-08 11:49:27] [INFO]       Avg Profit: 84.30
+[2025-12-08 11:49:27] [INFO] 
+  Model saved: .\output\models\clustering_kmeans.pkl
+[2025-12-08 11:49:27] [INFO] 
+======================================================================
+[2025-12-08 11:49:27] [INFO] SAVING RESULTS SUMMARY
+[2025-12-08 11:49:27] [INFO] ======================================================================
+[2025-12-08 11:49:27] [INFO] ✓ Results summary saved: .\output\ml_models_summary.json
+[2025-12-08 11:49:27] [INFO] 
+======================================================================
+[2025-12-08 11:49:27] [INFO] ✓ ALL MODELS TRAINING COMPLETED!
+[2025-12-08 11:49:27] [INFO] ======================================================================
+[2025-12-08 11:49:27] [INFO] 
+Results Summary:
+[2025-12-08 11:49:27] [INFO] 1. REGRESSION - Best RMSE: 15.30
+[2025-12-08 11:49:27] [INFO] 2. CLASSIFICATION - Best Accuracy: 1.0000
+[2025-12-08 11:49:27] [INFO] 3. CLUSTERING - Silhouette Score: 0.9825
+[2025-12-08 11:49:27] [INFO] 
+Next Steps:
+[2025-12-08 11:49:27] [INFO] 1. Review ml_models_summary.json
+[2025-12-08 11:49:27] [INFO] 2. Create visualizations
+[2025-12-08 11:49:27] [INFO] 3. Build BI dashboard
+[2025-12-08 12:12:20] [INFO] 
+======================================================================
+[2025-12-08 12:12:20] [INFO]  MACHINE LEARNING MODELS TRAINING
+[2025-12-08 12:12:20] [INFO]  Toko Buku Pustaka Nusantara
+[2025-12-08 12:12:20] [INFO]  3 Models: Regression, Classification, Clustering
+[2025-12-08 12:12:20] [INFO] ======================================================================
+[2025-12-08 12:12:20] [INFO] ======================================================================
+[2025-12-08 12:12:20] [INFO] LOADING TRAIN & TEST DATA
+[2025-12-08 12:12:20] [INFO] ======================================================================
+[2025-12-08 12:12:20] [INFO] ✓ Train set loaded: (2784, 52)
+[2025-12-08 12:12:20] [INFO] ✓ Test set loaded: (696, 52)
+[2025-12-08 12:12:20] [INFO] 
+======================================================================
+[2025-12-08 12:12:20] [INFO] MODEL 1: REGRESSION - PREDICTING TOTAL_AMOUNT
+[2025-12-08 12:12:20] [INFO] ======================================================================
+[2025-12-08 12:12:20] [INFO] 
+Dtypes of X_train features before fillna(0) in regression: 
+Quantity_Scaled      float64
+Item_Price_Scaled    float64
+Profit_Scaled        float64
+Category_Encoded       int64
+Year                 float64
+Month                float64
+Quarter              float64
+IsWeekend              int64
+Has_API_Data           int64
+Book_Age             float64
+[2025-12-08 12:12:20] [ERROR] 
+❌ FATAL ERROR: name 'target_col' is not defined
+[2025-12-08 12:12:20] [ERROR] Traceback (most recent call last):
+  File "C:\Pustaka_ML_Project\ml_training.py", line 508, in <module>
+    results = main()
+              ^^^^^^
+  File "C:\Pustaka_ML_Project\ml_training.py", line 480, in main
+    regression_results, y_test_reg, reg_features = train_regression_models(train_df, test_df)
+                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Pustaka_ML_Project\ml_training.py", line 120, in train_regression_models
+    y_train = train_df[target_col]
+                       ^^^^^^^^^^
+NameError: name 'target_col' is not defined
+
+[2025-12-08 12:13:35] [INFO] 
+======================================================================
+[2025-12-08 12:13:35] [INFO]  MACHINE LEARNING MODELS TRAINING
+[2025-12-08 12:13:35] [INFO]  Toko Buku Pustaka Nusantara
+[2025-12-08 12:13:35] [INFO]  3 Models: Regression, Classification, Clustering
+[2025-12-08 12:13:35] [INFO] ======================================================================
+[2025-12-08 12:13:35] [INFO] ======================================================================
+[2025-12-08 12:13:35] [INFO] LOADING TRAIN & TEST DATA
+[2025-12-08 12:13:35] [INFO] ======================================================================
+[2025-12-08 12:13:35] [INFO] ✓ Train set loaded: (2784, 52)
+[2025-12-08 12:13:35] [INFO] ✓ Test set loaded: (696, 52)
+[2025-12-08 12:13:35] [INFO] 
+======================================================================
+[2025-12-08 12:13:35] [INFO] MODEL 1: REGRESSION - PREDICTING TOTAL_AMOUNT
+[2025-12-08 12:13:35] [INFO] ======================================================================
+[2025-12-08 12:13:35] [INFO] 
+Features used: 10
+[2025-12-08 12:13:35] [INFO] Target: Total_Amount
+[2025-12-08 12:13:35] [INFO] 
+Dtypes of X_train features before fillna(0) in regression: 
+Quantity_Scaled      float64
+Item_Price_Scaled    float64
+Profit_Scaled        float64
+Category_Encoded       int64
+Year                 float64
+Month                float64
+Quarter              float64
+IsWeekend              int64
+Has_API_Data           int64
+Book_Age             float64
+[2025-12-08 12:13:35] [INFO] 
+Training samples: 2784
+[2025-12-08 12:13:35] [INFO] Testing samples: 696
+[2025-12-08 12:13:35] [INFO] 
+--- Training Linear Regression ---
+[2025-12-08 12:13:35] [ERROR] 
+❌ FATAL ERROR: Input X contains NaN.
+LinearRegression does not accept missing values encoded as NaN natively. For supervised learning, you might want to consider sklearn.ensemble.HistGradientBoostingClassifier and Regressor which accept missing values encoded as NaNs natively. Alternatively, it is possible to preprocess the data, for instance by using an imputer transformer in a pipeline or drop samples with missing values. See https://scikit-learn.org/stable/modules/impute.html You can find a list of all estimators that handle NaN values at the following page: https://scikit-learn.org/stable/modules/impute.html#estimators-that-handle-nan-values
+[2025-12-08 12:13:35] [ERROR] Traceback (most recent call last):
+  File "C:\Pustaka_ML_Project\ml_training.py", line 522, in <module>
+    results = main()
+              ^^^^^^
+  File "C:\Pustaka_ML_Project\ml_training.py", line 494, in main
+    regression_results, y_test_reg, reg_features = train_regression_models(train_df, test_df)
+                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Pustaka_ML_Project\ml_training.py", line 150, in train_regression_models
+    y_pred_test = model.predict(X_test)
+                  ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS TUF\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sklearn\linear_model\_base.py", line 286, in predict
+    return self._decision_function(X)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS TUF\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sklearn\linear_model\_base.py", line 269, in _decision_function
+    X = self._validate_data(X, accept_sparse=["csr", "csc", "coo"], reset=False)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS TUF\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sklearn\base.py", line 633, in _validate_data
+    out = check_array(X, input_name="X", **check_params)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS TUF\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sklearn\utils\validation.py", line 1003, in check_array
+    _assert_all_finite(
+  File "C:\Users\ASUS TUF\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sklearn\utils\validation.py", line 126, in _assert_all_finite
+    _assert_all_finite_element_wise(
+  File "C:\Users\ASUS TUF\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sklearn\utils\validation.py", line 175, in _assert_all_finite_element_wise
+    raise ValueError(msg_err)
+ValueError: Input X contains NaN.
+LinearRegression does not accept missing values encoded as NaN natively. For supervised learning, you might want to consider sklearn.ensemble.HistGradientBoostingClassifier and Regressor which accept missing values encoded as NaNs natively. Alternatively, it is possible to preprocess the data, for instance by using an imputer transformer in a pipeline or drop samples with missing values. See https://scikit-learn.org/stable/modules/impute.html You can find a list of all estimators that handle NaN values at the following page: https://scikit-learn.org/stable/modules/impute.html#estimators-that-handle-nan-values
+
+[2025-12-08 12:14:31] [INFO] 
+======================================================================
+[2025-12-08 12:14:31] [INFO]  MACHINE LEARNING MODELS TRAINING
+[2025-12-08 12:14:31] [INFO]  Toko Buku Pustaka Nusantara
+[2025-12-08 12:14:31] [INFO]  3 Models: Regression, Classification, Clustering
+[2025-12-08 12:14:31] [INFO] ======================================================================
+[2025-12-08 12:14:31] [INFO] ======================================================================
+[2025-12-08 12:14:31] [INFO] LOADING TRAIN & TEST DATA
+[2025-12-08 12:14:31] [INFO] ======================================================================
+[2025-12-08 12:14:31] [INFO] ✓ Train set loaded: (2784, 52)
+[2025-12-08 12:14:31] [INFO] ✓ Test set loaded: (696, 52)
+[2025-12-08 12:14:31] [INFO] 
+======================================================================
+[2025-12-08 12:14:31] [INFO] MODEL 1: REGRESSION - PREDICTING TOTAL_AMOUNT
+[2025-12-08 12:14:31] [INFO] ======================================================================
+[2025-12-08 12:14:31] [INFO] 
+Features used: 10
+[2025-12-08 12:14:31] [INFO] Target: Total_Amount
+[2025-12-08 12:14:31] [INFO] 
+Dtypes of X_train features before fillna(0) in regression: 
+Quantity_Scaled      float64
+Item_Price_Scaled    float64
+Profit_Scaled        float64
+Category_Encoded       int64
+Year                 float64
+Month                float64
+Quarter              float64
+IsWeekend              int64
+Has_API_Data           int64
+Book_Age             float64
+[2025-12-08 12:14:31] [INFO] 
+Dtypes of X_test features before fillna(0) in regression: 
+Quantity_Scaled      float64
+Item_Price_Scaled    float64
+Profit_Scaled        float64
+Category_Encoded       int64
+Year                 float64
+Month                float64
+Quarter              float64
+IsWeekend              int64
+Has_API_Data           int64
+Book_Age             float64
+[2025-12-08 12:14:31] [INFO] 
+Training samples: 2784
+[2025-12-08 12:14:31] [INFO] Testing samples: 696
+[2025-12-08 12:14:31] [INFO] 
+--- Training Linear Regression ---
+[2025-12-08 12:14:31] [INFO] ✓ Training completed!
+[2025-12-08 12:14:31] [INFO]   Train RMSE: 20.70
+[2025-12-08 12:14:31] [INFO]   Test RMSE: 21.81
+[2025-12-08 12:14:31] [INFO]   Test MAE: 14.40
+[2025-12-08 12:14:31] [INFO]   Train R²: 0.9945
+[2025-12-08 12:14:31] [INFO]   Test R²: 0.9943
+[2025-12-08 12:14:31] [INFO]   Test MAPE: 4.62%
+[2025-12-08 12:14:31] [INFO]   Model saved: .\output\models\regression_linear_regression.pkl
+[2025-12-08 12:14:31] [INFO] 
+--- Training Random Forest ---
+[2025-12-08 12:14:31] [INFO] ✓ Training completed!
+[2025-12-08 12:14:31] [INFO]   Train RMSE: 10.50
+[2025-12-08 12:14:31] [INFO]   Test RMSE: 15.47
+[2025-12-08 12:14:31] [INFO]   Test MAE: 7.18
+[2025-12-08 12:14:31] [INFO]   Train R²: 0.9986
+[2025-12-08 12:14:31] [INFO]   Test R²: 0.9971
+[2025-12-08 12:14:31] [INFO]   Test MAPE: 2.36%
+[2025-12-08 12:14:31] [INFO]   Model saved: .\output\models\regression_random_forest.pkl
+[2025-12-08 12:14:31] [INFO] 
+--- Training Gradient Boosting ---
+[2025-12-08 12:14:31] [INFO] ✓ Training completed!
+[2025-12-08 12:14:31] [INFO]   Train RMSE: 11.42
+[2025-12-08 12:14:31] [INFO]   Test RMSE: 15.30
+[2025-12-08 12:14:31] [INFO]   Test MAE: 7.73
+[2025-12-08 12:14:31] [INFO]   Train R²: 0.9983
+[2025-12-08 12:14:31] [INFO]   Test R²: 0.9972
+[2025-12-08 12:14:31] [INFO]   Test MAPE: 2.50%
+[2025-12-08 12:14:31] [INFO]   Model saved: .\output\models\regression_gradient_boosting.pkl
+[2025-12-08 12:14:31] [INFO] 
+🏆 Best Regression Model: Gradient Boosting
+[2025-12-08 12:14:31] [INFO]    Test RMSE: 15.30
+[2025-12-08 12:14:31] [INFO]    Test R²: 0.9972
+[2025-12-08 12:14:31] [INFO] 
+======================================================================
+[2025-12-08 12:14:31] [INFO] MODEL 2: CLASSIFICATION - PREDICTING PROFIT CATEGORY
+[2025-12-08 12:14:31] [INFO] ======================================================================
+[2025-12-08 12:14:31] [INFO] 
+Features used: 8
+[2025-12-08 12:14:31] [INFO] Target: Profit_Category
+[2025-12-08 12:14:31] [INFO] 
+Features used: 8
+[2025-12-08 12:14:31] [INFO] Target: Profit_Category
+[2025-12-08 12:14:31] [INFO] 
+Dtypes of X_train features before fillna(0) in classification: 
+Item_Price_Scaled    float64
+Quantity_Scaled      float64
+Category_Encoded       int64
+Year                 float64
+Month                float64
+Has_API_Data           int64
+Book_Age             float64
+IsWeekend              int64
+[2025-12-08 12:14:31] [INFO] 
+Dtypes of X_test features before fillna(0) in classification: 
+Item_Price_Scaled    float64
+Quantity_Scaled      float64
+Category_Encoded       int64
+Year                 float64
+Month                float64
+Has_API_Data           int64
+Book_Age             float64
+IsWeekend              int64
+[2025-12-08 12:14:31] [INFO] 
+Class distribution (Train):
+[2025-12-08 12:14:31] [INFO]   Low: 1419 (51.0%)
+[2025-12-08 12:14:31] [INFO]   Medium: 943 (33.9%)
+[2025-12-08 12:14:31] [INFO]   High: 422 (15.2%)
+[2025-12-08 12:14:31] [INFO] 
+--- Training Logistic Regression ---
+[2025-12-08 12:14:31] [INFO] ✓ Training completed!
+[2025-12-08 12:14:31] [INFO]   Train Accuracy: 0.9598
+[2025-12-08 12:14:31] [INFO]   Test Accuracy: 0.9497
+[2025-12-08 12:14:31] [INFO]   Precision: 0.9505
+[2025-12-08 12:14:31] [INFO]   Recall: 0.9497
+[2025-12-08 12:14:31] [INFO]   F1-Score: 0.9500
+[2025-12-08 12:14:31] [INFO] 
+  Confusion Matrix:
+[2025-12-08 12:14:31] [INFO]   [[110   0  11]
+ [  0 334   5]
+ [ 17   2 217]]
+[2025-12-08 12:14:31] [INFO]   Model saved: .\output\models\classification_logistic_regression.pkl
+[2025-12-08 12:14:31] [INFO] 
+--- Training Decision Tree ---
+[2025-12-08 12:14:31] [INFO] ✓ Training completed!
+[2025-12-08 12:14:31] [INFO]   Train Accuracy: 1.0000
+[2025-12-08 12:14:31] [INFO]   Test Accuracy: 1.0000
+[2025-12-08 12:14:31] [INFO]   Precision: 1.0000
+[2025-12-08 12:14:31] [INFO]   Recall: 1.0000
+[2025-12-08 12:14:31] [INFO]   F1-Score: 1.0000
+[2025-12-08 12:14:31] [INFO] 
+  Confusion Matrix:
+[2025-12-08 12:14:31] [INFO]   [[121   0   0]
+ [  0 339   0]
+ [  0   0 236]]
+[2025-12-08 12:14:31] [INFO]   Model saved: .\output\models\classification_decision_tree.pkl
+[2025-12-08 12:14:31] [INFO] 
+--- Training Random Forest ---
+[2025-12-08 12:14:32] [INFO] ✓ Training completed!
+[2025-12-08 12:14:32] [INFO]   Train Accuracy: 0.9996
+[2025-12-08 12:14:32] [INFO]   Test Accuracy: 0.9971
+[2025-12-08 12:14:32] [INFO]   Precision: 0.9972
+[2025-12-08 12:14:32] [INFO]   Recall: 0.9971
+[2025-12-08 12:14:32] [INFO]   F1-Score: 0.9971
+[2025-12-08 12:14:32] [INFO] 
+  Confusion Matrix:
+[2025-12-08 12:14:32] [INFO]   [[121   0   0]
+ [  0 337   2]
+ [  0   0 236]]
+[2025-12-08 12:14:32] [INFO]   Model saved: .\output\models\classification_random_forest.pkl
+[2025-12-08 12:14:32] [INFO] 
+🏆 Best Classification Model: Decision Tree
+[2025-12-08 12:14:32] [INFO]    Test Accuracy: 1.0000
+[2025-12-08 12:14:32] [INFO]    F1-Score: 1.0000
+[2025-12-08 12:14:32] [INFO] 
+======================================================================
+[2025-12-08 12:14:32] [INFO] MODEL 3: CLUSTERING - BOOK SEGMENTATION
+[2025-12-08 12:14:32] [INFO] ======================================================================
+[2025-12-08 12:14:32] [INFO] 
+Features used: 5
+[2025-12-08 12:14:32] [INFO] Samples for clustering: 2784
+[2025-12-08 12:14:32] [INFO] 
+--- Finding optimal K (Elbow Method) ---
+[2025-12-08 12:14:34] [INFO] ✓ Optimal K found: 2
+[2025-12-08 12:14:34] [INFO]   Silhouette Score: 0.9825
+[2025-12-08 12:14:34] [INFO] 
+--- Training K-Means with K=2 ---
+[2025-12-08 12:14:34] [INFO] ✓ Clustering completed!
+[2025-12-08 12:14:34] [INFO]   Number of clusters: 2
+[2025-12-08 12:14:34] [INFO]   Silhouette Score: 0.9825
+[2025-12-08 12:14:34] [INFO]   Davies-Bouldin Index: 0.0135
+[2025-12-08 12:14:34] [INFO] 
+  Cluster distribution:
+[2025-12-08 12:14:34] [INFO]     Cluster 0: 2731 samples (98.1%)
+[2025-12-08 12:14:34] [INFO]     Cluster 1: 53 samples (1.9%)
+[2025-12-08 12:14:34] [INFO] 
+  Cluster characteristics:
+[2025-12-08 12:14:34] [INFO]     Cluster 0:
+[2025-12-08 12:14:34] [INFO]       Avg Price: 357.28
+[2025-12-08 12:14:34] [INFO]       Avg Profit: 56.20
+[2025-12-08 12:14:34] [INFO]     Cluster 1:
+[2025-12-08 12:14:34] [INFO]       Avg Price: 648.01
+[2025-12-08 12:14:34] [INFO]       Avg Profit: 84.30
+[2025-12-08 12:14:34] [INFO] 
+  Model saved: .\output\models\clustering_kmeans.pkl
+[2025-12-08 12:14:34] [INFO] 
+======================================================================
+[2025-12-08 12:14:34] [INFO] SAVING RESULTS SUMMARY
+[2025-12-08 12:14:34] [INFO] ======================================================================
+[2025-12-08 12:14:34] [INFO] ✓ Results summary saved: .\output\ml_models_summary.json
+[2025-12-08 12:14:34] [INFO] 
+======================================================================
+[2025-12-08 12:14:34] [INFO] ✓ ALL MODELS TRAINING COMPLETED!
+[2025-12-08 12:14:34] [INFO] ======================================================================
+[2025-12-08 12:14:34] [INFO] 
+Results Summary:
+[2025-12-08 12:14:34] [INFO] 1. REGRESSION - Best RMSE: 15.30
+[2025-12-08 12:14:34] [INFO] 2. CLASSIFICATION - Best Accuracy: 1.0000
+[2025-12-08 12:14:34] [INFO] 3. CLUSTERING - Silhouette Score: 0.9825
+[2025-12-08 12:14:34] [INFO] 
+Next Steps:
+[2025-12-08 12:14:34] [INFO] 1. Review ml_models_summary.json
+[2025-12-08 12:14:34] [INFO] 2. Create visualizations
+[2025-12-08 12:14:34] [INFO] 3. Build BI dashboard
+[2025-12-08 12:19:41] [INFO] 
+======================================================================
+[2025-12-08 12:19:41] [INFO]  MACHINE LEARNING MODELS TRAINING
+[2025-12-08 12:19:41] [INFO]  Toko Buku Pustaka Nusantara
+[2025-12-08 12:19:41] [INFO]  3 Models: Regression, Classification, Clustering
+[2025-12-08 12:19:41] [INFO] ======================================================================
+[2025-12-08 12:19:41] [INFO] ======================================================================
+[2025-12-08 12:19:41] [INFO] LOADING TRAIN & TEST DATA
+[2025-12-08 12:19:41] [INFO] ======================================================================
+[2025-12-08 12:19:41] [INFO] ✓ Train set loaded: (2784, 52)
+[2025-12-08 12:19:41] [INFO] ✓ Test set loaded: (696, 52)
+[2025-12-08 12:19:41] [INFO] 
+======================================================================
+[2025-12-08 12:19:41] [INFO] MODEL 1: REGRESSION - PREDICTING TOTAL_AMOUNT
+[2025-12-08 12:19:41] [INFO] ======================================================================
+[2025-12-08 12:19:41] [INFO] 
+Features used: 10
+[2025-12-08 12:19:41] [INFO] Target: Total_Amount
+[2025-12-08 12:19:41] [INFO] 
+Training samples: 2784
+[2025-12-08 12:19:41] [INFO] Testing samples: 696
+[2025-12-08 12:19:41] [INFO] 
+--- Training Linear Regression ---
+[2025-12-08 12:19:41] [INFO] ✓ Training completed!
+[2025-12-08 12:19:41] [INFO]   Train RMSE: 20.70
+[2025-12-08 12:19:41] [INFO]   Test RMSE: 21.81
+[2025-12-08 12:19:41] [INFO]   Test MAE: 14.40
+[2025-12-08 12:19:41] [INFO]   Train R²: 0.9945
+[2025-12-08 12:19:41] [INFO]   Test R²: 0.9943
+[2025-12-08 12:19:41] [INFO]   Test MAPE: 4.62%
+[2025-12-08 12:19:41] [INFO]   Model saved: .\output\models\regression_linear_regression.pkl
+[2025-12-08 12:19:41] [INFO] 
+--- Training Random Forest ---
+[2025-12-08 12:19:41] [INFO] ✓ Training completed!
+[2025-12-08 12:19:41] [INFO]   Train RMSE: 10.50
+[2025-12-08 12:19:41] [INFO]   Test RMSE: 15.47
+[2025-12-08 12:19:41] [INFO]   Test MAE: 7.18
+[2025-12-08 12:19:41] [INFO]   Train R²: 0.9986
+[2025-12-08 12:19:41] [INFO]   Test R²: 0.9971
+[2025-12-08 12:19:41] [INFO]   Test MAPE: 2.36%
+[2025-12-08 12:19:41] [INFO]   Model saved: .\output\models\regression_random_forest.pkl
+[2025-12-08 12:19:41] [INFO] 
+--- Training Gradient Boosting ---
+[2025-12-08 12:19:41] [INFO] ✓ Training completed!
+[2025-12-08 12:19:41] [INFO]   Train RMSE: 11.42
+[2025-12-08 12:19:41] [INFO]   Test RMSE: 15.30
+[2025-12-08 12:19:41] [INFO]   Test MAE: 7.73
+[2025-12-08 12:19:41] [INFO]   Train R²: 0.9983
+[2025-12-08 12:19:41] [INFO]   Test R²: 0.9972
+[2025-12-08 12:19:41] [INFO]   Test MAPE: 2.50%
+[2025-12-08 12:19:41] [INFO]   Model saved: .\output\models\regression_gradient_boosting.pkl
+[2025-12-08 12:19:41] [INFO] 
+🏆 Best Regression Model: Gradient Boosting
+[2025-12-08 12:19:41] [INFO]    Test RMSE: 15.30
+[2025-12-08 12:19:41] [INFO]    Test R²: 0.9972
+[2025-12-08 12:19:41] [INFO] 
+======================================================================
+[2025-12-08 12:19:41] [INFO] MODEL 2: CLASSIFICATION - PREDICTING PROFIT CATEGORY
+[2025-12-08 12:19:41] [INFO] ======================================================================
+[2025-12-08 12:19:41] [INFO] 
+Features used: 8
+[2025-12-08 12:19:41] [INFO] Target: Profit_Category
+[2025-12-08 12:19:41] [INFO] 
+Features used: 8
+[2025-12-08 12:19:41] [INFO] Target: Profit_Category
+[2025-12-08 12:19:41] [INFO] 
+Class distribution (Train):
+[2025-12-08 12:19:41] [INFO]   Low: 1419 (51.0%)
+[2025-12-08 12:19:41] [INFO]   Medium: 943 (33.9%)
+[2025-12-08 12:19:41] [INFO]   High: 422 (15.2%)
+[2025-12-08 12:19:41] [INFO] 
+--- Training Logistic Regression ---
+[2025-12-08 12:19:41] [INFO] ✓ Training completed!
+[2025-12-08 12:19:41] [INFO]   Train Accuracy: 0.9598
+[2025-12-08 12:19:41] [INFO]   Test Accuracy: 0.9497
+[2025-12-08 12:19:41] [INFO]   Precision: 0.9505
+[2025-12-08 12:19:41] [INFO]   Recall: 0.9497
+[2025-12-08 12:19:41] [INFO]   F1-Score: 0.9500
+[2025-12-08 12:19:41] [INFO] 
+  Confusion Matrix:
+[2025-12-08 12:19:41] [INFO]   [[110   0  11]
+ [  0 334   5]
+ [ 17   2 217]]
+[2025-12-08 12:19:41] [INFO]   Model saved: .\output\models\classification_logistic_regression.pkl
+[2025-12-08 12:19:41] [INFO] 
+--- Training Decision Tree ---
+[2025-12-08 12:19:41] [INFO] ✓ Training completed!
+[2025-12-08 12:19:41] [INFO]   Train Accuracy: 1.0000
+[2025-12-08 12:19:41] [INFO]   Test Accuracy: 1.0000
+[2025-12-08 12:19:41] [INFO]   Precision: 1.0000
+[2025-12-08 12:19:41] [INFO]   Recall: 1.0000
+[2025-12-08 12:19:41] [INFO]   F1-Score: 1.0000
+[2025-12-08 12:19:41] [INFO] 
+  Confusion Matrix:
+[2025-12-08 12:19:41] [INFO]   [[121   0   0]
+ [  0 339   0]
+ [  0   0 236]]
+[2025-12-08 12:19:41] [INFO]   Model saved: .\output\models\classification_decision_tree.pkl
+[2025-12-08 12:19:41] [INFO] 
+--- Training Random Forest ---
+[2025-12-08 12:19:42] [INFO] ✓ Training completed!
+[2025-12-08 12:19:42] [INFO]   Train Accuracy: 0.9996
+[2025-12-08 12:19:42] [INFO]   Test Accuracy: 0.9971
+[2025-12-08 12:19:42] [INFO]   Precision: 0.9972
+[2025-12-08 12:19:42] [INFO]   Recall: 0.9971
+[2025-12-08 12:19:42] [INFO]   F1-Score: 0.9971
+[2025-12-08 12:19:42] [INFO] 
+  Confusion Matrix:
+[2025-12-08 12:19:42] [INFO]   [[121   0   0]
+ [  0 337   2]
+ [  0   0 236]]
+[2025-12-08 12:19:42] [INFO]   Model saved: .\output\models\classification_random_forest.pkl
+[2025-12-08 12:19:42] [INFO] 
+🏆 Best Classification Model: Decision Tree
+[2025-12-08 12:19:42] [INFO]    Test Accuracy: 1.0000
+[2025-12-08 12:19:42] [INFO]    F1-Score: 1.0000
+[2025-12-08 12:19:42] [INFO] 
+======================================================================
+[2025-12-08 12:19:42] [INFO] MODEL 3: CLUSTERING - BOOK SEGMENTATION
+[2025-12-08 12:19:42] [INFO] ======================================================================
+[2025-12-08 12:19:42] [INFO] 
+Features used: 5
+[2025-12-08 12:19:42] [INFO] Samples for clustering: 2784
+[2025-12-08 12:19:42] [INFO] 
+--- Finding optimal K (Elbow Method) ---
+[2025-12-08 12:19:44] [INFO] ✓ Optimal K found: 2
+[2025-12-08 12:19:44] [INFO]   Silhouette Score: 0.9825
+[2025-12-08 12:19:44] [INFO] 
+--- Training K-Means with K=2 ---
+[2025-12-08 12:19:44] [INFO] ✓ Clustering completed!
+[2025-12-08 12:19:44] [INFO]   Number of clusters: 2
+[2025-12-08 12:19:44] [INFO]   Silhouette Score: 0.9825
+[2025-12-08 12:19:44] [INFO]   Davies-Bouldin Index: 0.0135
+[2025-12-08 12:19:44] [INFO] 
+  Cluster distribution:
+[2025-12-08 12:19:44] [INFO]     Cluster 0: 2731 samples (98.1%)
+[2025-12-08 12:19:44] [INFO]     Cluster 1: 53 samples (1.9%)
+[2025-12-08 12:19:44] [INFO] 
+  Cluster characteristics:
+[2025-12-08 12:19:44] [INFO]     Cluster 0:
+[2025-12-08 12:19:44] [INFO]       Avg Price: 357.28
+[2025-12-08 12:19:44] [INFO]       Avg Profit: 56.20
+[2025-12-08 12:19:44] [INFO]     Cluster 1:
+[2025-12-08 12:19:44] [INFO]       Avg Price: 648.01
+[2025-12-08 12:19:44] [INFO]       Avg Profit: 84.30
+[2025-12-08 12:19:44] [INFO] 
+  Model saved: .\output\models\clustering_kmeans.pkl
+[2025-12-08 12:19:44] [INFO] 
+======================================================================
+[2025-12-08 12:19:44] [INFO] SAVING RESULTS SUMMARY
+[2025-12-08 12:19:44] [INFO] ======================================================================
+[2025-12-08 12:19:44] [INFO] ✓ Results summary saved: .\output\ml_models_summary.json
+[2025-12-08 12:19:44] [INFO] 
+======================================================================
+[2025-12-08 12:19:44] [INFO] ✓ ALL MODELS TRAINING COMPLETED!
+[2025-12-08 12:19:44] [INFO] ======================================================================
+[2025-12-08 12:19:44] [INFO] 
+Results Summary:
+[2025-12-08 12:19:44] [INFO] 1. REGRESSION - Best RMSE: 15.30
+[2025-12-08 12:19:44] [INFO] 2. CLASSIFICATION - Best Accuracy: 1.0000
+[2025-12-08 12:19:44] [INFO] 3. CLUSTERING - Silhouette Score: 0.9825
+[2025-12-08 12:19:44] [INFO] 
+Next Steps:
+[2025-12-08 12:19:44] [INFO] 1. Review ml_models_summary.json
+[2025-12-08 12:19:44] [INFO] 2. Create visualizations
+[2025-12-08 12:19:44] [INFO] 3. Build BI dashboard
+[2025-12-08 12:59:20] [INFO] 
+======================================================================
+[2025-12-08 12:59:20] [INFO]  MACHINE LEARNING MODELS TRAINING
+[2025-12-08 12:59:20] [INFO]  Toko Buku Pustaka Nusantara
+[2025-12-08 12:59:20] [INFO]  3 Models: Regression, Classification, Clustering
+[2025-12-08 12:59:20] [INFO] ======================================================================
+[2025-12-08 12:59:20] [INFO] ======================================================================
+[2025-12-08 12:59:20] [INFO] LOADING TRAIN & TEST DATA
+[2025-12-08 12:59:20] [INFO] ======================================================================
+[2025-12-08 12:59:20] [INFO] ✓ Train set loaded: (2784, 52)
+[2025-12-08 12:59:20] [INFO] ✓ Test set loaded: (696, 52)
+[2025-12-08 12:59:20] [INFO] 
+======================================================================
+[2025-12-08 12:59:20] [INFO] MODEL 1: REGRESSION - PREDICTING TOTAL_AMOUNT
+[2025-12-08 12:59:20] [INFO] ======================================================================
+[2025-12-08 12:59:20] [INFO] 
+Features used: 10
+[2025-12-08 12:59:20] [INFO] Target: Total_Amount
+[2025-12-08 12:59:20] [INFO] 
+Training samples: 2784
+[2025-12-08 12:59:20] [INFO] Testing samples: 696
+[2025-12-08 12:59:20] [INFO] 
+--- Training Linear Regression ---
+[2025-12-08 12:59:20] [INFO] ✓ Training completed!
+[2025-12-08 12:59:20] [INFO]   Train RMSE: 20.70
+[2025-12-08 12:59:20] [INFO]   Test RMSE: 21.81
+[2025-12-08 12:59:20] [INFO]   Test MAE: 14.40
+[2025-12-08 12:59:20] [INFO]   Train R²: 0.9945
+[2025-12-08 12:59:20] [INFO]   Test R²: 0.9943
+[2025-12-08 12:59:20] [INFO]   Test MAPE: 4.62%
+[2025-12-08 12:59:20] [INFO]   Model saved: .\output\models\regression_linear_regression.pkl
+[2025-12-08 12:59:20] [INFO] 
+--- Training Random Forest ---
+[2025-12-08 12:59:20] [INFO] ✓ Training completed!
+[2025-12-08 12:59:20] [INFO]   Train RMSE: 10.50
+[2025-12-08 12:59:20] [INFO]   Test RMSE: 15.47
+[2025-12-08 12:59:20] [INFO]   Test MAE: 7.18
+[2025-12-08 12:59:20] [INFO]   Train R²: 0.9986
+[2025-12-08 12:59:20] [INFO]   Test R²: 0.9971
+[2025-12-08 12:59:20] [INFO]   Test MAPE: 2.36%
+[2025-12-08 12:59:20] [INFO]   Model saved: .\output\models\regression_random_forest.pkl
+[2025-12-08 12:59:20] [INFO] 
+--- Training Gradient Boosting ---
+[2025-12-08 12:59:20] [INFO] ✓ Training completed!
+[2025-12-08 12:59:20] [INFO]   Train RMSE: 11.42
+[2025-12-08 12:59:20] [INFO]   Test RMSE: 15.30
+[2025-12-08 12:59:20] [INFO]   Test MAE: 7.73
+[2025-12-08 12:59:20] [INFO]   Train R²: 0.9983
+[2025-12-08 12:59:20] [INFO]   Test R²: 0.9972
+[2025-12-08 12:59:20] [INFO]   Test MAPE: 2.50%
+[2025-12-08 12:59:20] [INFO]   Model saved: .\output\models\regression_gradient_boosting.pkl
+[2025-12-08 12:59:20] [INFO] 
+🏆 Best Regression Model: Gradient Boosting
+[2025-12-08 12:59:20] [INFO]    Test RMSE: 15.30
+[2025-12-08 12:59:20] [INFO]    Test R²: 0.9972
+[2025-12-08 12:59:20] [INFO] 
+======================================================================
+[2025-12-08 12:59:20] [INFO] MODEL 2: CLASSIFICATION - PREDICTING PROFIT CATEGORY
+[2025-12-08 12:59:20] [INFO] ======================================================================
+[2025-12-08 12:59:20] [INFO] 
+Features used: 8
+[2025-12-08 12:59:20] [INFO] Target: Profit_Category
+[2025-12-08 12:59:20] [INFO] 
+Features used: 8
+[2025-12-08 12:59:20] [INFO] Target: Profit_Category
+[2025-12-08 12:59:20] [INFO] 
+Class distribution (Train):
+[2025-12-08 12:59:20] [INFO]   Low: 1419 (51.0%)
+[2025-12-08 12:59:20] [INFO]   Medium: 943 (33.9%)
+[2025-12-08 12:59:20] [INFO]   High: 422 (15.2%)
+[2025-12-08 12:59:20] [INFO] 
+--- Training Logistic Regression ---
+[2025-12-08 12:59:20] [INFO] ✓ Training completed!
+[2025-12-08 12:59:20] [INFO]   Train Accuracy: 0.9598
+[2025-12-08 12:59:20] [INFO]   Test Accuracy: 0.9497
+[2025-12-08 12:59:20] [INFO]   Precision: 0.9505
+[2025-12-08 12:59:20] [INFO]   Recall: 0.9497
+[2025-12-08 12:59:20] [INFO]   F1-Score: 0.9500
+[2025-12-08 12:59:20] [INFO] 
+  Confusion Matrix:
+[2025-12-08 12:59:20] [INFO]   [[110   0  11]
+ [  0 334   5]
+ [ 17   2 217]]
+[2025-12-08 12:59:20] [INFO]   Model saved: .\output\models\classification_logistic_regression.pkl
+[2025-12-08 12:59:20] [INFO] 
+--- Training Decision Tree ---
+[2025-12-08 12:59:20] [INFO] ✓ Training completed!
+[2025-12-08 12:59:20] [INFO]   Train Accuracy: 1.0000
+[2025-12-08 12:59:20] [INFO]   Test Accuracy: 1.0000
+[2025-12-08 12:59:20] [INFO]   Precision: 1.0000
+[2025-12-08 12:59:20] [INFO]   Recall: 1.0000
+[2025-12-08 12:59:20] [INFO]   F1-Score: 1.0000
+[2025-12-08 12:59:20] [INFO] 
+  Confusion Matrix:
+[2025-12-08 12:59:20] [INFO]   [[121   0   0]
+ [  0 339   0]
+ [  0   0 236]]
+[2025-12-08 12:59:20] [INFO]   Model saved: .\output\models\classification_decision_tree.pkl
+[2025-12-08 12:59:20] [INFO] 
+--- Training Random Forest ---
+[2025-12-08 12:59:21] [INFO] ✓ Training completed!
+[2025-12-08 12:59:21] [INFO]   Train Accuracy: 0.9996
+[2025-12-08 12:59:21] [INFO]   Test Accuracy: 0.9971
+[2025-12-08 12:59:21] [INFO]   Precision: 0.9972
+[2025-12-08 12:59:21] [INFO]   Recall: 0.9971
+[2025-12-08 12:59:21] [INFO]   F1-Score: 0.9971
+[2025-12-08 12:59:21] [INFO] 
+  Confusion Matrix:
+[2025-12-08 12:59:21] [INFO]   [[121   0   0]
+ [  0 337   2]
+ [  0   0 236]]
+[2025-12-08 12:59:21] [INFO]   Model saved: .\output\models\classification_random_forest.pkl
+[2025-12-08 12:59:21] [INFO] 
+🏆 Best Classification Model: Decision Tree
+[2025-12-08 12:59:21] [INFO]    Test Accuracy: 1.0000
+[2025-12-08 12:59:21] [INFO]    F1-Score: 1.0000
+[2025-12-08 12:59:21] [INFO] 
+======================================================================
+[2025-12-08 12:59:21] [INFO] MODEL 3: CLUSTERING - BOOK SEGMENTATION
+[2025-12-08 12:59:21] [INFO] ======================================================================
+[2025-12-08 12:59:21] [INFO] 
+Features used: 5
+[2025-12-08 12:59:21] [INFO] Samples for clustering: 2784
+[2025-12-08 12:59:21] [INFO] 
+--- Finding optimal K (Elbow Method) ---
+[2025-12-08 12:59:23] [INFO] ✓ Optimal K found: 2
+[2025-12-08 12:59:23] [INFO]   Silhouette Score: 0.9825
+[2025-12-08 12:59:23] [INFO] 
+--- Training K-Means with K=2 ---
+[2025-12-08 12:59:23] [INFO] ✓ Clustering completed!
+[2025-12-08 12:59:23] [INFO]   Number of clusters: 2
+[2025-12-08 12:59:23] [INFO]   Silhouette Score: 0.9825
+[2025-12-08 12:59:23] [INFO]   Davies-Bouldin Index: 0.0135
+[2025-12-08 12:59:23] [INFO] 
+  Cluster distribution:
+[2025-12-08 12:59:23] [INFO]     Cluster 0: 2731 samples (98.1%)
+[2025-12-08 12:59:23] [INFO]     Cluster 1: 53 samples (1.9%)
+[2025-12-08 12:59:23] [INFO] 
+  Cluster characteristics:
+[2025-12-08 12:59:23] [INFO]     Cluster 0:
+[2025-12-08 12:59:23] [INFO]       Avg Price: 357.28
+[2025-12-08 12:59:23] [INFO]       Avg Profit: 56.20
+[2025-12-08 12:59:23] [INFO]     Cluster 1:
+[2025-12-08 12:59:23] [INFO]       Avg Price: 648.01
+[2025-12-08 12:59:23] [INFO]       Avg Profit: 84.30
+[2025-12-08 12:59:23] [INFO] 
+  Model saved: .\output\models\clustering_kmeans.pkl
+[2025-12-08 12:59:23] [INFO] 
+======================================================================
+[2025-12-08 12:59:23] [INFO] SAVING RESULTS SUMMARY
+[2025-12-08 12:59:23] [INFO] ======================================================================
+[2025-12-08 12:59:23] [INFO] ✓ Results summary saved: .\output\ml_models_summary.json
+[2025-12-08 12:59:23] [INFO] 
+======================================================================
+[2025-12-08 12:59:23] [INFO] ✓ ALL MODELS TRAINING COMPLETED!
+[2025-12-08 12:59:23] [INFO] ======================================================================
+[2025-12-08 12:59:23] [INFO] 
+Results Summary:
+[2025-12-08 12:59:23] [INFO] 1. REGRESSION - Best RMSE: 15.30
+[2025-12-08 12:59:23] [INFO] 2. CLASSIFICATION - Best Accuracy: 1.0000
+[2025-12-08 12:59:23] [INFO] 3. CLUSTERING - Silhouette Score: 0.9825
+[2025-12-08 12:59:23] [INFO] 
+Next Steps:
+[2025-12-08 12:59:23] [INFO] 1. Review ml_models_summary.json
+[2025-12-08 12:59:23] [INFO] 2. Create visualizations
+[2025-12-08 12:59:23] [INFO] 3. Build BI dashboard

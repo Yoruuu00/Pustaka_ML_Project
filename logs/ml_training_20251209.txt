@@ -1,0 +1,216 @@
+[2025-12-09 10:31:13] [INFO] 
+======================================================================
+[2025-12-09 10:31:13] [INFO]  MACHINE LEARNING TRAINING (REGRESSION ONLY)
+[2025-12-09 10:31:13] [INFO]  Toko Buku Pustaka Nusantara
+[2025-12-09 10:31:13] [INFO]  Fokus: Prediksi Total Penjualan
+[2025-12-09 10:31:13] [INFO] ======================================================================
+[2025-12-09 10:31:13] [INFO] ======================================================================
+[2025-12-09 10:31:13] [INFO] LOADING TRAIN & TEST DATA
+[2025-12-09 10:31:13] [INFO] ======================================================================
+[2025-12-09 10:31:13] [INFO] ✓ Train set loaded: (2784, 52)
+[2025-12-09 10:31:13] [INFO] ✓ Test set loaded: (696, 52)
+[2025-12-09 10:31:13] [INFO] 
+======================================================================
+[2025-12-09 10:31:13] [INFO] MAIN MODEL: REGRESSION - PREDICTING TOTAL SALES
+[2025-12-09 10:31:13] [INFO] ======================================================================
+[2025-12-09 10:31:13] [INFO] 
+Features used: 10
+[2025-12-09 10:31:13] [INFO] Target Variable: Total_Amount
+[2025-12-09 10:31:13] [INFO] 
+Training samples: 2784
+[2025-12-09 10:31:13] [INFO] Testing samples: 696
+[2025-12-09 10:31:13] [INFO] 
+--- Training Linear Regression ---
+[2025-12-09 10:31:13] [INFO] ✓ Training completed!
+[2025-12-09 10:31:13] [INFO]   Train RMSE: 20.70
+[2025-12-09 10:31:13] [INFO]   Test RMSE: 21.81
+[2025-12-09 10:31:13] [INFO]   Test MAE: 14.40
+[2025-12-09 10:31:13] [INFO]   Train R²: 0.9945
+[2025-12-09 10:31:13] [INFO]   Test R²: 0.9943
+[2025-12-09 10:31:13] [INFO]   Test MAPE: 4.62%
+[2025-12-09 10:31:13] [INFO]   Model saved: .\output\models\regression_linear_regression.pkl
+[2025-12-09 10:31:13] [INFO] 
+--- Training Random Forest ---
+[2025-12-09 10:31:14] [INFO] ✓ Training completed!
+[2025-12-09 10:31:14] [INFO]   Train RMSE: 10.50
+[2025-12-09 10:31:14] [INFO]   Test RMSE: 15.47
+[2025-12-09 10:31:14] [INFO]   Test MAE: 7.18
+[2025-12-09 10:31:14] [INFO]   Train R²: 0.9986
+[2025-12-09 10:31:14] [INFO]   Test R²: 0.9971
+[2025-12-09 10:31:14] [INFO]   Test MAPE: 2.36%
+[2025-12-09 10:31:14] [INFO]   Model saved: .\output\models\regression_random_forest.pkl
+[2025-12-09 10:31:14] [INFO] 
+--- Training Gradient Boosting ---
+[2025-12-09 10:31:14] [INFO] ✓ Training completed!
+[2025-12-09 10:31:14] [INFO]   Train RMSE: 11.42
+[2025-12-09 10:31:14] [INFO]   Test RMSE: 15.30
+[2025-12-09 10:31:14] [INFO]   Test MAE: 7.73
+[2025-12-09 10:31:14] [INFO]   Train R²: 0.9983
+[2025-12-09 10:31:14] [INFO]   Test R²: 0.9972
+[2025-12-09 10:31:14] [INFO]   Test MAPE: 2.50%
+[2025-12-09 10:31:14] [INFO]   Model saved: .\output\models\regression_gradient_boosting.pkl
+[2025-12-09 10:31:14] [INFO] 
+🏆 BEST REGRESSION MODEL: Gradient Boosting
+[2025-12-09 10:31:14] [INFO]    (Lowest Error / RMSE: 15.30)
+[2025-12-09 10:31:14] [INFO] 
+======================================================================
+[2025-12-09 10:31:14] [INFO] SAVING RESULTS SUMMARY
+[2025-12-09 10:31:14] [INFO] ======================================================================
+[2025-12-09 10:31:14] [INFO] ✓ Results summary saved: .\output\ml_models_summary.json
+[2025-12-09 10:31:14] [INFO] 
+======================================================================
+[2025-12-09 10:31:14] [INFO] ✓ MODEL TRAINING COMPLETED!
+[2025-12-09 10:31:14] [INFO] ======================================================================
+[2025-12-09 10:31:14] [INFO] 
+Final Conclusion:
+[2025-12-09 10:31:14] [INFO] Model Terbaik: Gradient Boosting
+[2025-12-09 10:31:14] [INFO] Akurasi (R²): 0.9972
+[2025-12-09 10:31:14] [INFO] Error Rata-rata (RMSE): Rp 15.30
+[2025-12-09 10:31:14] [INFO] 
+Next Steps:
+[2025-12-09 10:31:14] [INFO] 1. Gunakan 'regression_random_forest.pkl' (atau model terbaik lain) di Dashboard.
+[2025-12-09 10:31:14] [INFO] 2. Fokus analisis laporan pada faktor yang mempengaruhi penjualan.
+[2025-12-09 11:43:39] [INFO] 
+======================================================================
+[2025-12-09 11:43:39] [INFO]  MACHINE LEARNING TRAINING (REGRESSION ONLY)
+[2025-12-09 11:43:39] [INFO]  Toko Buku Pustaka Nusantara
+[2025-12-09 11:43:39] [INFO]  Fokus: Prediksi Total Penjualan
+[2025-12-09 11:43:39] [INFO] ======================================================================
+[2025-12-09 11:43:39] [INFO] ======================================================================
+[2025-12-09 11:43:39] [INFO] LOADING TRAIN & TEST DATA
+[2025-12-09 11:43:39] [INFO] ======================================================================
+[2025-12-09 11:43:39] [INFO] ✓ Train set loaded: (2784, 34)
+[2025-12-09 11:43:39] [INFO] ✓ Test set loaded: (696, 34)
+[2025-12-09 11:43:39] [INFO] 
+======================================================================
+[2025-12-09 11:43:39] [INFO] MAIN MODEL: REGRESSION - PREDICTING TOTAL SALES
+[2025-12-09 11:43:39] [INFO] ======================================================================
+[2025-12-09 11:43:39] [INFO] 
+Features used: 4
+[2025-12-09 11:43:39] [INFO] Target Variable: Total_Amount
+[2025-12-09 11:43:39] [INFO] 
+Training samples: 2784
+[2025-12-09 11:43:39] [INFO] Testing samples: 696
+[2025-12-09 11:43:39] [INFO] 
+--- Training Linear Regression ---
+[2025-12-09 11:43:39] [INFO] ✓ Training completed!
+[2025-12-09 11:43:39] [INFO]   Train RMSE: 0.00
+[2025-12-09 11:43:39] [INFO]   Test RMSE: 0.00
+[2025-12-09 11:43:39] [INFO]   Test MAE: 0.00
+[2025-12-09 11:43:39] [INFO]   Train R²: 1.0000
+[2025-12-09 11:43:39] [INFO]   Test R²: 1.0000
+[2025-12-09 11:43:39] [INFO]   Test MAPE: 0.00%
+[2025-12-09 11:43:39] [INFO]   Model saved: .\output\models\regression_linear_regression.pkl
+[2025-12-09 11:43:39] [INFO] 
+--- Training Random Forest ---
+[2025-12-09 11:43:39] [INFO] ✓ Training completed!
+[2025-12-09 11:43:39] [INFO]   Train RMSE: 0.25
+[2025-12-09 11:43:39] [INFO]   Test RMSE: 1.71
+[2025-12-09 11:43:39] [INFO]   Test MAE: 1.04
+[2025-12-09 11:43:39] [INFO]   Train R²: 1.0000
+[2025-12-09 11:43:39] [INFO]   Test R²: 1.0000
+[2025-12-09 11:43:39] [INFO]   Test MAPE: 0.22%
+[2025-12-09 11:43:39] [INFO]   Model saved: .\output\models\regression_random_forest.pkl
+[2025-12-09 11:43:39] [INFO] 
+--- Training Gradient Boosting ---
+[2025-12-09 11:43:40] [INFO] ✓ Training completed!
+[2025-12-09 11:43:40] [INFO]   Train RMSE: 0.08
+[2025-12-09 11:43:40] [INFO]   Test RMSE: 1.79
+[2025-12-09 11:43:40] [INFO]   Test MAE: 0.89
+[2025-12-09 11:43:40] [INFO]   Train R²: 1.0000
+[2025-12-09 11:43:40] [INFO]   Test R²: 1.0000
+[2025-12-09 11:43:40] [INFO]   Test MAPE: 0.19%
+[2025-12-09 11:43:40] [INFO]   Model saved: .\output\models\regression_gradient_boosting.pkl
+[2025-12-09 11:43:40] [INFO] 
+🏆 BEST REGRESSION MODEL: Linear Regression
+[2025-12-09 11:43:40] [INFO]    (Lowest Error / RMSE: 0.00)
+[2025-12-09 11:43:40] [INFO] 
+======================================================================
+[2025-12-09 11:43:40] [INFO] SAVING RESULTS SUMMARY
+[2025-12-09 11:43:40] [INFO] ======================================================================
+[2025-12-09 11:43:40] [INFO] ✓ Results summary saved: .\output\ml_models_summary.json
+[2025-12-09 11:43:40] [INFO] 
+======================================================================
+[2025-12-09 11:43:40] [INFO] ✓ MODEL TRAINING COMPLETED!
+[2025-12-09 11:43:40] [INFO] ======================================================================
+[2025-12-09 11:43:40] [INFO] 
+Final Conclusion:
+[2025-12-09 11:43:40] [INFO] Model Terbaik: Linear Regression
+[2025-12-09 11:43:40] [INFO] Akurasi (R²): 1.0000
+[2025-12-09 11:43:40] [INFO] Error Rata-rata (RMSE): Rp 0.00
+[2025-12-09 11:43:40] [INFO] 
+Next Steps:
+[2025-12-09 11:43:40] [INFO] 1. Gunakan 'regression_random_forest.pkl' (atau model terbaik lain) di Dashboard.
+[2025-12-09 11:43:40] [INFO] 2. Fokus analisis laporan pada faktor yang mempengaruhi penjualan.
+[2025-12-09 15:31:57] [INFO] 
+======================================================================
+[2025-12-09 15:31:57] [INFO]  MACHINE LEARNING TRAINING (REGRESSION ONLY)
+[2025-12-09 15:31:57] [INFO]  Toko Buku Pustaka Nusantara
+[2025-12-09 15:31:57] [INFO]  Fokus: Prediksi Total Penjualan
+[2025-12-09 15:31:57] [INFO] ======================================================================
+[2025-12-09 15:31:57] [INFO] ======================================================================
+[2025-12-09 15:31:57] [INFO] LOADING TRAIN & TEST DATA
+[2025-12-09 15:31:57] [INFO] ======================================================================
+[2025-12-09 15:31:57] [INFO] ✓ Train set loaded: (2784, 34)
+[2025-12-09 15:31:57] [INFO] ✓ Test set loaded: (696, 34)
+[2025-12-09 15:31:57] [INFO] 
+======================================================================
+[2025-12-09 15:31:57] [INFO] MAIN MODEL: REGRESSION - PREDICTING TOTAL SALES
+[2025-12-09 15:31:57] [INFO] ======================================================================
+[2025-12-09 15:31:57] [INFO] 
+Features used: 4
+[2025-12-09 15:31:57] [INFO] Target Variable: Total_Amount
+[2025-12-09 15:31:57] [INFO] 
+Training samples: 2784
+[2025-12-09 15:31:57] [INFO] Testing samples: 696
+[2025-12-09 15:31:57] [INFO] 
+--- Training Linear Regression ---
+[2025-12-09 15:31:57] [INFO] ✓ Training completed!
+[2025-12-09 15:31:57] [INFO]   Train RMSE: 0.00
+[2025-12-09 15:31:57] [INFO]   Test RMSE: 0.00
+[2025-12-09 15:31:57] [INFO]   Test MAE: 0.00
+[2025-12-09 15:31:57] [INFO]   Train R²: 1.0000
+[2025-12-09 15:31:57] [INFO]   Test R²: 1.0000
+[2025-12-09 15:31:57] [INFO]   Test MAPE: 0.00%
+[2025-12-09 15:31:57] [INFO]   Model saved: .\output\models\regression_linear_regression.pkl
+[2025-12-09 15:31:57] [INFO] 
+--- Training Random Forest ---
+[2025-12-09 15:31:58] [INFO] ✓ Training completed!
+[2025-12-09 15:31:58] [INFO]   Train RMSE: 0.25
+[2025-12-09 15:31:58] [INFO]   Test RMSE: 1.71
+[2025-12-09 15:31:58] [INFO]   Test MAE: 1.04
+[2025-12-09 15:31:58] [INFO]   Train R²: 1.0000
+[2025-12-09 15:31:58] [INFO]   Test R²: 1.0000
+[2025-12-09 15:31:58] [INFO]   Test MAPE: 0.22%
+[2025-12-09 15:31:58] [INFO]   Model saved: .\output\models\regression_random_forest.pkl
+[2025-12-09 15:31:58] [INFO] 
+--- Training Gradient Boosting ---
+[2025-12-09 15:31:59] [INFO] ✓ Training completed!
+[2025-12-09 15:31:59] [INFO]   Train RMSE: 0.08
+[2025-12-09 15:31:59] [INFO]   Test RMSE: 1.79
+[2025-12-09 15:31:59] [INFO]   Test MAE: 0.89
+[2025-12-09 15:31:59] [INFO]   Train R²: 1.0000
+[2025-12-09 15:31:59] [INFO]   Test R²: 1.0000
+[2025-12-09 15:31:59] [INFO]   Test MAPE: 0.19%
+[2025-12-09 15:31:59] [INFO]   Model saved: .\output\models\regression_gradient_boosting.pkl
+[2025-12-09 15:31:59] [INFO] 
+🏆 BEST REGRESSION MODEL: Linear Regression
+[2025-12-09 15:31:59] [INFO]    (Lowest Error / RMSE: 0.00)
+[2025-12-09 15:31:59] [INFO] 
+======================================================================
+[2025-12-09 15:31:59] [INFO] SAVING RESULTS SUMMARY
+[2025-12-09 15:31:59] [INFO] ======================================================================
+[2025-12-09 15:31:59] [INFO] ✓ Results summary saved: .\output\ml_models_summary.json
+[2025-12-09 15:31:59] [INFO] 
+======================================================================
+[2025-12-09 15:31:59] [INFO] ✓ MODEL TRAINING COMPLETED!
+[2025-12-09 15:31:59] [INFO] ======================================================================
+[2025-12-09 15:31:59] [INFO] 
+Final Conclusion:
+[2025-12-09 15:31:59] [INFO] Model Terbaik: Linear Regression
+[2025-12-09 15:31:59] [INFO] Akurasi (R²): 1.0000
+[2025-12-09 15:31:59] [INFO] Error Rata-rata (RMSE): Rp 0.00
+[2025-12-09 15:31:59] [INFO] 
+Next Steps:
+[2025-12-09 15:31:59] [INFO] 1. Gunakan 'regression_random_forest.pkl' (atau model terbaik lain) di Dashboard.
+[2025-12-09 15:31:59] [INFO] 2. Fokus analisis laporan pada faktor yang mempengaruhi penjualan.

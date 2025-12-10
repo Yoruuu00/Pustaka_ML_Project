@@ -1,0 +1,98 @@
+[2025-12-04 11:54:31] [INFO] 
+======================================================================
+[2025-12-04 11:54:31] [INFO]  DATA WAREHOUSE TO MACHINE LEARNING - EXTRACTION PIPELINE
+[2025-12-04 11:54:31] [INFO]  Toko Buku Pustaka Nusantara
+[2025-12-04 11:54:31] [INFO] ======================================================================
+[2025-12-04 11:54:31] [INFO] ======================================================================
+[2025-12-04 11:54:31] [INFO] STEP 1: LOADING DATA WAREHOUSE TABLES
+[2025-12-04 11:54:31] [INFO] ======================================================================
+[2025-12-04 11:54:31] [ERROR] ❌ File tidak ditemukan: /app/data/FactSales.csv
+[2025-12-04 11:54:31] [WARNING] ALTERNATIF: Coba gunakan CSV asli dari OLTP
+[2025-12-04 11:54:31] [WARNING] ⚠ DW tables not found, using raw OLTP data
+[2025-12-04 11:54:31] [INFO] ======================================================================
+[2025-12-04 11:54:31] [INFO] ALTERNATIF: LOADING RAW OLTP DATA
+[2025-12-04 11:54:31] [INFO] ======================================================================
+[2025-12-04 11:54:31] [ERROR] ❌ Tidak ada file CSV ditemukan di folder data/
+[2025-12-04 11:54:31] [ERROR] ❌ No data found! Please add CSV files to data/ folder
+[2025-12-04 11:57:04] [INFO] 
+======================================================================
+[2025-12-04 11:57:04] [INFO]  DATA WAREHOUSE TO MACHINE LEARNING - EXTRACTION PIPELINE
+[2025-12-04 11:57:04] [INFO]  Toko Buku Pustaka Nusantara
+[2025-12-04 11:57:04] [INFO] ======================================================================
+[2025-12-04 11:57:04] [INFO] ======================================================================
+[2025-12-04 11:57:04] [INFO] STEP 1: LOADING DATA WAREHOUSE TABLES
+[2025-12-04 11:57:04] [INFO] ======================================================================
+[2025-12-04 11:57:04] [ERROR] ❌ File tidak ditemukan: /app/data/FactSales.csv
+[2025-12-04 11:57:04] [WARNING] ALTERNATIF: Coba gunakan CSV asli dari OLTP
+[2025-12-04 11:57:04] [WARNING] ⚠ DW tables not found, using raw OLTP data
+[2025-12-04 11:57:04] [INFO] ======================================================================
+[2025-12-04 11:57:04] [INFO] ALTERNATIF: LOADING RAW OLTP DATA
+[2025-12-04 11:57:04] [INFO] ======================================================================
+[2025-12-04 11:57:04] [ERROR] ❌ Tidak ada file CSV ditemukan di folder data/
+[2025-12-04 11:57:04] [ERROR] ❌ No data found! Please add CSV files to data/ folder
+[2025-12-04 12:05:15] [INFO] 
+======================================================================
+[2025-12-04 12:05:15] [INFO]  DATA WAREHOUSE TO MACHINE LEARNING - EXTRACTION PIPELINE
+[2025-12-04 12:05:15] [INFO]  Toko Buku Pustaka Nusantara
+[2025-12-04 12:05:15] [INFO] ======================================================================
+[2025-12-04 12:05:15] [INFO] ======================================================================
+[2025-12-04 12:05:15] [INFO] STEP 1: LOADING DATA WAREHOUSE TABLES
+[2025-12-04 12:05:15] [INFO] ======================================================================
+[2025-12-04 12:05:15] [ERROR] ❌ File tidak ditemukan: /app/data/FactSales.csv
+[2025-12-04 12:05:15] [WARNING] ALTERNATIF: Coba gunakan CSV asli dari OLTP
+[2025-12-04 12:05:15] [WARNING] ⚠ DW tables not found, using raw OLTP data
+[2025-12-04 12:05:15] [INFO] ======================================================================
+[2025-12-04 12:05:15] [INFO] ALTERNATIF: LOADING RAW OLTP DATA
+[2025-12-04 12:05:15] [INFO] ======================================================================
+[2025-12-04 12:05:15] [INFO] ✓ Merged_OLTP_Books_Cleaned0.csv loaded: 3480 rows
+[2025-12-04 12:05:15] [INFO]   Columns: ['Purchase-date', 'Customer ID', 'Title', 'Quantity', 'Item Price', 'Total_Amount', 'Profit (INR)', 'Category_OLTP', 'Ship-City', 'Ship-State']
+[2025-12-04 12:05:15] [INFO]   Sample columns: ['Purchase-date', 'Customer ID', 'Title', 'Quantity', 'Item Price']...
+[2025-12-04 12:05:15] [INFO] 
+======================================================================
+[2025-12-04 12:05:15] [INFO] STEP 3: CREATING ML DATASET FROM RAW DATA
+[2025-12-04 12:05:15] [INFO] ======================================================================
+[2025-12-04 12:05:15] [INFO] ✓ Dataset loaded: (3480, 10)
+[2025-12-04 12:05:15] [INFO]   Columns: ['Purchase_Date', 'Customer_ID', 'Title', 'Quantity', 'Item_Price', 'Total_Amount', 'Profit', 'Category', 'Ship_City', 'Ship_State']
+[2025-12-04 12:05:15] [INFO] 
+======================================================================
+[2025-12-04 12:05:15] [INFO] STEP 4: DATA QUALITY CHECK - ML Dataset
+[2025-12-04 12:05:15] [INFO] ======================================================================
+[2025-12-04 12:05:15] [INFO] 
+1. DATASET INFO:
+[2025-12-04 12:05:15] [INFO]    Shape: 3480 rows x 10 columns
+[2025-12-04 12:05:15] [INFO]    Memory: 1.61 MB
+[2025-12-04 12:05:15] [INFO] 
+2. MISSING VALUES:
+[2025-12-04 12:05:15] [INFO]    ✓ No missing values found!
+[2025-12-04 12:05:15] [INFO] 
+3. DUPLICATE ROWS:
+[2025-12-04 12:05:15] [INFO]    Total duplicates: 0 (0.00%)
+[2025-12-04 12:05:15] [INFO] 
+4. DATA TYPES:
+[2025-12-04 12:05:15] [INFO]    object: 6 columns
+[2025-12-04 12:05:15] [INFO]    float64: 3 columns
+[2025-12-04 12:05:15] [INFO]    int64: 1 columns
+[2025-12-04 12:05:15] [INFO] 
+5. NUMERICAL COLUMNS SUMMARY:
+[2025-12-04 12:05:15] [INFO]    Found 4 numerical columns
+[2025-12-04 12:05:15] [INFO]    - Quantity: min=1.00, max=10.00, mean=1.05
+[2025-12-04 12:05:15] [INFO]    - Item_Price: min=40.00, max=6450.00, mean=377.75
+[2025-12-04 12:05:15] [INFO]    - Total_Amount: min=80.00, max=7300.00, mean=456.78
+[2025-12-04 12:05:15] [INFO]    - Profit: min=5.20, max=838.50, mean=59.81
+[2025-12-04 12:05:15] [INFO] 
+======================================================================
+[2025-12-04 12:05:15] [INFO] STEP 5: SAVING ML DATASET
+[2025-12-04 12:05:15] [INFO] ======================================================================
+[2025-12-04 12:05:15] [INFO] ✓ Dataset saved to: /app/output/ML_Dataset_PustakaNusantara.csv
+[2025-12-04 12:05:15] [INFO]   - Size: 3480 rows x 10 columns
+[2025-12-04 12:05:15] [INFO]   - File size: 0.46 MB
+[2025-12-04 12:05:15] [INFO] ✓ Column info saved to: /app/output/ML_Dataset_PustakaNusantara_ColumnInfo.csv
+[2025-12-04 12:05:15] [INFO] 
+======================================================================
+[2025-12-04 12:05:15] [INFO] ✓ PIPELINE COMPLETED SUCCESSFULLY!
+[2025-12-04 12:05:15] [INFO] ======================================================================
+[2025-12-04 12:05:15] [INFO] 
+Next Steps:
+[2025-12-04 12:05:15] [INFO] 1. Review the ML_Dataset_PustakaNusantara.csv in output/ folder
+[2025-12-04 12:05:15] [INFO] 2. Proceed with preprocessing and feature engineering
+[2025-12-04 12:05:15] [INFO] 3. Build ML models (Regression, Classification, Clustering)

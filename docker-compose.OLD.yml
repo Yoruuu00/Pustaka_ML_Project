@@ -1,0 +1,91 @@
+services:
+  # PostgreSQL Database
+  postgres-dwh:
+    image: postgres:15-alpine
+    container_name: pustaka_postgres_dwh
+    environment:
+      POSTGRES_USER: pustaka_admin
+      POSTGRES_PASSWORD: pustaka2025
+      POSTGRES_DB: pustaka_dwh
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./data:/data
+    networks:
+      - pustaka_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U pustaka_admin"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Python ML Pipeline
+  ml-pipeline:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pustaka_ml_pipeline
+    depends_on:
+      postgres-dwh:
+        condition: service_healthy
+    volumes:
+      - ./data:/app/data
+      - ./output:/app/output
+      - ./logs:/app/logs
+      - ./scripts:/app/scripts
+    environment:
+      - DATABASE_HOST=postgres-dwh
+      - DATABASE_PORT=5432
+      - DATABASE_NAME=pustaka_dwh
+      - DATABASE_USER=pustaka_admin
+      - DATABASE_PASSWORD=pustaka2025
+      - PYTHONUNBUFFERED=1
+    networks:
+      - pustaka_network
+    command: tail -f /dev/null
+
+  # Jupyter Notebook
+  jupyter:
+    build:
+      context: .
+      dockerfile: Dockerfile.jupyter
+    container_name: pustaka_jupyter
+    depends_on:
+      - postgres-dwh
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./notebooks:/app/notebooks
+      - ./data:/app/data
+      - ./output:/app/output
+    environment:
+      - DATABASE_HOST=postgres-dwh
+      - JUPYTER_ENABLE_LAB=yes
+    networks:
+      - pustaka_network
+    command: jupyter lab --ip=0.0.0.0 --port=8888 --no-browser --allow-root --NotebookApp.token='' --NotebookApp.password=''
+
+  # PgAdmin
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: pustaka_pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@pustaka.com
+      PGADMIN_DEFAULT_PASSWORD: admin123
+    ports:
+      - "5050:80"
+    depends_on:
+      - postgres-dwh
+    networks:
+      - pustaka_network
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+
+volumes:
+  postgres_data:
+  pgadmin_data:
+
+networks:
+  pustaka_network:
+    driver: bridge
