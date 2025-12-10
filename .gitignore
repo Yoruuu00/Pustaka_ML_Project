@@ -1,0 +1,12 @@
+# Abaikan folder cache python
+__pycache__/
+*.pyc
+
+# Abaikan environment variables (password database jangan diupload!)
+.env
+config.json
+
+# Abaikan virtual environment
+venv/
+env/
+.venv/
